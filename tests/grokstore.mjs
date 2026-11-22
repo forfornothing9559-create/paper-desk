@@ -31,19 +31,21 @@ registerHooks({
 });
 
 const memory = new Map();
-Object.defineProperty(globalThis, "localStorage", {
-  configurable: true,
-  writable: true,
-  value: {
-    getItem: (key) => (memory.has(key) ? memory.get(key) : null),
-    setItem: (key, value) => {
-      memory.set(key, String(value));
-    },
-    removeItem: (key) => {
-      memory.delete(key);
-    },
+const storage = {
+  getItem: (key) => (memory.has(key) ? memory.get(key) : null),
+  setItem: (key, value) => {
+    memory.set(key, String(value));
   },
-});
+  removeItem: (key) => {
+    memory.delete(key);
+  },
+};
+// The library looks for the browser's storage as `localStorage` or as
+// `window.localStorage`, depending on its version. Give it both.
+Object.defineProperty(globalThis, "localStorage", { configurable: true, writable: true, value: storage });
+if (typeof globalThis.window === "undefined") {
+  Object.defineProperty(globalThis, "window", { configurable: true, writable: true, value: { localStorage: storage } });
+}
 
 let serial = 0;
 
@@ -57,6 +59,12 @@ export async function newGrokDesk(saved) {
   memory.set(KEY, JSON.stringify({ state: saved, version: 0 }));
   const url = `${pathToFileURL(join(ROOT, "grok", "src", "lib", "desk-store.ts")).href}?desk=${serial}`;
   const mod = await import(url);
+  if (!mod.useDesk?.persist) {
+    throw new Error(
+      `The Grok store did not find its storage. useDesk has: ${Object.keys(mod.useDesk ?? {}).join(", ")}. ` +
+        `typeof window ${typeof globalThis.window}, typeof localStorage ${typeof globalThis.localStorage}.`,
+    );
+  }
   await mod.useDesk.persist.rehydrate();
   return {
     ingest(quotes, at, error) {
