@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 00:08:36 PT** |
-| Balance, by the desk's own count after costs | **$101.85** (started at $100.00) |
-| Cash | $60.00 |
+| Last read of the market | **Nov 22, 00:23:16 PT** |
+| Balance, by the desk's own count after costs | **$101.33** (started at $100.00) |
+| Cash | $57.25 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 2 |
-| Rows in the ledger | 4 (0 closed trades) |
+| Coins waiting for a dip | 1 |
+| Rows in the ledger | 6 (1 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 0 over 0. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 1 over 1. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000590 | $12.08 |
-| XV | Nov 21, 22:37:00 PT | $10.00 | $0.0000778 | $0.0000770 | $9.60 |
-| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00136 | $9.37 |
-| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000331 | $10.79 |
+| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000684 | $14.02 |
+| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00145 | $10.03 |
+| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000317 | $10.34 |
+| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00284 | $9.68 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 6 | Nov 22, 00:21:00 PT | DCTY | dip buy | $0.00284 | -$10.00 |  |
+| 5 | Nov 22, 00:21:00 PT | XV | stop | $0.0000582 | +$7.25 | -$2.75 |
 | 4 | Nov 21, 23:12:00 PT | greg | dip buy | $0.000297 | -$10.00 |  |
 | 3 | Nov 21, 23:06:00 PT | FIONA | dip buy | $0.00141 | -$10.00 |  |
 | 2 | Nov 21, 22:37:00 PT | XV | dip buy | $0.0000778 | -$10.00 |  |
