@@ -1,0 +1,115 @@
+name: desk
+
+# One read of the market per run. PAPER ONLY: this job holds no secret, no key
+# and no wallet, and the code it runs has no way to place an order.
+#
+# How it keeps time. GitHub's own timer ("schedule") starts jobs hours late on
+# small accounts, so here it is only a backup. Each run, when it finishes,
+# starts the next one itself, and the "pace" environment makes that next run
+# wait several minutes before it begins. A waiting run uses no machine.
+#
+# To stop the desk: Actions tab, "desk", the "..." menu, "Disable workflow".
+# To start it again: "Enable workflow", then "Run workflow".
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "11,41 * * * *"
+
+permissions:
+  contents: write # to save the record
+  actions: write # to start the next run
+
+jobs:
+  read:
+    # The record lives on main only. A run started on any other branch does nothing.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: pace
+    timeout-minutes: 25
+    concurrency:
+      group: desk-writer
+      cancel-in-progress: false
+    steps:
+      # Always the newest saved record, not the commit that happened to start this run.
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      # The runner stops sending calls after 13 minutes by itself. The limit
+      # here is a second line of defence: a step that runs out of time fails,
+      # which still lets "Start the next run" go ahead. (If the whole job ran
+      # out of time instead, the chain would stop until the backup timer.)
+      - name: Read the market and apply the frozen rules
+        id: read
+        timeout-minutes: 17
+        env:
+          GITHUB_TOKEN: ${{ github.token }} # only to ask GitHub whether a book ever existed, before a first run
+        run: |
+          export DESK_HEAD="$(git rev-parse HEAD)"
+          node desk.mjs run --message "$RUNNER_TEMP/message.txt"
+
+      - name: Save the record
+        run: |
+          git config user.name "paper-desk-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -d data ]; then git add data; fi
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "nothing to save"
+            exit 0
+          fi
+          git commit -q -F "$RUNNER_TEMP/message.txt"
+          # Fail loudly if the record never reaches GitHub. The next run then
+          # starts again from the last record that did.
+          for i in 1 2 3; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+            sleep 5
+          done
+          echo "could not save the record after three tries" >&2
+          exit 1
+
+      # Runs after a failed read too (the feed may just be busy), but not when
+      # the desk stopped itself because the record or the frozen files were
+      # changed, and not when a person cancelled the run.
+      - name: Start the next run
+        if: ${{ !cancelled() && steps.read.outputs.halt != 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -u
+          # The "pace" environment makes every run wait before it starts. If
+          # that wait is ever missing, wait here instead, so runs can never
+          # follow each other back to back.
+          if wait=$(gh api "repos/$GITHUB_REPOSITORY/environments/pace" --jq '[.protection_rules[]? | select(.type == "wait_timer") | .wait_timer] | first // 0' 2>/dev/null); then
+            case "$wait" in
+              ''|*[!0-9]*|0)
+                echo "the pace environment has no wait timer; waiting ten minutes here instead"
+                sleep 600
+                ;;
+              *) echo "the next run will wait $wait minute(s) before it starts" ;;
+            esac
+          else
+            echo "could not read the pace environment; waiting two minutes here to be safe"
+            sleep 120
+          fi
+          # Only the newest run carries on. If a newer one is already queued or
+          # waiting (the backup timer fired, or someone pressed Run), leave it to that one.
+          newer=$(gh run list -R "$GITHUB_REPOSITORY" --workflow desk.yml --branch main --limit 40 --json databaseId,status --jq "[.[] | select(.status != \"completed\" and .databaseId > $GITHUB_RUN_ID)] | length" || echo 0)
+          if [ "$newer" != "0" ]; then
+            echo "a newer run is already waiting; it carries on from here"
+            exit 0
+          fi
+          for i in 1 2 3; do
+            if gh workflow run desk.yml -R "$GITHUB_REPOSITORY" --ref main; then
+              echo "started the next run"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "could not start the next run; the backup timer will" >&2
+          exit 1

@@ -32,7 +32,7 @@ Actions tab, **desk**, the **...** menu, **Disable workflow**. To start it again
 | `rules.lock.json` | Fingerprints of the frozen files. The desk stops if one changes. |
 | `data/` | The record. Written only by the desk. |
 | `tests/` | The tests the runner had to pass before it was switched on. |
-| `prelaunch/` | The side-by-side trial against the Grok desk, run before launch. |
+| `prelaunch/` | What the tests before launch showed ([`RESULT.md`](prelaunch/RESULT.md)), with the side-by-side trial against the Grok desk. |
 | [`CHANGES.md`](CHANGES.md) | Every change to the runner after launch, with the reason. |
 
 Prices come from the public GeckoTerminal API.
