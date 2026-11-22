@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 11:48:19 PT** |
-| Balance, by the desk's own count after costs | **$97.33** (started at $100.00) |
+| Last read of the market | **Nov 22, 12:03:41 PT** |
+| Balance, by the desk's own count after costs | **$97.16** (started at $100.00) |
 | Cash | $59.37 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 3 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00131 | $9.06 |
-| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000326 | $10.65 |
-| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00291 | $9.93 |
-| Singularity | Nov 22, 11:01:00 PT | $10.00 | $0.000615 | $0.000528 | $8.33 |
+| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00128 | $8.85 |
+| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000296 | $9.66 |
+| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00282 | $9.63 |
+| Singularity | Nov 22, 11:01:00 PT | $10.00 | $0.000615 | $0.000612 | $9.65 |
 
 ### Last 10 rows of the ledger
 
