@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 21, 21:22:21 PT** |
+| Last read of the market | **Nov 21, 21:28:25 PT** |
 | Balance, by the desk's own count after costs | **$100.00** (started at $100.00) |
 | Cash | $100.00 |
 | Open paper trades | 0 of 4 allowed |
-| Coins waiting for a dip | 5 |
+| Coins waiting for a dip | 6 |
 | Rows in the ledger | 0 (0 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 0 over 0. The balance above is the desk's own count, not the score.
