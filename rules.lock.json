@@ -1,7 +1,7 @@
 {
  "what": "Fingerprints (SHA-256) of the frozen files. The desk checks them before every run and stops if one differs.",
  "files": {
-  "FROZEN.md": "27c1d5e6384236488a434c5bd2baa3c6f70d9c1635bbd1bbd40fb3b08ff32d15",
+  "FROZEN.md": "43984c48959652c2d74dfd3eae3c132d1a42735cbb40028ea8d33b1b264f367d",
   "grok/src/lib/strategy.ts": "7ff8e92ecdf25a0b28ed1114de392f63f65842c361e561a12ec05d259c2f0a95",
   "grok/src/lib/market.ts": "d599b98048294873a8863acc57977b72e6ae6ae9608c02992d07059680aa63e4",
   "grok/src/lib/desk-store.ts": "9a6de89bcb9815e1c79cf34e92ae2ccf180403b75222f1b8b86d3daeb8e8c9e9",

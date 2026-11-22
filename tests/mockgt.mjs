@@ -186,7 +186,7 @@ function poolItem(tok, pool, t) {
   };
 }
 
-export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeInclusive = false, skew = null }) {
+export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeInclusive = false, skew = null, candleLagSec = 0 }) {
   const rand = rng(seed);
   const startSec = Math.floor(startMs / 1000);
   const list = [];
@@ -199,7 +199,12 @@ export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeIncl
   // minute late, or priced without the pool's own offset. The live calls and
   // the ground truth stay honest, so a desk that trusts the skewed candles
   // must end up with a different book.
-  const market = { list, byMint, byPool, calls: 0, fail: null, beforeInclusive, skew };
+  //
+  // `candleLagSec` makes the candle call slow to publish, the way a real feed
+  // can be: a trade shows up in the candles only that many seconds after it
+  // happened. A candle asked for too soon after its minute ended is then
+  // missing, or is there with an earlier close than its final one.
+  const market = { list, byMint, byPool, calls: 0, fail: null, beforeInclusive, skew, candleLagSec };
 
   market.trending = (t) => {
     const epoch = Math.floor(t / 600);
@@ -243,7 +248,7 @@ export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeIncl
     let cur = null;
     const lateBy = market.skew?.shiftSec ?? 0;
     const factor = market.skew?.flatPool ? 1 : pool.factor;
-    for (let k = upto(tok.tSec, t) - 1; k >= 0; k -= 1) {
+    for (let k = upto(tok.tSec, t - (market.candleLagSec ?? 0)) - 1; k >= 0; k -= 1) {
       const start = Math.floor(tok.tSec[k] / 60) * 60 + lateBy;
       if (before != null && (beforeInclusive ? start > before : start >= before)) continue;
       const px = priced ? tok.price[k] * factor : OTHER[pool.other].price;

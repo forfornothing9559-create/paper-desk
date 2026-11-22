@@ -45,6 +45,15 @@ export const HELD_READ_LIMIT = 12;
 export const MAX_REPLAY_MINUTES = 990;
 /** After this many runs in a row stopped by refused minute prices, a run goes ahead without the coins it could not price. */
 export const SOFT_STOP_LIMIT = 3;
+/**
+ * A minute's candle is asked for no sooner than this long after the minute
+ * ended. The feed publishes a finished minute late: measured on 2026-11-22
+ * (prelaunch/RESULT.md), a candle read seconds after its minute ended was
+ * often missing its last trades, and one was still incomplete 75 seconds
+ * after. Every run also checks the newest close it used last time against
+ * what the feed says now, and its run line names any that changed.
+ */
+export const SETTLE_MS = 240_000;
 
 const START_CASH = 100;
 const MINUTE = 60_000;
@@ -216,6 +225,7 @@ export function installTransport(options = {}) {
   globalThis.fetch = paced;
   return {
     stats,
+    sleep: cfg.sleep,
     restore() {
       if (globalThis.fetch === paced) globalThis.fetch = previous;
     },
@@ -529,14 +539,42 @@ export async function runOnce(options = {}) {
     const pricers = new Map(); // mint -> a walker over that coin's candles, or null when the feed would not give them
     const refused = [];
     let candlesSeen = 0;
+    const settleMs = options.settleMs ?? SETTLE_MS;
+    let waitedMs = 0;
+    // The newest candle each coin was priced from at the last run's final minute.
+    // This run's candles cover that minute again, so a close the feed changed
+    // after the desk used it is found and named in the run line.
+    const usedLastRun = twin.newest ?? {};
+    const usedThisRun = new Map();
+    const changedSince = [];
+    let rechecked = 0;
     const pricerFor = async (mint) => {
       if (pricers.has(mint)) return pricers.get(mint);
       const f = twin.feed[mint];
+      // Give the feed time to publish the minute that has just ended before asking for it.
+      const tooSoon = lastBoundary + settleMs - Date.now();
+      if (tooSoon > 0) {
+        waitedMs += tooSoon;
+        await transport.sleep(tooSoon);
+      }
       const got = await fetchCandles(f.q.pool, mint, lastBoundary / 1000, boundaries.length + 2);
       if (!got.ok) {
         refused.push({ mint, status: got.status });
         pricers.set(mint, null);
         return null;
+      }
+      const was = usedLastRun[mint];
+      // Comparable only when this replay starts at the minute right after that one, in the same pool.
+      if (was && was.pool === f.q.pool && boundaries[0] - MINUTE === was.at * 1000) {
+        let now = null;
+        for (const c of got.candles) {
+          if (c.end > was.at) break;
+          now = c;
+        }
+        rechecked += 1;
+        if ((now ? now.end : null) !== was.end || (now ? now.close : null) !== was.close) {
+          changedSince.push({ mint, minute: iso(was.at * 1000), was: was.close, now: now ? now.close : null });
+        }
       }
       candlesSeen += got.candles.length;
       const walker = makePricer(got.candles);
@@ -576,6 +614,9 @@ export async function runOnce(options = {}) {
       const price = candle ? candle.close : f.q.priceUsd;
       if (price == null) return undefined;
       priceFrom.set(mint, candle ? { candleStart: iso((candle.end - 60) * 1000) } : { firstLookup: iso(f.readAt) });
+      if (boundary === lastBoundary) {
+        usedThisRun.set(mint, { at: boundary / 1000, end: candle ? candle.end : null, close: candle ? candle.close : null, pool: f.q.pool });
+      }
       if (options.trace) options.trace.push({ at: boundary, mint, price, candleEnd: candle ? candle.end : null }); // tests only
       return price;
     };
@@ -670,6 +711,10 @@ export async function runOnce(options = {}) {
     }
     const heldNow = new Set(heldMints(book));
     for (const mint of Object.keys(twin.feed)) if (!heldNow.has(mint)) delete twin.feed[mint];
+    // Remember the newest candle each coin was priced from, for the next run's check.
+    // A run that replayed no minute keeps what the run before it remembered.
+    const remembered = lastBoundary == null ? Object.entries(usedLastRun) : [...usedThisRun];
+    twin.newest = Object.fromEntries(remembered.filter(([mint]) => heldNow.has(mint)));
 
     // --- write the record ------------------------------------------------------
     const p = store.p;
@@ -720,6 +765,9 @@ export async function runOnce(options = {}) {
       minutes: boundaries.length,
       minuteReads,
       minuteCloses: candlesSeen,
+      waited: Math.round(waitedMs / 1000), // seconds spent letting the feed publish the newest minute
+      rechecked, // closes used at the last run's final minute, looked at again now
+      changed: changedSince, // those the feed has changed since the desk used them (normally none)
       noMinutePrices: refused.map((r) => r.mint),
       seen: liveQuotes.length,
       confirmed,

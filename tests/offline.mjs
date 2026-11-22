@@ -10,6 +10,7 @@
 //       run the way it does for real (five calls a minute), so a read of many
 //       coins is spread over minutes.
 //   C2. The comparison in C would notice a wrong minute or a wrong pool.
+//   C3. A minute's price is not asked for before the feed has published it.
 //   D.  A refused price feed changes nothing.
 //   E.  A record edited by hand stops the desk.
 //   F.  Small parts: minute boundaries, call pacing, the ledger chain.
@@ -21,7 +22,7 @@ import { join } from "node:path";
 import { clock, makeMarket, mockFetch, rng, useTestClock } from "./mockgt.mjs";
 import { newGrokDesk, zustandVersion } from "./grokstore.mjs";
 import {
-  GT, HELD_READ_LIMIT, Halt, MAX_REPLAY_MINUTES, SOFT_STOP_LIMIT,
+  GT, HELD_READ_LIMIT, Halt, MAX_REPLAY_MINUTES, SETTLE_MS, SOFT_STOP_LIMIT,
   checkLedger, checkLock, fetchCandles, freshBook, freshMarket, heldMints, ingest, installTransport,
   loadGrok, replayBoundaries, runOnce,
 } from "../desk.mjs";
@@ -265,10 +266,10 @@ function nextGap(rand) {
   return Math.floor((17 + rand() * 3) * 3_600_000); // longer than the replay can reach back
 }
 
-async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false, withRefusals = false, skew = null }) {
+async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false, withRefusals = false, skew = null, candleLagSec = 0, settleMs = undefined }) {
   const { strategy } = await loadGrok();
   const frozenSha = checkLock().frozenSha;
-  const mkt = makeMarket({ seed, tokens, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive, skew });
+  const mkt = makeMarket({ seed, tokens, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive, skew, candleLagSec });
   const fetchImpl = mockFetch(mkt);
   const dir = mkdtempSync(join(tmpdir(), "desk-c-"));
   const transport = pacedOn(fetchImpl);
@@ -277,7 +278,7 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
     const ref = { desk: await newGrokDesk(freshBook(strategy, clock.t)), feed: {}, trend: [] };
     const rand = rng(seed * 977 + 5);
     const end = T0 + days * 86_400_000;
-    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0, slowest: 0, apiCalls: 0, prices: 0, fromCandles: 0 };
+    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0, slowest: 0, apiCalls: 0, prices: 0, fromCandles: 0, rechecked: 0, changed: 0, waited: 0 };
     let inARow = 0;
     while (clock.t < end) {
       let kind = null;
@@ -285,7 +286,7 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
       mkt.fail = kind ? (path) => (path.includes(kind) ? 429 : null) : null;
       const began = clock.t;
       const trace = [];
-      const result = await runOnce({ dataDir: dir, market: await freshMarket(`c${seed}-${stats.runs}`), transport, trace });
+      const result = await runOnce({ dataDir: dir, market: await freshMarket(`c${seed}-${stats.runs}`), transport, trace, settleMs });
       mkt.fail = null;
       stats.runs += 1;
       stats.slowest = Math.max(stats.slowest, clock.t - began);
@@ -297,6 +298,9 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
         stats.minutes += result.line.minutes;
         stats.longest = Math.max(stats.longest, result.line.minutes);
         if (result.line.minutes === MAX_REPLAY_MINUTES) stats.beyondReach += 1;
+        stats.rechecked += result.line.rechecked;
+        stats.changed += result.line.changed.length;
+        stats.waited += result.line.waited;
         referenceStep(ref, mkt, result.raw);
         // Price by price: what the runner handed the rules against the last true trade.
         const tag = `seed ${seed}, run ${stats.runs}`;
@@ -346,6 +350,9 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
     const runFiles = readdirSync(join(dir, "runs")).sort();
     const runLines = runFiles.flatMap((f) => readFileSync(join(dir, "runs", f), "utf8").split("\n").filter(Boolean));
     assert.equal(runLines.length, stats.runs, "one line per run");
+    // An honest feed never changes a close after the desk has used it, so the after-the-fact check must stay silent.
+    assert.equal(stats.changed, 0, `the runner reported ${stats.changed} closes as changed after use, but every price matched the true trades`);
+    assert.ok(stats.rechecked > 0, "the after-the-fact check of the newest close never ran");
     return { ...stats, rows: rows.length, reads2: reads, reasons, cash: ref.desk.state().cash };
   } finally {
     globalThis.fetch = REAL_FETCH;
@@ -423,6 +430,58 @@ await test("C2. the comparison in C would notice a wrong minute or a wrong pool"
     caught.push(`${JSON.stringify(skew)} caught: ${message.slice(0, 110)}`);
   }
   return caught.join(" || ");
+});
+
+await test("C3. a minute's price is not asked for before the feed has published it", async () => {
+  // The made-up feed now publishes late: a trade reaches the candles only some
+  // seconds after it happened, so a candle asked for too soon is missing or not final.
+  const lagSec = Math.round(SETTLE_MS / 1000) - 5;
+  assert.ok(lagSec >= 5, "the wait is too short for this test to mean anything");
+  const r = await replayIsExact({ seed: 21, days: 3, candleLagSec: lagSec });
+  assert.ok(r.prices > 1000 && r.rows > 0, "the late-feed run was too quiet to prove anything");
+  // The same again with the wait switched off. The comparison must then fail,
+  // or this test would be proving nothing.
+  let message = null;
+  try {
+    await replayIsExact({ seed: 21, days: 3, candleLagSec: lagSec, settleMs: 0 });
+  } catch (err) {
+    message = String(err?.message ?? err);
+  }
+  assert.ok(message && message.includes("differ"), `with the wait switched off, candles published ${lagSec}s late went unnoticed: ${message}`);
+
+  // The runner's own after-the-fact check: each run looks again at the newest
+  // close it used last time. With the wait it must find nothing changed; with
+  // the wait switched off against the same late feed it must find some.
+  const lateFeed = async (settleMs) => {
+    const mkt = makeMarket({ seed: 26, startMs: T0 - 2 * 3_600_000, minutes: 24 * 60 + 400, candleLagSec: lagSec });
+    const dir = mkdtempSync(join(tmpdir(), "desk-late-"));
+    const transport = pacedOn(mockFetch(mkt));
+    const rand = rng(1234);
+    const seen = { runs: 0, rechecked: 0, changed: 0 };
+    try {
+      clock.t = T0 + 17_321;
+      const end = T0 + 24 * 3_600_000;
+      while (clock.t < end) {
+        const result = await runOnce({ dataDir: dir, market: await freshMarket(`late-${settleMs}-${seen.runs}`), transport, settleMs });
+        seen.runs += 1;
+        if (result.read) {
+          seen.rechecked += result.line.rechecked;
+          seen.changed += result.line.changed.length;
+        }
+        clock.t += Math.floor((3 + rand() * 9) * 60_000);
+      }
+      return seen;
+    } finally {
+      globalThis.fetch = REAL_FETCH;
+      rmSync(dir, { recursive: true, force: true });
+    }
+  };
+  const patient = await lateFeed(undefined);
+  const hasty = await lateFeed(0);
+  assert.ok(patient.rechecked > 50, `the check ran only ${patient.rechecked} times in a day of runs`);
+  assert.equal(patient.changed, 0, "with the wait in place, the runner still used a close that the feed changed afterwards");
+  assert.ok(hasty.changed > 0, "with the wait switched off against a late feed, the runner's own check noticed nothing");
+  return `feed publishing ${lagSec}s late: ${r.prices} prices over ${r.reads} runs, each equal to the last true trade, ${r.rows} ledger rows, 0 differences (the runner waits ${SETTLE_MS / 1000}s after a minute ends before asking for it; it waited ${Math.round(r.waited / r.reads)}s a run on average). With the wait switched off the same comparison fails, as it must: ${message.slice(0, 110)} || The runner's own check of closes it had already used: ${patient.rechecked} looked at again, ${patient.changed} changed with the wait; ${hasty.changed} of ${hasty.rechecked} changed without it.`;
 });
 
 // --------------------------------------------------------------------------- D
