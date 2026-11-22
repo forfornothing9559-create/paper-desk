@@ -79,9 +79,15 @@ export async function loadGrok() {
   return grok;
 }
 
-/** Tests only: a second copy of market.ts with empty caches, which is what every real run starts with. */
-export async function freshMarket(tag) {
-  return import(`${pathToFileURL(join(ROOT, MARKET_FILE)).href}?fresh=${tag}`);
+/**
+ * Tests only: a new copy of market.ts with empty caches, which is what every
+ * real run starts with. Never the same copy twice, whatever tag is passed:
+ * a copy keeps the last trending list and pool reads it saw.
+ */
+let freshCount = 0;
+export async function freshMarket(tag = "") {
+  freshCount += 1;
+  return import(`${pathToFileURL(join(ROOT, MARKET_FILE)).href}?fresh=${freshCount}-${tag}`);
 }
 
 // ---------------------------------------------------------------------------
