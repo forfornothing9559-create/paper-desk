@@ -127,28 +127,36 @@ export function ingest(strategy, cur, quotes, at, error) {
 
 export function installTransport(options = {}) {
   const cfg = {
-    gapMs: 2500,       // pause between calls to the price feed
-    gapMaxMs: 9000,    // the pause grows toward this each time the feed refuses
-    grow: 1.5,
-    attempts: 6,
-    backoffMs: [6000, 10000, 15000, 20000, 30000],
-    timeoutMs: 15000,
-    budgetMs: 9 * MINUTE,
+    // Measured from a GitHub machine on 2026-11-22: the keyless feed answers
+    // five calls, refuses the sixth, and lets go again about a minute after
+    // the first. So: at most 5 calls in any 61 seconds, one at a time.
+    perWindow: 5,
+    windowMs: 61_000,
+    gapMs: 700,
+    attempts: 5,
+    backoffMs: [20_000, 40_000, 61_000, 61_000], // after a refusal; the allowance also drops by one for the rest of the run
+    timeoutMs: 15_000,
+    budgetMs: 12 * MINUTE,
     sleep: realSleep,
     ...options,
   };
   const previous = globalThis.fetch;
   const inner = cfg.fetch ?? previous;
-  const stats = { calls: 0, answered: 0, refused: 0, retries: 0, gaveUp: [], gapMs: cfg.gapMs };
+  const stats = { calls: 0, answered: 0, refused: 0, retries: 0, gaveUp: [], perWindow: cfg.perWindow };
   const started = Date.now();
+  const starts = []; // when each recent call was sent (or is due to be sent)
   let tail = Promise.resolve();
-  let lastAt = -Infinity;
+  let notBefore = -Infinity;
 
   async function one(url, init) {
     for (let attempt = 1; ; attempt += 1) {
-      const wait = lastAt + stats.gapMs - Date.now();
-      if (wait > 0) await cfg.sleep(wait);
-      lastAt = Date.now();
+      const now = Date.now();
+      const afterGap = starts.length > 0 ? starts[starts.length - 1] + cfg.gapMs : -Infinity;
+      const afterWindow = starts.length >= stats.perWindow ? starts[starts.length - stats.perWindow] + cfg.windowMs : -Infinity;
+      const at = Math.max(now, afterGap, afterWindow, notBefore);
+      if (at > now) await cfg.sleep(at - now);
+      starts.push(at);
+      if (starts.length > 64) starts.shift();
       let res = null;
       let err = null;
       try {
@@ -160,7 +168,7 @@ export function installTransport(options = {}) {
       const transient = !res || status === 429 || status >= 500;
       if (status === 429) {
         stats.refused += 1;
-        stats.gapMs = Math.min(cfg.gapMaxMs, Math.round(stats.gapMs * cfg.grow));
+        stats.perWindow = Math.max(2, stats.perWindow - 1);
       }
       const outOfTime = Date.now() - started > cfg.budgetMs;
       if (!transient || attempt >= cfg.attempts || outOfTime) {
@@ -171,12 +179,12 @@ export function installTransport(options = {}) {
         throw err;
       }
       stats.retries += 1;
+      notBefore = at + cfg.backoffMs[Math.min(attempt - 1, cfg.backoffMs.length - 1)];
       try {
         await res?.body?.cancel();
       } catch {
         // nothing to release
       }
-      await cfg.sleep(cfg.backoffMs[Math.min(attempt - 1, cfg.backoffMs.length - 1)]);
     }
   }
 
@@ -407,7 +415,7 @@ export async function runOnce(options = {}) {
       refused: transport.stats.refused - before.refused,
       retries: transport.stats.retries - before.retries,
       gaveUp: transport.stats.gaveUp.length - before.gaveUp,
-      pauseMs: transport.stats.gapMs,
+      perMinute: transport.stats.perWindow,
     },
     seconds: Math.round((Date.now() - startedAt) / 1000),
     ghRun: env.GITHUB_RUN_ID ?? null,

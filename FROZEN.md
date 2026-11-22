@@ -55,7 +55,7 @@ On each read the desk asks for the deepest-pool price of the first 12 coins it h
 
 The Grok desk is a web page. It reads prices once a minute while the page is open and does nothing while it is closed. The cloud desk has no page, so it works like this.
 
-**A run every few minutes.** Each run does one live read through `market.ts`, then starts the next run, which waits about 4 minutes before it begins. GitHub's own timer is only a backup, because on this account it starts jobs hours late.
+**A run every several minutes.** Each run does one live read through `market.ts`, then starts the next run, which waits a few minutes before it begins. GitHub's own timer is only a backup, because on this account it starts jobs hours late.
 
 **Before the live read, the run replays every minute it missed.** For each minute since the last read, in order, it gives the rules the closing price of that minute for each coin the desk holds or is watching. So a late run still checks every stop, trail and dip at one-minute steps, the way an open page would.
 
@@ -67,7 +67,7 @@ What that means in detail:
 - **New coins are found only at a live read.** The open Grok page looks at the trending list every minute. The cloud desk looks every few minutes. This is the main way the two can differ: the cloud desk can meet a coin a few minutes later, or miss one that trended only briefly.
 - **A replayed buy or sell is written at the minute it happened, not when the run found it.** Each decision uses only prices up to its own minute. The price is that minute's close.
 - **Reach.** A run can replay at most 990 minutes (16.5 hours). If the desk was down longer, the older minutes are not checked, and the Grok rules write their own "desk: pause" row saying so.
-- **Calls are spaced out.** The free price feed refuses bursts. The Grok code sends up to four calls at once and, when one is refused, quietly reuses the last price it had. The cloud desk sends one call at a time, waits between them, and retries a refusal.
+- **Calls are paced to what the feed allows.** Measured from a GitHub machine on 2026-11-22, the free price feed answers about five calls a minute and refuses the sixth. The Grok code asks for the trending list plus up to 12 coins every minute, four at a time, and when a call is refused it quietly reuses the last price it had. The cloud desk sends one call at a time, at most five in any 61 seconds, and retries a refusal. So a run that holds many coins takes a few minutes, and the prices in one live read can be up to a few minutes apart.
 - **If the feed still refuses** the trending list or the minute prices, the run decides nothing and changes nothing. The next run replays the same minutes. After three such runs in a row the desk goes ahead without minute prices for the coins it could not get, and its run line names them.
 
 Other differences from the Grok page:

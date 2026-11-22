@@ -25,7 +25,7 @@ import {
 
 useTestClock();
 const REAL_FETCH = globalThis.fetch;
-const QUICK = { gapMs: 0, backoffMs: [0], sleep: async () => {} };
+const QUICK = { gapMs: 0, perWindow: 1e9, backoffMs: [0], sleep: async () => {} };
 const T0 = Date.UTC(2026, 10, 20, 9, 0, 0);
 
 const results = [];
@@ -485,16 +485,28 @@ await test("F. small parts: minute boundaries, call pacing, ledger chain", async
     calls += 1;
     return new Response("{}", { status: calls <= 2 ? 429 : 200 });
   };
-  const tr = installTransport({ fetch: flaky, sleep: async (ms) => sleeps.push(ms), gapMs: 1000, backoffMs: [5, 6, 7] });
+  // The test clock stands still, so each sleep is measured from the same instant.
+  const tr = installTransport({ fetch: flaky, sleep: async (ms) => sleeps.push(ms), perWindow: 3, windowMs: 1000, gapMs: 100, backoffMs: [50, 60] });
   try {
     const res = await fetch(`${GT}/anything`);
     assert.equal(res.status, 200);
     assert.equal(tr.stats.refused, 2);
     assert.equal(tr.stats.retries, 2);
-    assert.equal(tr.stats.gapMs, 2250, "the pause grows by half after each refusal");
-    assert.deepEqual(sleeps, [5, 1500, 6, 2250]);
+    assert.equal(tr.stats.perWindow, 2, "each refusal lowers the allowance by one, never under two");
+    // try 2 waits out the gap (100); try 3 waits until the first call is a full window old (1000)
+    assert.deepEqual(sleeps, [100, 1000]);
   } finally {
     tr.restore();
+  }
+  // five calls go at once, the sixth waits for the window
+  const waits = [];
+  const tr3 = installTransport({ fetch: async () => new Response("{}", { status: 200 }), sleep: async (ms) => waits.push(ms), gapMs: 0 });
+  try {
+    for (let i = 0; i < 7; i += 1) await fetch(`${GT}/call-${i}`);
+    assert.deepEqual(waits, [61_000, 61_000], "calls 6 and 7 wait until call 1 and call 2 are 61 seconds old");
+    assert.equal(tr3.stats.refused, 0);
+  } finally {
+    tr3.restore();
   }
   let always = 0;
   const tr2 = installTransport({ fetch: async () => { always += 1; return new Response("{}", { status: 429 }); }, sleep: async () => {}, gapMs: 0, attempts: 3 });

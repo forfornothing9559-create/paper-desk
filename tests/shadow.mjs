@@ -185,7 +185,7 @@ if (role === "cloud") {
   }
   finalBook = desk.state();
   api = transport
-    ? { calls: transport.stats.calls, refused: transport.stats.refused, retries: transport.stats.retries, gaveUp: transport.stats.gaveUp.length, pauseMs: transport.stats.gapMs }
+    ? { calls: transport.stats.calls, refused: transport.stats.refused, retries: transport.stats.retries, gaveUp: transport.stats.gaveUp.length, perMinute: transport.stats.perWindow }
     : counts;
   writeFileSync(out, JSON.stringify({ role, started, ended: Date.now(), every, skippedTicks: skipped, reads, watchEvents, api, final: summary(finalBook) }, null, 1));
 }
