@@ -34,7 +34,10 @@ jobs:
         run: npm install --prefix tests/deps --no-audit --no-fund --no-save zustand@5 react@19
 
       - name: Run this desk
-        run: node tests/shadow.mjs --role ${{ matrix.role }} --minutes ${{ inputs.minutes }} --out shadow-${{ matrix.role }}.json
+        env:
+          ROLE: ${{ matrix.role }}
+          MINUTES: ${{ inputs.minutes }}
+        run: node tests/shadow.mjs --role "$ROLE" --minutes "$MINUTES" --out "shadow-$ROLE.json"
 
       - uses: actions/upload-artifact@v7
         if: always()

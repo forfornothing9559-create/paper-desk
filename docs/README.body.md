@@ -10,7 +10,7 @@ A paper-trading desk that runs on GitHub's machines, so it keeps going when the 
 
 Look at **Right now** at the top of this page. The desk rewrites it after every run.
 
-- **Last read of the market** should be a few minutes old. If it is more than about an hour old, the desk has stalled. It restarts itself within a few hours; the Actions tab shows what happened.
+- **Last read of the market** should be less than half an hour old. If it is more than about an hour old, the desk has stalled. It restarts itself within a few hours; the Actions tab shows what happened.
 - **Balance** is the desk's own count after costs. It is not the score. See below.
 - The full ledger is [`data/trades.jsonl`](data/trades.jsonl), one row per paper buy or sell.
 

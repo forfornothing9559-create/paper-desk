@@ -1,15 +1,18 @@
 // The tests that must pass before the desk is switched on, and after any change.
 // They use a made-up market (tests/mockgt.mjs), so they are exact and repeatable.
 //
-//   A. The Grok files are the pasted files, and they run unedited.
-//   B. Same reads in, same book out: the runner's copy of `ingest` against the
-//      Grok app's own store file, read by read, over days of minute reads
-//      including sleeps, failed reads and midnight.
-//   C. The replay is exact: a desk that wakes only now and then and replays the
-//      one-minute closes ends with exactly the book of a desk that never slept.
-//   D. A refused price feed changes nothing.
-//   E. A record that was edited by hand stops the desk.
-//   F. Small parts: minute boundaries, call pacing, the ledger chain.
+//   A.  The Grok files are the pasted files, and they run unedited.
+//   B.  Same reads in, same book out: the runner's copy of `ingest` against the
+//       Grok app's own store file, read by read, over days of minute reads
+//       including sleeps, failed reads and midnight.
+//   C.  The replay is exact: a desk that wakes only now and then ends with
+//       exactly the book of a desk that never slept. Time passes inside each
+//       run the way it does for real (five calls a minute), so a read of many
+//       coins is spread over minutes.
+//   C2. The comparison in C would notice a wrong minute or a wrong pool.
+//   D.  A refused price feed changes nothing.
+//   E.  A record edited by hand stops the desk.
+//   F.  Small parts: minute boundaries, call pacing, the ledger chain.
 
 import assert from "node:assert/strict";
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
@@ -25,7 +28,10 @@ import {
 
 useTestClock();
 const REAL_FETCH = globalThis.fetch;
-const QUICK = { gapMs: 0, perWindow: 1e9, backoffMs: [0], sleep: async () => {} };
+/** No waiting at all: for tests that are not about timing. */
+const QUICK = { gapMs: 0, perWindow: 1e9, backoffMs: [0], deadlineMs: Infinity, sleep: async () => {} };
+/** The runner's real pacing, with the test clock moved forward instead of waiting. */
+const pacedOn = (fetchImpl) => ({ fetch: fetchImpl, sleep: async (ms) => { clock.t += ms; } });
 const T0 = Date.UTC(2026, 10, 20, 9, 0, 0);
 
 const results = [];
@@ -70,7 +76,7 @@ function firstDifference(a, b, path = "") {
 
 function sameOrExplain(mine, theirs, where) {
   const d = firstDifference(mine, theirs);
-  if (d) assert.fail(`${where}: the two books differ at ${d}`);
+  if (d) assert.fail(`${where}: the two differ at ${d}`);
 }
 
 function tally(map, key) {
@@ -179,82 +185,107 @@ await test("B. same reads in, same book out (runner's ingest vs the Grok app's o
 // --------------------------------------------------------------------------- C
 
 /**
- * The answer key for the replay: a desk built on the Grok app's own store that
- * never sleeps. Every minute it reads the coins it holds; whenever the cloud
- * desk does a live read, it does one too. It gets each minute's price straight
- * from the made-up market's trade list, not from the candle call, and it keeps
- * its book in memory, not in files.
+ * The answer key for the replay: a desk built on the Grok app's own store file
+ * that never sleeps. It steps through every minute and, at each one, takes each
+ * coin's price straight from the made-up market's trade list ("the last trade
+ * before this minute"), not from any candle call. It keeps its book in memory,
+ * not in files, and works out the minutes for itself.
+ *
+ * What it is handed from the cloud run is only what cannot be known any other
+ * way: the live read exactly as market.ts returned it (the trending list, each
+ * held coin's deepest-pool quote, the lookups of newly watched coins) and the
+ * moment each was complete. The runner reads those minutes apart; the test
+ * clock moves during a run just as the real one does.
  */
-async function referenceStep(ref, feed, market, mkt, now) {
+function referenceStep(ref, mkt, raw) {
   const heldOf = (s) => [...s.positions.map((p) => p.mint), ...s.watches.map((w) => w.mint)];
-  const last = ref.state().lastScanAt;
+  const state = () => ref.desk.state();
+  const priceAsOf = (mint, boundary) => {
+    const f = ref.feed[mint];
+    if (!f || f.readAt > boundary) return undefined; // not looked up yet as of this minute
+    const traded = mkt.lastTradeBefore(f.q.pool, boundary / 1000);
+    const price = traded != null ? traded : f.q.priceUsd;
+    return price == null ? undefined : price;
+  };
+
+  const last = state().lastScanAt;
+  let lastBoundary = null;
   if (last != null) {
-    const end = Math.floor(now / 60_000) * 60_000;
+    const end = Math.floor(raw.stamp / 60_000) * 60_000;
     let b = Math.floor(last / 60_000) * 60_000 + 60_000;
     if (b < end - (MAX_REPLAY_MINUTES - 1) * 60_000) b = end - (MAX_REPLAY_MINUTES - 1) * 60_000;
+    const rank = new Map(ref.trend.map((mint, i) => [mint, i]));
     for (; b <= end; b += 60_000) {
-      const quotes = [];
-      for (const mint of heldOf(ref.state()).slice(0, 12)) {
-        const f = feed[mint];
-        if (!f) continue;
-        const px = mkt.lastTradeIn(f.pool, b / 1000 - 60, b / 1000); // last trade of the minute that just ended
-        if (px != null) f.priceUsd = px;
-        if (f.priceUsd == null) continue;
-        quotes.push({ ...f, confirmedTop: true });
-      }
-      if (quotes.length > 0) ref.ingest(quotes, b, null);
+      const picked = [];
+      heldOf(state()).slice(0, 12).forEach((mint, i) => {
+        const price = priceAsOf(mint, b);
+        if (price === undefined) return;
+        picked.push({ r: rank.has(mint) ? rank.get(mint) : 1e9, i, q: { ...ref.feed[mint].q, priceUsd: price, confirmedTop: true } });
+      });
+      picked.sort((x, y) => x.r - y.r || x.i - y.i);
+      ref.desk.ingest(picked.map((p) => p.q), b, null);
+      lastBoundary = b;
     }
   }
-  const held = heldOf(ref.state());
-  const live = await market.scanMarket({ data: { held } });
-  ref.ingest(live.quotes, live.scannedAt, live.error);
-  const first = held.slice(0, 12);
-  for (const q of live.quotes) {
-    if (q.confirmedTop && first.includes(q.mint) && q.priceUsd != null && q.pool) feed[q.mint] = { ...q };
+
+  const firstNow = heldOf(state()).slice(0, 12);
+  const deepest = new Map(raw.deepest.map((q) => [q.mint, q]));
+  const list = new Map(raw.trending.map((q) => [q.mint, q]));
+  for (const mint of firstNow) {
+    const q = deepest.get(mint);
+    if (!q || lastBoundary == null) continue;
+    const price = priceAsOf(mint, lastBoundary);
+    if (price === undefined) continue;
+    list.set(mint, { ...q, priceUsd: price });
   }
-  const after = heldOf(ref.state());
-  const need = after.slice(0, 24).filter((mint) => !feed[mint]);
-  if (need.length > 0) {
-    const look = await market.scanMarket({ data: { held: need } });
-    if (look.ok) {
-      for (const q of look.quotes) {
-        if (need.includes(q.mint) && q.confirmedTop && q.priceUsd != null && q.pool) feed[q.mint] = { ...q };
-      }
-    }
+  ref.desk.ingest([...list.values()], raw.stamp, null);
+  for (const mint of firstNow) {
+    const q = deepest.get(mint);
+    if (q) ref.feed[mint] = { q: { ...q }, readAt: raw.stamp };
+  }
+  ref.trend = raw.trending.map((q) => q.mint);
+
+  const after = heldOf(state());
+  const need = new Set(after.slice(0, 24).filter((mint) => !ref.feed[mint]));
+  for (const r of raw.resolved) {
+    if (need.has(r.q.mint)) ref.feed[r.q.mint] = { q: { ...r.q }, readAt: r.readAt };
   }
   const keep = new Set(after);
-  for (const mint of Object.keys(feed)) if (!keep.has(mint)) delete feed[mint];
+  for (const mint of Object.keys(ref.feed)) if (!keep.has(mint)) delete ref.feed[mint];
 }
 
 function nextGap(rand) {
   const r = rand();
-  if (r < 0.85) return Math.floor((3 + rand() * 6) * 60_000); // the usual few minutes
+  if (r < 0.85) return Math.floor((3 + rand() * 9) * 60_000); // the usual wait between runs
   if (r < 0.95) return Math.floor((15 + rand() * 75) * 60_000); // a late run
   if (r < 0.99) return Math.floor((3 + rand() * 6) * 3_600_000); // hours late
   return Math.floor((17 + rand() * 3) * 3_600_000); // longer than the replay can reach back
 }
 
-async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals = false, skew = null }) {
+async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false, withRefusals = false, skew = null }) {
   const { strategy } = await loadGrok();
-  const mkt = makeMarket({ seed, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive, skew });
+  const frozenSha = checkLock().frozenSha;
+  const mkt = makeMarket({ seed, tokens, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive, skew });
   const fetchImpl = mockFetch(mkt);
   const dir = mkdtempSync(join(tmpdir(), "desk-c-"));
-  const transport = { ...QUICK, fetch: fetchImpl };
+  const transport = pacedOn(fetchImpl);
   try {
     clock.t = T0 + 17_321;
-    const ref = await newGrokDesk(freshBook(strategy, clock.t));
-    const feed = {};
+    const ref = { desk: await newGrokDesk(freshBook(strategy, clock.t)), feed: {}, trend: [] };
     const rand = rng(seed * 977 + 5);
     const end = T0 + days * 86_400_000;
-    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0 };
+    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0, slowest: 0, apiCalls: 0 };
     let inARow = 0;
     while (clock.t < end) {
       let kind = null;
       if (withRefusals && stats.runs > 0 && inARow < 2 && rand() < 0.3) kind = rand() < 0.6 ? "/ohlcv/" : "trending_pools";
       mkt.fail = kind ? (path) => (path.includes(kind) ? 429 : null) : null;
+      const began = clock.t;
       const result = await runOnce({ dataDir: dir, market: await freshMarket(`c${seed}-${stats.runs}`), transport });
       mkt.fail = null;
       stats.runs += 1;
+      stats.slowest = Math.max(stats.slowest, clock.t - began);
+      stats.apiCalls += result.line.api.calls;
       const bookFile = join(dir, "book.json");
       if (result.read) {
         inARow = 0;
@@ -262,9 +293,7 @@ async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals
         stats.minutes += result.line.minutes;
         stats.longest = Math.max(stats.longest, result.line.minutes);
         if (result.line.minutes === MAX_REPLAY_MINUTES) stats.beyondReach += 1;
-        globalThis.fetch = fetchImpl;
-        await referenceStep(ref, feed, await freshMarket(`a${seed}-${stats.runs}`), mkt, clock.t);
-        globalThis.fetch = REAL_FETCH;
+        referenceStep(ref, mkt, result.raw);
       } else {
         inARow += 1;
         stats.noReads += 1;
@@ -272,19 +301,20 @@ async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals
       const where = `seed ${seed}, run ${stats.runs}, ${new Date(clock.t).toISOString()}`;
       if (existsSync(bookFile)) {
         const mine = JSON.parse(readFileSync(bookFile, "utf8"));
-        sameOrExplain(mine, ref.state(), where);
+        sameOrExplain(mine, ref.desk.state(), where);
         const twin = JSON.parse(readFileSync(join(dir, "twin.json"), "utf8"));
-        sameOrExplain(twin.feed, JSON.parse(JSON.stringify(feed)), `${where} (last deepest-pool reads)`);
+        sameOrExplain(twin.feed, JSON.parse(JSON.stringify(ref.feed)), `${where} (last deepest-pool reads)`);
+        sameOrExplain(twin.trend, ref.trend, `${where} (last trending list)`);
         stats.maxHeld = Math.max(stats.maxHeld, heldMints(mine).length);
       }
       clock.t += nextGap(rand);
     }
     // the permanent ledger must hold exactly the fills in the Grok desk's own Trades list, oldest first
     const tradesText = readFileSync(join(dir, "trades.jsonl"), "utf8");
-    const chain = checkLedger(tradesText);
+    const chain = checkLedger(tradesText, frozenSha);
     assert.ok(chain.ok, chain.why);
     const rows = tradesText.split("\n").filter(Boolean).map((l) => JSON.parse(l));
-    const theirs = [...ref.state().trades].reverse();
+    const theirs = [...ref.desk.state().trades].reverse();
     assert.equal(rows.length, theirs.length, "ledger length differs from the Grok desk's Trades list");
     const reads = new Map();
     const reasons = new Map();
@@ -296,11 +326,11 @@ async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals
       tally(reads, row.read);
       tally(reasons, row.reason);
     });
-    // every run left a line, and the lines chain
+    // every run left a line
     const runFiles = readdirSync(join(dir, "runs")).sort();
     const runLines = runFiles.flatMap((f) => readFileSync(join(dir, "runs", f), "utf8").split("\n").filter(Boolean));
     assert.equal(runLines.length, stats.runs, "one line per run");
-    return { ...stats, rows: rows.length, reads2: reads, reasons, cash: ref.state().cash };
+    return { ...stats, rows: rows.length, reads2: reads, reasons, cash: ref.desk.state().cash };
   } finally {
     globalThis.fetch = REAL_FETCH;
     rmSync(dir, { recursive: true, force: true });
@@ -316,13 +346,15 @@ await test("C. the replay is exact (a desk that wakes now and then = a desk that
   let longest = 0;
   let beyond = 0;
   let maxHeld = 0;
-  for (const cfg of [{ seed: 21, days: 5 }, { seed: 22, days: 5, beforeInclusive: true }, { seed: 23, days: 5 }]) {
+  let slowest = 0;
+  for (const cfg of [{ seed: 21, days: 6 }, { seed: 22, days: 6, beforeInclusive: true }, { seed: 23, days: 6, tokens: 60 }]) {
     const r = await replayIsExact(cfg);
     runs += r.reads;
     minutes += r.minutes;
     longest = Math.max(longest, r.longest);
     beyond += r.beyondReach;
     maxHeld = Math.max(maxHeld, r.maxHeld);
+    slowest = Math.max(slowest, r.slowest);
     for (const [k, v] of r.reasons) reasons.set(k, (reasons.get(k) ?? 0) + v);
     for (const [k, v] of r.reads2) kinds.set(k, (kinds.get(k) ?? 0) + v);
     parts.push(`seed ${cfg.seed}: ${r.reads} runs, ${r.rows} ledger rows`);
@@ -331,7 +363,8 @@ await test("C. the replay is exact (a desk that wakes now and then = a desk that
   for (const reason of ["dip buy", "stop", "trail"]) assert.ok((reasons.get(reason) ?? 0) > 0, `no "${reason}" in the replay test`);
   assert.ok(beyond > 0, "no gap longer than the replay limit was tried");
   assert.ok(maxHeld > HELD_READ_LIMIT, `never held more than ${HELD_READ_LIMIT} coins at once (most: ${maxHeld}); the 12-coin limit was not exercised`);
-  return `${runs} cloud runs replaying ${minutes} minutes (longest gap replayed ${longest} min, ${beyond} gaps beyond reach), compared after every run, 0 differences. Fills by read: ${show(kinds)}. By reason: ${show(reasons)}. Most coins held at once: ${maxHeld}. ${parts.join("; ")}`;
+  assert.ok(slowest > 120_000, "no run took longer than two minutes of test time; the spread-out live read was not exercised");
+  return `${runs} cloud runs replaying ${minutes} minutes (longest gap replayed ${longest} min, ${beyond} gaps beyond reach), compared after every run, 0 differences. Slowest run ${Math.round(slowest / 1000)}s of test time. Fills by read: ${show(kinds)}. By reason: ${show(reasons)}. Most coins held at once: ${maxHeld}. ${parts.join("; ")}`;
 });
 
 await test("C2. the comparison in C would notice a wrong minute or a wrong pool", async () => {
@@ -345,8 +378,8 @@ await test("C2. the comparison in C would notice a wrong minute or a wrong pool"
     } catch (err) {
       message = String(err?.message ?? err);
     }
-    assert.ok(message && message.includes("differ"), `candles skewed by ${JSON.stringify(skew)} were not noticed`);
-    caught.push(`${JSON.stringify(skew)} caught at ${message.slice(0, 90)}`);
+    assert.ok(message && message.includes("differ"), `candles skewed by ${JSON.stringify(skew)} were not noticed (${message})`);
+    caught.push(`${JSON.stringify(skew)} caught: ${message.slice(0, 110)}`);
   }
   return caught.join(" || ");
 });
@@ -354,12 +387,12 @@ await test("C2. the comparison in C would notice a wrong minute or a wrong pool"
 // --------------------------------------------------------------------------- D
 
 await test("D. a refused price feed changes nothing, and the next run catches up exactly", async () => {
-  const r = await replayIsExact({ seed: 31, days: 4, withRefusals: true });
+  const r = await replayIsExact({ seed: 31, days: 5, withRefusals: true });
   assert.ok(r.noReads > 5, `only ${r.noReads} refused runs; the test did not exercise refusals`);
   return `${r.runs} runs, ${r.noReads} of them refused by the feed; the book matched the never-asleep desk after every run (${r.rows} ledger rows)`;
 });
 
-await test(`D2. after ${SOFT_STOP_LIMIT} refused runs in a row the desk goes ahead and says which coins it could not replay`, async () => {
+await test(`D2. after ${SOFT_STOP_LIMIT} refused runs in a row the desk goes ahead and says which coins it could not price`, async () => {
   const mkt = makeMarket({ seed: 41, startMs: T0 - 2 * 3_600_000, minutes: 3000 });
   const fetchImpl = mockFetch(mkt);
   const dir = mkdtempSync(join(tmpdir(), "desk-d-"));
@@ -369,12 +402,12 @@ await test(`D2. after ${SOFT_STOP_LIMIT} refused runs in a row the desk goes ahe
     let run = 0;
     const go = async () => runOnce({ dataDir: dir, market: await freshMarket(`d${(run += 1)}`), transport });
     let last = await go();
-    // run normally until the desk holds something
-    for (let i = 0; i < 400 && heldMints(last.book).length === 0; i += 1) {
+    // run normally until the desk holds something it has looked up
+    for (let i = 0; i < 400 && Object.keys(last.twin?.feed ?? {}).length === 0; i += 1) {
       clock.t += 5 * 60_000;
       last = await go();
     }
-    assert.ok(heldMints(last.book).length > 0, "the test desk never held a coin");
+    assert.ok(Object.keys(last.twin.feed).length > 0, "the test desk never held a coin");
     const bookBefore = readFileSync(join(dir, "book.json"), "utf8");
     mkt.fail = (path) => (path.includes("/ohlcv/") ? 429 : null);
     for (let i = 1; i <= SOFT_STOP_LIMIT; i += 1) {
@@ -387,14 +420,15 @@ await test(`D2. after ${SOFT_STOP_LIMIT} refused runs in a row the desk goes ahe
     clock.t += 5 * 60_000;
     const forced = await go();
     assert.equal(forced.read, true, "the run after the limit should go ahead");
-    assert.ok(forced.line.noMinutePrices.length > 0, "it should name the coins it could not replay");
+    assert.ok(forced.line.noMinutePrices.length > 0, "it should name the coins it could not price");
+    assert.equal(forced.line.fills, 0, "a coin with no minute price must not be traded");
     assert.equal(forced.line.soft, 0);
     mkt.fail = null;
     clock.t += 5 * 60_000;
     const normal = await go();
     assert.equal(normal.read, true);
     assert.equal(normal.line.noMinutePrices.length, 0);
-    return `3 refused runs left the book byte-for-byte unchanged; run 4 went ahead and listed ${forced.line.noMinutePrices.length} coin(s) without minute prices`;
+    return `3 refused runs left the book byte-for-byte unchanged; run 4 went ahead, traded nothing, and listed ${forced.line.noMinutePrices.length} coin(s) without minute prices`;
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -410,29 +444,37 @@ await test("E. a record edited by hand stops the desk", async () => {
   try {
     clock.t = T0 + 5000;
     let run = 0;
-    const go = async () => runOnce({ dataDir: dir, market: await freshMarket(`e${(run += 1)}`), transport });
+    const go = async (extra = {}) => runOnce({ dataDir: dir, market: await freshMarket(`e${(run += 1)}`), transport, ...extra });
     let last = await go();
     for (let i = 0; i < 900 && last.book.trades.length < 2; i += 1) {
       clock.t += 6 * 60_000;
       last = await go();
     }
     assert.ok(last.book.trades.length >= 2, "the test desk made fewer than two fills");
-    const stops = async (what) => {
+    const stops = async (what, extra) => {
       clock.t += 6 * 60_000;
-      await assert.rejects(go, (err) => err instanceof Halt, `${what} should stop the desk`);
+      await assert.rejects(() => go(extra), (err) => err instanceof Halt, `${what} should stop the desk`);
     };
     const bookPath = join(dir, "book.json");
     const tradesPath = join(dir, "trades.jsonl");
     const twinPath = join(dir, "twin.json");
+    const runsDir = join(dir, "runs");
     const book = readFileSync(bookPath, "utf8");
     const trades = readFileSync(tradesPath, "utf8");
     const twin = readFileSync(twinPath, "utf8");
+    const runFiles = readdirSync(runsDir).sort().map((f) => [join(runsDir, f), readFileSync(join(runsDir, f), "utf8")]);
+    const putBack = () => {
+      writeFileSync(bookPath, book);
+      writeFileSync(tradesPath, trades);
+      writeFileSync(twinPath, twin);
+      for (const [path, text] of runFiles) writeFileSync(path, text);
+    };
 
     const richer = JSON.parse(book);
     richer.cash += 50;
     writeFileSync(bookPath, `${JSON.stringify(richer, null, 1)}\n`);
     await stops("adding cash to the book");
-    writeFileSync(bookPath, book);
+    putBack();
 
     const lines = trades.split("\n").filter(Boolean);
     const row = JSON.parse(lines[0]);
@@ -441,26 +483,42 @@ await test("E. a record edited by hand stops the desk", async () => {
     await stops("rewriting a ledger price");
     writeFileSync(tradesPath, `${lines.slice(1).join("\n")}\n`);
     await stops("deleting a ledger row");
-    writeFileSync(tradesPath, trades);
+    putBack();
 
     rmSync(twinPath);
     await stops("deleting part of the record");
-    writeFileSync(twinPath, twin);
+    putBack();
 
     rmSync(bookPath);
-    await stops("deleting the book to start over");
-    writeFileSync(bookPath, book);
+    await stops("deleting the book");
+    putBack();
 
     const looser = JSON.parse(book);
     looser.settings.stopPct = 50;
     writeFileSync(bookPath, `${JSON.stringify(looser, null, 1)}\n`);
     await stops("changing a setting");
-    writeFileSync(bookPath, book);
+    putBack();
 
+    // an early run line rewritten: the chain between run lines must notice
+    const [firstPath, firstText] = runFiles[0];
+    const runLines = firstText.split("\n").filter(Boolean);
+    const edited = JSON.parse(runLines[1] ?? runLines[0]);
+    edited.equity = 999;
+    writeFileSync(firstPath, `${[runLines[0], JSON.stringify(edited), ...runLines.slice(2)].join("\n")}\n`);
+    await stops("rewriting an old run line");
+    putBack();
+
+    // the whole data folder wiped: GitHub's history still says a book existed
+    rmSync(dir, { recursive: true, force: true });
+    await stops("wiping the whole record to start over", { priorRecord: async () => true });
+    assert.equal(existsSync(bookPath), false, "nothing may be written when a wiped record is found");
+    // ...and when that history cannot be read, nothing is started either
     clock.t += 6 * 60_000;
-    const again = await go();
-    assert.equal(again.read, true, "with the record restored the desk should run again");
-    return "six kinds of hand edit each stopped the desk; with the files put back it ran again";
+    const unsure = await go({ priorRecord: async () => null });
+    assert.equal(unsure.read, false);
+    assert.equal(existsSync(bookPath), false, "nothing may be started while the history cannot be read");
+
+    return "eight kinds of hand edit each stopped the desk, including a wiped record";
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -478,14 +536,13 @@ await test("F. small parts: minute boundaries, call pacing, ledger chain", async
   assert.equal(long.length, MAX_REPLAY_MINUTES);
   assert.equal(long[long.length - 1], 5000 * m);
 
-  // pacing and retries
+  // pacing and retries. The test clock stands still, so each sleep is measured from the same instant.
   const sleeps = [];
   let calls = 0;
   const flaky = async () => {
     calls += 1;
     return new Response("{}", { status: calls <= 2 ? 429 : 200 });
   };
-  // The test clock stands still, so each sleep is measured from the same instant.
   const tr = installTransport({ fetch: flaky, sleep: async (ms) => sleeps.push(ms), perWindow: 3, windowMs: 1000, gapMs: 100, backoffMs: [50, 60] });
   try {
     const res = await fetch(`${GT}/anything`);
@@ -498,13 +555,15 @@ await test("F. small parts: minute boundaries, call pacing, ledger chain", async
   } finally {
     tr.restore();
   }
-  // five calls go at once, the sixth waits for the window
+  // five calls go at once, the sixth waits for the window, and nothing is sent after the deadline
   const waits = [];
-  const tr3 = installTransport({ fetch: async () => new Response("{}", { status: 200 }), sleep: async (ms) => waits.push(ms), gapMs: 0 });
+  const tr3 = installTransport({ fetch: async () => new Response("{}", { status: 200 }), sleep: async (ms) => waits.push(ms), gapMs: 0, deadlineMs: 100_000 });
   try {
-    for (let i = 0; i < 7; i += 1) await fetch(`${GT}/call-${i}`);
-    assert.deepEqual(waits, [61_000, 61_000], "calls 6 and 7 wait until call 1 and call 2 are 61 seconds old");
+    for (let i = 0; i < 10; i += 1) await fetch(`${GT}/call-${i}`);
+    assert.deepEqual(waits, [61_000, 61_000, 61_000, 61_000, 61_000], "calls 6 to 10 wait until calls 1 to 5 are 61 seconds old");
     assert.equal(tr3.stats.refused, 0);
+    await assert.rejects(() => fetch(`${GT}/call-11`), /out of time/, "call 11 would start 122 seconds in, past the deadline");
+    assert.equal(tr3.stats.gaveUp.length, 1);
   } finally {
     tr3.restore();
   }
@@ -520,9 +579,11 @@ await test("F. small parts: minute boundaries, call pacing, ledger chain", async
   }
 
   // ledger chain
-  assert.deepEqual(checkLedger(""), { ok: true, count: 0, lastHash: null });
-  assert.equal(checkLedger('{"seq":2,"at":1,"prev":"x"}\n').ok, false);
-  return "boundaries, pacing, retries and the ledger chain behave as written";
+  assert.deepEqual(checkLedger("", "start"), { ok: true, count: 0, lastHash: null });
+  assert.equal(checkLedger('{"seq":2,"at":1,"prev":"start"}\n', "start").ok, false, "a ledger must start at row 1");
+  assert.equal(checkLedger('{"seq":1,"at":1,"prev":"other"}\n', "start").ok, false, "row 1 must name the frozen rules it started from");
+  assert.equal(checkLedger('{"seq":1,"at":1,"prev":"start"}\n', "start").ok, true);
+  return "boundaries, pacing, retries, the deadline and the ledger chain behave as written";
 });
 
 // ---------------------------------------------------------------------------

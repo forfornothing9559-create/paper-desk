@@ -217,14 +217,17 @@ export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeIncl
     return out.slice(0, 20);
   };
 
-  /** Ground truth for the tests: price of the last trade in [fromSec, toSec) in this pool, or null. */
-  market.lastTradeIn = (poolAddress, fromSec, toSec) => {
+  /**
+   * Ground truth for the tests, read straight from the trade list and not from
+   * any candle: the price of the last trade strictly before `sec` in this pool,
+   * however long ago, or null if the coin had not traded yet.
+   */
+  market.lastTradeBefore = (poolAddress, sec) => {
     const hit = byPool.get(poolAddress);
     if (!hit) return null;
     const { tok, pool } = hit;
-    const k = upto(tok.tSec, toSec - 0.5);
-    if (k === 0 || tok.tSec[k - 1] < fromSec) return null;
-    return tok.price[k - 1] * pool.factor;
+    const k = upto(tok.tSec, sec - 0.5);
+    return k === 0 ? null : tok.price[k - 1] * pool.factor;
   };
 
   market.candles = (poolAddress, t, { limit, before, token }) => {

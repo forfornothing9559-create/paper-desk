@@ -12,17 +12,22 @@
 //   1. ingest()      - a copy of `ingest` in grok/src/lib/desk-store.ts, without
 //                      the fields that only feed the screen.
 //   2. the replay    - the Grok page reads prices once a minute while it is open.
-//                      A cloud run happens every few minutes, so before its own
-//                      live read it steps through every one-minute close since
-//                      the last read, in order, for the coins the desk holds or
-//                      is watching. A late run therefore still checks every stop.
-//   3. the transport - spaces out the calls to the free price feed and retries
-//                      refusals, so one busy minute does not blind the desk.
+//                      A cloud run happens every several minutes, so it steps
+//                      through every minute since the last read, in order, and
+//                      gives the rules that minute's published closing price for
+//                      each coin the desk holds or is watching.
+//   3. the transport - sends one call at a time, no faster than the free price
+//                      feed allows, and retries a refusal.
 //   4. the record    - an append-only, hash-chained ledger of every paper buy
 //                      and sell, a line per run, and the status block in README.
+//
+// One rule runs through all of it: EVERY PRICE THE RULES ACT ON IS A PUBLISHED
+// ONE-MINUTE CLOSE, HANDED OVER IN TIME ORDER. A live read takes minutes at the
+// feed's pace, so its prices are never used: it supplies the trending list and,
+// for each coin held, the pool, pool size, volume and buy/sell counts.
 
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, appendFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -33,16 +38,18 @@ export const GT = "https://api.geckoterminal.com/api/v2";
 export const HELD_READ_LIMIT = 12;
 /**
  * One call to the candle endpoint returns at most 1000 one-minute candles.
- * The replay asks for at most 990 minutes (16.5 hours) so one call always
- * covers it. Minutes older than that are not replayed; the Grok rules then
- * write their own "desk: pause" row for the gap.
+ * The replay reaches back at most 990 minutes (16.5 hours) so one call always
+ * covers it. Older minutes are not replayed; the Grok rules then write their
+ * own "desk: pause" row for the gap.
  */
 export const MAX_REPLAY_MINUTES = 990;
-/** After this many runs in a row stopped by refused minute prices, a run goes ahead without them. */
+/** After this many runs in a row stopped by refused minute prices, a run goes ahead without the coins it could not price. */
 export const SOFT_STOP_LIMIT = 3;
 
 const START_CASH = 100;
 const MINUTE = 60_000;
+const STRATEGY_FILE = "grok/src/lib/strategy.ts";
+const MARKET_FILE = "grok/src/lib/market.ts";
 const BOOK_KEYS = [
   "cash", "positions", "watches", "log", "trades", "priorGap", "lastSig", "tradesTonight",
   "nightKey", "nightStartEquity", "paused", "settings", "locked", "lastScanAt",
@@ -65,8 +72,8 @@ let grok = null;
 
 export async function loadGrok() {
   if (!grok) {
-    const strategy = await import(pathToFileURL(join(ROOT, "grok/src/lib/strategy.ts")).href);
-    const market = await import(pathToFileURL(join(ROOT, "grok/src/lib/market.ts")).href);
+    const strategy = await import(pathToFileURL(join(ROOT, STRATEGY_FILE)).href);
+    const market = await import(pathToFileURL(join(ROOT, MARKET_FILE)).href);
     grok = { strategy, market };
   }
   return grok;
@@ -74,7 +81,7 @@ export async function loadGrok() {
 
 /** Tests only: a second copy of market.ts with empty caches, which is what every real run starts with. */
 export async function freshMarket(tag) {
-  return import(`${pathToFileURL(join(ROOT, "grok/src/lib/market.ts")).href}?fresh=${tag}`);
+  return import(`${pathToFileURL(join(ROOT, MARKET_FILE)).href}?fresh=${tag}`);
 }
 
 // ---------------------------------------------------------------------------
@@ -122,7 +129,7 @@ export function ingest(strategy, cur, quotes, at, error) {
 }
 
 // ---------------------------------------------------------------------------
-// 3. transport - one call at a time, spaced out, refusals retried
+// 3. transport - one call at a time, at the feed's pace, refusals retried
 // ---------------------------------------------------------------------------
 
 export function installTransport(options = {}) {
@@ -136,7 +143,7 @@ export function installTransport(options = {}) {
     attempts: 5,
     backoffMs: [20_000, 40_000, 61_000, 61_000], // after a refusal; the allowance also drops by one for the rest of the run
     timeoutMs: 15_000,
-    budgetMs: 12 * MINUTE,
+    deadlineMs: 13 * MINUTE, // no call is sent after this; the run then ends with what it has or decides nothing
     sleep: realSleep,
     ...options,
   };
@@ -154,6 +161,11 @@ export function installTransport(options = {}) {
       const afterGap = starts.length > 0 ? starts[starts.length - 1] + cfg.gapMs : -Infinity;
       const afterWindow = starts.length >= stats.perWindow ? starts[starts.length - stats.perWindow] + cfg.windowMs : -Infinity;
       const at = Math.max(now, afterGap, afterWindow, notBefore);
+      if (at - started > cfg.deadlineMs) {
+        stats.calls += 1;
+        stats.gaveUp.push({ url: url.slice(GT.length), status: "out of time" });
+        throw new Error("This run is out of time for more calls to the price feed.");
+      }
       if (at > now) await cfg.sleep(at - now);
       starts.push(at);
       if (starts.length > 64) starts.shift();
@@ -170,8 +182,7 @@ export function installTransport(options = {}) {
         stats.refused += 1;
         stats.perWindow = Math.max(2, stats.perWindow - 1);
       }
-      const outOfTime = Date.now() - started > cfg.budgetMs;
-      if (!transient || attempt >= cfg.attempts || outOfTime) {
+      if (!transient || attempt >= cfg.attempts) {
         stats.calls += 1;
         if (transient) stats.gaveUp.push({ url: url.slice(GT.length), status });
         else stats.answered += 1;
@@ -210,10 +221,10 @@ export function installTransport(options = {}) {
 // ---------------------------------------------------------------------------
 
 /** Every minute boundary after the last read, up to this read. Oldest first. */
-export function replayBoundaries(lastScanAt, scannedAt) {
+export function replayBoundaries(lastScanAt, stamp) {
   if (lastScanAt == null) return [];
   let first = (Math.floor(lastScanAt / MINUTE) + 1) * MINUTE;
-  const last = Math.floor(scannedAt / MINUTE) * MINUTE;
+  const last = Math.floor(stamp / MINUTE) * MINUTE;
   if (last < first) return [];
   if ((last - first) / MINUTE + 1 > MAX_REPLAY_MINUTES) first = last - (MAX_REPLAY_MINUTES - 1) * MINUTE;
   const out = [];
@@ -222,13 +233,15 @@ export function replayBoundaries(lastScanAt, scannedAt) {
 }
 
 /**
- * Closes of the one-minute candles of one pool that START in [fromSec, toSec),
- * priced for `mint` in US dollars. A minute with no trade has no candle.
+ * The newest `count` one-minute candles of one pool that START before `toSec`,
+ * priced for `mint` in US dollars, oldest first, each as { end, close } with
+ * `end` = start + 60 seconds. A minute with no trade has no candle, so the
+ * list can reach back well before the minutes being replayed; that is what
+ * gives a quiet coin its last traded price.
  * Closes are used exactly as published. Nothing is smoothed or filtered.
  */
-export async function fetchCloses(pool, mint, fromSec, toSec) {
-  const want = Math.round((toSec - fromSec) / 60);
-  const limit = Math.max(1, Math.min(1000, want + 2));
+export async function fetchCandles(pool, mint, toSec, count) {
+  const limit = Math.max(1, Math.min(1000, count));
   const url =
     `${GT}/networks/solana/pools/${pool}/ohlcv/minute` +
     `?aggregate=1&limit=${limit}&before_timestamp=${toSec}&currency=usd&token=${mint}`;
@@ -238,7 +251,7 @@ export async function fetchCloses(pool, mint, fromSec, toSec) {
   } catch {
     return { ok: false, status: 0 };
   }
-  if (res.status === 404) return { ok: true, closes: new Map(), status: 404 }; // the feed does not know this pool
+  if (res.status === 404) return { ok: true, candles: [], status: 404 }; // the feed does not know this pool
   if (!res.ok) return { ok: false, status: res.status };
   let doc;
   try {
@@ -248,16 +261,25 @@ export async function fetchCloses(pool, mint, fromSec, toSec) {
   }
   const rows = doc?.data?.attributes?.ohlcv_list;
   if (!Array.isArray(rows)) return { ok: false, status: -2 };
-  const closes = new Map();
+  const byEnd = new Map();
   for (const row of rows) {
     const start = Number(row?.[0]);
     const close = Number(row?.[4]);
-    if (!Number.isFinite(start) || start % 60 !== 0) continue;
-    if (start < fromSec || start >= toSec) continue;
+    if (!Number.isFinite(start) || start % 60 !== 0 || start >= toSec) continue; // never the minute still forming
     if (!Number.isFinite(close) || !(close > 0)) continue;
-    closes.set(start, close);
+    byEnd.set(start + 60, close);
   }
-  return { ok: true, closes, status: 200 };
+  const candles = [...byEnd.entries()].map(([end, close]) => ({ end, close })).sort((a, b) => a.end - b.end);
+  return { ok: true, candles, status: 200 };
+}
+
+/** Walks a coin's candles forward: for each minute asked, the last candle that had ended by then. */
+function makePricer(candles) {
+  let i = -1;
+  return (boundarySec) => {
+    while (i + 1 < candles.length && candles[i + 1].end <= boundarySec) i += 1;
+    return i >= 0 ? candles[i] : null;
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -282,52 +304,74 @@ export function checkLock(root = ROOT) {
       throw new Halt(`${rel} is not the frozen file. Its fingerprint is ${got}, the lock says ${want}.`);
     }
   }
-  return { lock, lockSha: sha256(lockText), frozenSha: lock.files["FROZEN.md"] };
+  return {
+    lock,
+    lockSha: sha256(lockText),
+    frozenSha: lock.files["FROZEN.md"],
+    rules: { strategy: lock.files[STRATEGY_FILE], market: lock.files[MARKET_FILE] },
+  };
 }
 
 function sameJson(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
-function lastRunLine(runsDir) {
-  if (!existsSync(runsDir)) return null;
+/** Every run line, oldest first, with the chain between them checked. */
+function readRunLines(runsDir) {
+  if (!existsSync(runsDir)) return { first: null, last: null, lastText: null, count: 0 };
   const files = readdirSync(runsDir).filter((f) => f.endsWith(".jsonl")).sort();
-  for (let i = files.length - 1; i >= 0; i -= 1) {
-    const lines = readFileSync(join(runsDir, files[i]), "utf8").split("\n").filter(Boolean);
-    if (lines.length > 0) return lines[lines.length - 1];
+  let first = null;
+  let prevText = null;
+  let count = 0;
+  for (const file of files) {
+    for (const text of readFileSync(join(runsDir, file), "utf8").split("\n")) {
+      if (!text) continue;
+      const line = JSON.parse(text);
+      count += 1;
+      if (prevText === null) {
+        first = line;
+        if (line.prev !== line.frozen) throw new Halt("The first run line does not start from the frozen rules.");
+      } else if (line.prev !== sha256(prevText)) {
+        throw new Halt(`Run line ${count} (${file}) does not follow the line before it. The run record was edited.`);
+      }
+      prevText = text;
+    }
   }
-  return null;
+  return { first, last: prevText ? JSON.parse(prevText) : null, lastText: prevText, count };
 }
 
 /** Read the saved record and refuse to go on if it is not exactly what the last run wrote. */
 export function loadStore(dataDir, strategy, lockInfo) {
   const p = paths(dataDir);
   const have = { book: existsSync(p.book), twin: existsSync(p.twin), trades: existsSync(p.trades) };
-  const runLine = lastRunLine(p.runs);
-  if (!have.book && !have.twin && !have.trades && !runLine) {
+  const runs = readRunLines(p.runs);
+  if (!have.book && !have.twin && !have.trades && runs.count === 0) {
     return {
-      p, genesis: true, book: null, twin: { feed: {}, src: {} }, soft: 0, runCount: 0,
-      lastRunHash: lockInfo.frozenSha, tradesText: "", tradeCount: 0, lastTradeHash: lockInfo.frozenSha,
+      p, genesis: true, book: null, twin: { feed: {}, trend: [] }, soft: 0, runCount: 0,
+      lastRunHash: lockInfo.frozenSha, tradesText: "", tradeCount: 0, lastTradeHash: null, ledgerStart: lockInfo.frozenSha,
     };
   }
-  if (!have.book || !have.twin || !have.trades || !runLine) {
+  if (!have.book || !have.twin || !have.trades || runs.count === 0) {
     throw new Halt("Part of the saved record is missing. The desk never starts a new book over an old one.");
   }
-  const last = JSON.parse(runLine);
+  const last = runs.last;
   const bookText = readFileSync(p.book, "utf8");
   const twinText = readFileSync(p.twin, "utf8");
   const tradesText = readFileSync(p.trades, "utf8");
   if (sha256(bookText) !== last.sha.book) throw new Halt("data/book.json is not the file the last run saved.");
   if (sha256(twinText) !== last.sha.twin) throw new Halt("data/twin.json is not the file the last run saved.");
   if (sha256(tradesText) !== last.sha.trades) throw new Halt("data/trades.jsonl is not the file the last run saved.");
+  if (!sameJson(runs.first.rules, lockInfo.rules)) {
+    throw new Halt("strategy.ts or market.ts is not the file this record began with. A changed rule file ends the record; it cannot carry on in the same ledger.");
+  }
   if (last.lock !== lockInfo.lockSha && lockInfo.lock.follows !== last.lock) {
     throw new Halt(
       "rules.lock.json changed since the last run and does not name the lock it follows. " +
-        "A change to the frozen files has to be made on purpose, in the open.",
+        "A change to the frozen text has to be made on purpose, in the open.",
     );
   }
 
-  const check = checkLedger(tradesText);
+  const check = checkLedger(tradesText, runs.first.frozen);
   if (!check.ok) throw new Halt(`data/trades.jsonl: ${check.why}`);
 
   const book = JSON.parse(bookText);
@@ -336,18 +380,18 @@ export function loadStore(dataDir, strategy, lockInfo) {
 
   return {
     p, genesis: false, book, twin: JSON.parse(twinText), soft: last.soft ?? 0, runCount: last.n,
-    lastRunHash: sha256(runLine), tradesText, tradeCount: check.count,
-    lastTradeHash: check.lastHash ?? lockInfo.frozenSha,
+    lastRunHash: sha256(runs.lastText), tradesText, tradeCount: check.count, lastTradeHash: check.lastHash,
+    ledgerStart: runs.first.frozen,
   };
 }
 
 /**
  * Every ledger row names the fingerprint of the row before it. Row 1 names the
- * fingerprint of FROZEN.md as it stood when that first paper trade was written.
+ * fingerprint FROZEN.md had when the desk made its first read.
  */
-export function checkLedger(tradesText) {
+export function checkLedger(tradesText, startHash) {
   const lines = tradesText.split("\n").filter(Boolean);
-  let prev = null;
+  let prev = startHash;
   let lastAt = -Infinity;
   for (let i = 0; i < lines.length; i += 1) {
     let row;
@@ -357,14 +401,12 @@ export function checkLedger(tradesText) {
       return { ok: false, why: `row ${i + 1} is not readable` };
     }
     if (row.seq !== i + 1) return { ok: false, why: `row ${i + 1} is numbered ${row.seq}` };
-    if (i === 0 ? !/^[0-9a-f]{64}$/.test(String(row.prev)) : row.prev !== prev) {
-      return { ok: false, why: `row ${i + 1} does not follow the row before it` };
-    }
+    if (row.prev !== prev) return { ok: false, why: `row ${i + 1} does not follow the row before it` };
     if (!(row.at >= lastAt)) return { ok: false, why: `row ${i + 1} is dated before the row above it` };
     lastAt = row.at;
     prev = sha256(lines[i]);
   }
-  return { ok: true, count: lines.length, lastHash: prev };
+  return { ok: true, count: lines.length, lastHash: lines.length > 0 ? prev : null };
 }
 
 /** Coin names come from strangers. Keep letters, digits and a few marks; cut the rest. */
@@ -396,19 +438,25 @@ export async function runOnce(options = {}) {
   const env = options.env ?? process.env;
   const { strategy } = await loadGrok();
   const market = options.market ?? (await loadGrok()).market;
-  const lockInfo = checkLock();
-  const store = loadStore(dataDir, strategy, lockInfo);
+
+  // Anything wrong with the frozen files or the saved record stops the desk, whatever the kind of error.
+  let lockInfo;
+  let store;
+  try {
+    lockInfo = checkLock();
+    store = loadStore(dataDir, strategy, lockInfo);
+  } catch (err) {
+    if (err instanceof Halt) throw err;
+    throw new Halt(`The frozen files or the saved record could not be read: ${err?.message ?? err}`);
+  }
+
   // Tests that run two desks side by side share one transport so the calls stay spaced.
   const transport = options.sharedTransport ?? installTransport(options.transport);
   const before = { ...transport.stats, gaveUp: transport.stats.gaveUp.length };
   const startedAt = Date.now();
   const deskSha = sha256(readFileSync(fileURLToPath(import.meta.url)));
 
-  const base = {
-    n: store.runCount + 1,
-    started: iso(startedAt),
-    kind: "read",
-  };
+  const base = { n: store.runCount + 1, started: iso(startedAt), kind: "read" };
   const tail = () => ({
     api: {
       calls: transport.stats.calls - before.calls,
@@ -423,9 +471,21 @@ export async function runOnce(options = {}) {
     desk: deskSha.slice(0, 16),
     lock: lockInfo.lockSha,
     frozen: lockInfo.frozenSha,
+    rules: lockInfo.rules,
   });
 
   try {
+    // A first run is allowed only if no record ever existed. The outside check is GitHub's own history.
+    if (store.genesis && options.priorRecord) {
+      const had = await options.priorRecord();
+      if (had === true) {
+        throw new Halt("The data folder is empty, but GitHub's history shows this desk already had a book. The desk never starts a new book over an old one.");
+      }
+      if (had !== false) {
+        return { ok: true, read: false, book: null, line: { ...base, kind: "no read", why: "Could not confirm that no earlier record exists. Nothing was started.", ...tail() } };
+      }
+    }
+
     let book = store.book ?? freshBook(strategy, startedAt);
     const twin = store.twin;
     const lastReadBefore = book.lastScanAt;
@@ -433,169 +493,184 @@ export async function runOnce(options = {}) {
 
     // --- the live read, through the Grok desk's own market file ---------------
     // Two calls to the same function. The first, with nothing held, returns the
-    // trending list alone. The second adds the deepest-pool price of each coin
-    // the desk holds. The trending list is fetched once: market.ts keeps it for
-    // 50 seconds. Keeping the two apart lets the desk hand the rules, after the
-    // replay below, exactly what the open page would have been handed for the
-    // coins it holds by then - a coin stopped out during the replay must not
-    // come back in with a "held coin" price.
+    // trending list alone. The second adds the deepest-pool read of each coin
+    // the desk holds (market.ts keeps the trending list for 50 seconds, so it
+    // is normally fetched once). Keeping the two apart lets the desk hand the
+    // rules, after the replay below, what the open page would have been handed
+    // for the coins it holds by then: a coin stopped out during the replay
+    // must not come back in with a "held coin" quote.
     const failed = (r) => !r.ok || (r.error && r.quotes.length === 0);
     const stop = (why) => noRead(store, { ...base, kind: "no read", why, soft: store.soft, ...tail() }, options);
     const heldBefore = heldMints(book);
     const trendingOnly = await market.scanMarket({ data: { held: [] } });
     if (failed(trendingOnly)) return stop(trendingOnly.error ?? "The market read failed.");
-    let withHeld = trendingOnly;
-    if (heldBefore.length > 0) {
-      withHeld = await market.scanMarket({ data: { held: heldBefore } });
-      if (failed(withHeld)) return stop(withHeld.error ?? "The market read failed.");
-    }
-    let scannedAt = withHeld.scannedAt;
-    const asked = new Set(heldBefore.slice(0, HELD_READ_LIMIT));
+    // `stamp` is when the live read was complete. Every value in it was read at or before this moment.
+    let stamp = trendingOnly.scannedAt;
     const deepest = new Map(); // mint -> the quote read from that coin's deepest pool
-    for (const q of withHeld.quotes) if (q.confirmedTop) deepest.set(q.mint, q);
+    if (heldBefore.length > 0) {
+      const withHeld = await market.scanMarket({ data: { held: heldBefore } });
+      if (failed(withHeld)) return stop(withHeld.error ?? "The market read failed.");
+      stamp = withHeld.scannedAt;
+      const asked = new Set(heldBefore.slice(0, HELD_READ_LIMIT));
+      for (const q of withHeld.quotes) {
+        if (q.confirmedTop && asked.has(q.mint) && q.priceUsd != null && q.pool) deepest.set(q.mint, q);
+      }
+    }
 
-    // --- replay every one-minute close since the last read -------------------
-    const boundaries = replayBoundaries(book.lastScanAt, scannedAt);
-    const candles = new Map(); // mint -> Map(start second -> close), or null when the feed would not give them
+    // --- the minutes since the last read --------------------------------------
+    const boundaries = replayBoundaries(book.lastScanAt, stamp);
+    const lastBoundary = boundaries.length > 0 ? boundaries[boundaries.length - 1] : null;
+    const pricers = new Map(); // mint -> a walker over that coin's candles, or null when the feed would not give them
     const refused = [];
-    let closesSeen = 0;
-    const closesFor = async (mint) => {
-      if (candles.has(mint)) return candles.get(mint);
+    let candlesSeen = 0;
+    const pricerFor = async (mint) => {
+      if (pricers.has(mint)) return pricers.get(mint);
       const f = twin.feed[mint];
-      const got = await fetchCloses(f.pool, mint, boundaries[0] / 1000 - 60, boundaries[boundaries.length - 1] / 1000);
+      const got = await fetchCandles(f.q.pool, mint, lastBoundary / 1000, boundaries.length + 2);
       if (!got.ok) {
         refused.push({ mint, status: got.status });
-        candles.set(mint, null);
+        pricers.set(mint, null);
         return null;
       }
-      closesSeen += got.closes.size;
-      candles.set(mint, got.closes);
-      return got.closes;
+      candlesSeen += got.candles.length;
+      const walker = makePricer(got.candles);
+      pricers.set(mint, walker);
+      return walker;
     };
     const stopForRefusal = () => refused.length > 0 && store.soft < SOFT_STOP_LIMIT;
     const refusalLine = () => ({
       ...base, kind: "no read", soft: store.soft + 1,
-      why: `The feed would not give minute prices for ${refused.length} coin(s). Nothing was decided. The next run replays these minutes.`,
+      why: "The feed would not give minute prices. Nothing was decided. The next run replays these minutes.",
       ...tail(),
     });
 
-    if (boundaries.length > 0) {
-      for (const mint of heldMints(book).slice(0, HELD_READ_LIMIT)) {
-        if (twin.feed[mint]) await closesFor(mint);
+    // Fetch up front for the coins the desk reads first, so a refusal ends the run before anything is decided.
+    if (lastBoundary != null) {
+      for (const mint of heldBefore.slice(0, HELD_READ_LIMIT)) {
+        const f = twin.feed[mint];
+        if (!f || f.readAt > lastBoundary) continue;
+        await pricerFor(mint);
+        if (stopForRefusal()) return noRead(store, refusalLine(), options);
       }
-      if (stopForRefusal()) return noRead(store, refusalLine(), options);
     }
 
-    const note = (before, after, read) => {
-      const count = after.trades.length - before.trades.length;
+    /**
+     * The price of one coin as of one minute boundary: the close of the last
+     * candle that had ended by then. Only if its pool has no candle at all
+     * that far back, the price read when the desk first looked the coin up.
+     * Returns undefined when the coin cannot be read at this minute.
+     */
+    const priceFrom = new Map(); // mint -> where the price last handed to the rules came from
+    const priceAt = async (mint, boundary) => {
+      const f = twin.feed[mint];
+      if (!f || f.readAt > boundary) return undefined; // not looked up yet as of this minute
+      const walker = await pricerFor(mint);
+      if (!walker) return undefined; // minute prices refused this run
+      const candle = walker(boundary / 1000);
+      const price = candle ? candle.close : f.q.priceUsd;
+      if (price == null) return undefined;
+      priceFrom.set(mint, candle ? { candleStart: iso((candle.end - 60) * 1000) } : { firstLookup: iso(f.readAt) });
+      return price;
+    };
+
+    const note = (was, now, read) => {
+      const count = now.trades.length - was.trades.length;
       if (count <= 0) return;
-      const fresh = after.trades.slice(0, count).reverse(); // oldest first
+      const fresh = now.trades.slice(0, count).reverse(); // oldest first
       for (const fill of fresh) {
-        const watch = before.watches.find((w) => w.mint === fill.mint);
-        const pos = before.positions.find((p) => p.mint === fill.mint);
+        const watch = was.watches.find((w) => w.mint === fill.mint);
+        const pos = was.positions.find((p) => p.mint === fill.mint);
         fills.push({
           fill,
           read,
-          priceFrom: read === "live" ? { kind: "live read" } : (twin.src[fill.mint] ?? null),
+          priceFrom: priceFrom.get(fill.mint) ?? null,
           context:
             fill.reason === "dip buy"
               ? watch && { queuedAt: iso(watch.queuedAt), firstPrice: watch.firstPrice, highPrice: watch.highPrice, score: watch.score }
               : pos && { boughtAt: iso(pos.openedAt), entryPrice: pos.entryPrice, peakPrice: pos.peakPrice },
-          equityAfter: strategy.equityOf(after),
-          cashAfter: after.cash,
+          equityAfterRead: strategy.equityOf(now),
+          cashAfterRead: now.cash,
         });
       }
     };
 
+    // In a replayed minute the trending list is not known. Coins are offered to the
+    // rules in the order the page would use with the trending list of the last live read.
+    const trendRank = new Map((twin.trend ?? []).map((mint, i) => [mint, i]));
     let minuteReads = 0;
     for (const boundary of boundaries) {
-      const quotes = [];
-      for (const mint of heldMints(book).slice(0, HELD_READ_LIMIT)) {
-        const f = twin.feed[mint];
-        if (!f) continue; // no deepest-pool read of this coin yet
-        const closes = await closesFor(mint);
+      const picked = [];
+      const first = heldMints(book).slice(0, HELD_READ_LIMIT);
+      for (let i = 0; i < first.length; i += 1) {
+        const mint = first[i];
+        const price = await priceAt(mint, boundary);
         if (stopForRefusal()) return noRead(store, refusalLine(), options);
-        if (!closes) continue; // minute prices unavailable this run; the live read below still covers it
-        const start = boundary / 1000 - 60;
-        const close = closes.get(start);
-        if (close != null) {
-          f.priceUsd = close;
-          twin.src[mint] = { kind: "minute close", candleStart: iso(start * 1000) };
-        }
-        if (f.priceUsd == null) continue;
-        // Everything but the price is the last value actually read from the deepest pool.
-        quotes.push({ ...f, confirmedTop: true });
+        if (price === undefined) continue;
+        // Everything but the price is the value last read from the coin's deepest pool.
+        picked.push({ rank: trendRank.has(mint) ? trendRank.get(mint) : Infinity, i, quote: { ...twin.feed[mint].q, priceUsd: price, confirmedTop: true } });
       }
-      if (quotes.length === 0) continue;
-      const next = ingest(strategy, book, quotes, boundary, null);
+      picked.sort((x, y) => (x.rank === y.rank ? x.i - y.i : x.rank - y.rank));
+      // Ingested even when no coin could be priced, so the desk's clock and its night roll-over keep to the minute.
+      const next = ingest(strategy, book, picked.map((p) => p.quote), boundary, null);
       note(book, next, "minute close");
       book = next;
-      minuteReads += 1;
+      if (picked.length > 0) minuteReads += 1;
     }
 
-    // --- then the live read itself -------------------------------------------
-    // The page asks for the first 12 coins it holds. If the replay moved a coin
-    // into those 12 that was not asked for above, ask for it now.
+    // --- then the live read itself --------------------------------------------
+    // Same shape as loadQuotes in market.ts: the trending list, with the deepest-pool
+    // quote laid over it for each of the first 12 coins held. The price in each of
+    // those quotes is the coin's last minute close, not the live number: the live
+    // numbers were read minutes apart and would arrive out of time order.
     const firstNow = heldMints(book).slice(0, HELD_READ_LIMIT);
-    const late = firstNow.filter((mint) => !asked.has(mint));
-    if (late.length > 0) {
-      const more = await market.scanMarket({ data: { held: late } });
-      if (more.ok) {
-        for (const q of more.quotes) if (q.confirmedTop && late.includes(q.mint)) deepest.set(q.mint, q);
-        scannedAt = more.scannedAt;
-      }
-    }
-    // Same shape as loadQuotes in market.ts: the trending list, with the
-    // deepest-pool quote laid over it for each of the first 12 coins held.
     const liveByMint = new Map(trendingOnly.quotes.map((q) => [q.mint, q]));
     let confirmed = 0;
     for (const mint of firstNow) {
       const q = deepest.get(mint);
-      if (!q) continue;
-      liveByMint.set(mint, q);
+      if (!q || lastBoundary == null) continue;
+      const price = await priceAt(mint, lastBoundary);
+      if (stopForRefusal()) return noRead(store, refusalLine(), options);
+      if (price === undefined) continue; // its first read will be a minute close, next run
+      liveByMint.set(mint, { ...q, priceUsd: price });
       confirmed += 1;
     }
     const liveQuotes = [...liveByMint.values()];
     {
-      const next = ingest(strategy, book, liveQuotes, scannedAt, null);
-      note(book, next, "live");
+      const next = ingest(strategy, book, liveQuotes, stamp, null);
+      note(book, next, "live read");
       book = next;
     }
     for (const mint of firstNow) {
       const q = deepest.get(mint);
-      if (q && q.priceUsd != null && q.pool) {
-        twin.feed[mint] = { ...q };
-        twin.src[mint] = { kind: "live read", at: iso(scannedAt) };
-      }
+      if (q) twin.feed[mint] = { q: { ...q }, readAt: stamp };
     }
+    twin.trend = trendingOnly.quotes.map((q) => q.mint);
 
-    // --- find the deepest pool of coins that just joined the watch list ------
-    // Looked up, not acted on: the desk's next read of them is the first minute close after this one.
+    // --- look up the deepest pool of coins that just joined the watch list ----
+    // Looked up, not acted on. The coin is read from the first whole minute after this lookup.
     const need = heldMints(book).slice(0, 2 * HELD_READ_LIMIT).filter((mint) => !twin.feed[mint]);
-    let resolved = 0;
+    const resolved = [];
     if (need.length > 0) {
       const look = await market.scanMarket({ data: { held: need } });
       if (look.ok) {
         for (const q of look.quotes) {
           if (need.includes(q.mint) && q.confirmedTop && q.priceUsd != null && q.pool) {
-            twin.feed[q.mint] = { ...q };
-            twin.src[q.mint] = { kind: "live read", at: iso(look.scannedAt) };
-            resolved += 1;
+            twin.feed[q.mint] = { q: { ...q }, readAt: look.scannedAt };
+            resolved.push({ q: { ...q }, readAt: look.scannedAt });
           }
         }
       }
     }
     const heldNow = new Set(heldMints(book));
     for (const mint of Object.keys(twin.feed)) if (!heldNow.has(mint)) delete twin.feed[mint];
-    for (const mint of Object.keys(twin.src)) if (!heldNow.has(mint)) delete twin.src[mint];
 
-    // --- write the record ----------------------------------------------------
+    // --- write the record ------------------------------------------------------
     const p = store.p;
     mkdirSync(p.runs, { recursive: true });
     const bookText = `${JSON.stringify(persisted(book), null, 1)}\n`;
     const twinText = `${JSON.stringify(twin, null, 1)}\n`;
     let tradesText = store.tradesText;
-    let prev = store.lastTradeHash;
+    let prev = store.lastTradeHash ?? store.ledgerStart;
     let seq = store.tradeCount;
     for (const item of fills) {
       seq += 1;
@@ -616,8 +691,8 @@ export async function runOnce(options = {}) {
         read: item.read,
         priceFrom: item.priceFrom,
         context: item.context ?? null,
-        equityAfter: round2(item.equityAfter),
-        cashAfter: round2(item.cashAfter),
+        equityAfterRead: round2(item.equityAfterRead),
+        cashAfterRead: round2(item.cashAfterRead),
         run: base.n,
         id: f.id,
         prev,
@@ -633,15 +708,15 @@ export async function runOnce(options = {}) {
     const line = {
       ...base,
       kind: store.genesis ? "first read" : "read",
-      read: iso(scannedAt),
+      read: iso(stamp),
       lastReadBefore: lastReadBefore == null ? null : iso(lastReadBefore),
       minutes: boundaries.length,
       minuteReads,
-      minuteCloses: closesSeen,
+      minuteCloses: candlesSeen,
       noMinutePrices: refused.map((r) => r.mint),
       seen: liveQuotes.length,
       confirmed,
-      resolved,
+      resolved: resolved.length,
       fills: fills.length,
       open: book.positions.length,
       waiting: book.watches.length,
@@ -654,8 +729,12 @@ export async function runOnce(options = {}) {
     };
     appendRunLine(p.runs, startedAt, line);
     const summary = `read ${line.read} | balance ${strategy.money(line.equity)} | open ${line.open} | waiting ${line.waiting} | new rows ${line.fills}`;
-    finish(options, { book, line, tradesText, strategy, summary });
-    return { ok: true, read: true, line, book, twin, fills };
+    finish(options, { book, line, tradesText, summary });
+    return {
+      ok: true, read: true, line, book, twin, fills,
+      // What the live read returned, untouched. The tests give this to an independent desk.
+      raw: { stamp, trending: trendingOnly.quotes, deepest: [...deepest.values()], resolved },
+    };
   } finally {
     if (!options.sharedTransport) transport.restore();
   }
@@ -684,7 +763,7 @@ function noRead(store, line, options) {
   };
   appendRunLine(p.runs, Date.parse(line.started), full);
   const summary = `no read ${line.started} | ${line.why}`;
-  finish(options, { book: store.book, line: full, tradesText: store.tradesText, strategy: null, summary });
+  finish(options, { book: store.book, line: full, tradesText: store.tradesText, summary });
   return { ok: true, read: false, line: full, book: store.book };
 }
 
@@ -792,6 +871,24 @@ export function renderReadme(book, line, tradesText, body) {
 // Command line
 // ---------------------------------------------------------------------------
 
+/** Has GitHub's history ever held a book for this desk? true, false, or null when it cannot be told. */
+async function askGitHubForPriorRecord() {
+  const repo = process.env.GITHUB_REPOSITORY;
+  const token = process.env.GITHUB_TOKEN;
+  if (!repo || !token) return null;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/commits?path=data%2Fbook.json&per_page=1`, {
+      headers: { authorization: `Bearer ${token}`, accept: "application/vnd.github+json", "user-agent": "paper-desk" },
+      signal: AbortSignal.timeout(20_000),
+    });
+    if (!res.ok) return null;
+    const list = await res.json();
+    return Array.isArray(list) ? list.length > 0 : null;
+  } catch {
+    return null;
+  }
+}
+
 async function main(argv) {
   const cmd = argv[0];
   const flag = (name) => {
@@ -804,12 +901,18 @@ async function main(argv) {
       console.error("Refusing. Only the cloud run writes the real record in ./data. For a trial, pass --data <some other folder>.");
       return 1;
     }
+    if (!custom && process.env.GITHUB_REF_NAME !== "main") {
+      console.error("Refusing. The real record lives on the main branch only.");
+      if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, "halt=true\n");
+      return 2;
+    }
     const dataDir = custom ?? join(ROOT, "data");
     try {
       const result = await runOnce({
         dataDir,
         readmePath: custom ? flag("--readme") : join(ROOT, "README.md"),
         messagePath: flag("--message"),
+        priorRecord: custom ? undefined : askGitHubForPriorRecord,
       });
       console.log(JSON.stringify(result.line, null, 1));
       return 0;

@@ -129,7 +129,8 @@ if (role === "cloud") {
   const counts = { calls: 0, ok: 0, refused: 0, otherErrors: 0, threw: 0 };
   let transport = null;
   if (role === "grok-paced") {
-    transport = installTransport();
+    // one transport for the whole trial, so it must never run out of time
+    transport = installTransport({ deadlineMs: Infinity });
   } else {
     // count what the price feed answers, without changing how the Grok code calls it
     const real = globalThis.fetch;
