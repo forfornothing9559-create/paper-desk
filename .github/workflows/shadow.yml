@@ -1,0 +1,79 @@
+name: shadow
+
+# Run by hand, once, before the desk is switched on. Three desks run side by
+# side on live public prices, each on its own machine with a fresh paper $100:
+# the Grok desk as written, the Grok desk with paced calls, and the cloud desk.
+# The report is saved under prelaunch/. Nothing here touches data/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "How many minutes to run the three desks"
+        default: "60"
+
+permissions:
+  contents: write
+
+jobs:
+  desk:
+    strategy:
+      fail-fast: false
+      matrix:
+        role: [grok-raw, grok-paced, cloud]
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Install the two libraries the Grok store file needs
+        run: npm install --prefix tests/deps --no-audit --no-fund --no-save zustand@5 react@19
+
+      - name: Run this desk
+        run: node tests/shadow.mjs --role ${{ matrix.role }} --minutes ${{ inputs.minutes }} --out shadow-${{ matrix.role }}.json
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: shadow-${{ matrix.role }}
+          path: shadow-${{ matrix.role }}.json
+          if-no-files-found: warn
+
+  report:
+    needs: desk
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - uses: actions/download-artifact@v8
+        with:
+          path: shadow-in
+          merge-multiple: true
+
+      - name: Write the report
+        run: node tests/shadow-report.mjs shadow-in prelaunch
+
+      - name: Save the report
+        run: |
+          git config user.name "paper-desk-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prelaunch
+          git commit -q -m "side-by-side trial report"
+          for i in 1 2 3; do
+            git pull -q --rebase && git push -q && exit 0
+            sleep 5
+          done
+          echo "could not save the report" >&2
+          exit 1

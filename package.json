@@ -1,0 +1,6 @@
+{
+  "name": "paper-desk",
+  "private": true,
+  "type": "module",
+  "description": "Paper-only desk. No wallet, no keys, no orders. Nothing to install: there are no dependencies."
+}

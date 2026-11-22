@@ -1,0 +1,36 @@
+name: test
+
+# The exact tests. They use a made-up market, so they give the same answer
+# every time. They run on every change to the code and can be run by hand.
+# The desk's own saves (data/, README.md) do not trigger them.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "data/**"
+      - "README.md"
+      - "prelaunch/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      # Tests only. These let the Grok app's own store file run unedited so the
+      # runner can be compared against it. The desk itself installs nothing.
+      - name: Install the two libraries the Grok store file needs
+        run: npm install --prefix tests/deps --no-audit --no-fund --no-save zustand@5 react@19
+
+      - name: Run the tests
+        run: node tests/offline.mjs

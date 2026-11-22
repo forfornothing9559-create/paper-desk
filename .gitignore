@@ -1,0 +1,6 @@
+# Test-only libraries are installed here by the test job and never committed.
+tests/deps/node_modules/
+tests/deps/package-lock.json
+# Scratch output from local or test runs.
+/tmp/
+*.tmp

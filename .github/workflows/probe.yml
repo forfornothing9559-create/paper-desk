@@ -1,0 +1,24 @@
+name: probe
+
+# Run by hand. Measures how many keyless calls the public price feed allows
+# from a GitHub machine. Reads public prices only and saves nothing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Measure the price feed's allowance
+        run: node tests/gtrate.mjs

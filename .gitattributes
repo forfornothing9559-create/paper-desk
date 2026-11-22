@@ -1,0 +1,3 @@
+# Store every file exactly as written. The frozen files are checked by
+# fingerprint on every run, so no line-ending conversion may touch them.
+* -text

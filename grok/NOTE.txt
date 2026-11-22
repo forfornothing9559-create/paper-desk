@@ -1,0 +1,1 @@
+Nothing was changed. This is the Paper Desk source. Platform auth, database, PWA, and build files are not part of the desk and are not pasted here.

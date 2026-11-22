@@ -1,0 +1,5 @@
+{
+  "name": "paper-desk-test-deps",
+  "private": true,
+  "description": "Only the tests use these. They let the Grok desk's own store file (desk-store.ts) run unedited so the cloud runner can be compared against it. The desk itself installs nothing."
+}
