@@ -186,7 +186,7 @@ function poolItem(tok, pool, t) {
   };
 }
 
-export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeInclusive = false }) {
+export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeInclusive = false, skew = null }) {
   const rand = rng(seed);
   const startSec = Math.floor(startMs / 1000);
   const list = [];
@@ -195,7 +195,11 @@ export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeIncl
   const byPool = new Map();
   for (const tok of list) for (const pool of tok.pools) byPool.set(pool.address, { tok, pool });
 
-  const market = { list, byMint, byPool, calls: 0, fail: null, beforeInclusive };
+  // `skew` makes the candle call lie on purpose (test G): candles labelled a
+  // minute late, or priced without the pool's own offset. The live calls and
+  // the ground truth stay honest, so a desk that trusts the skewed candles
+  // must end up with a different book.
+  const market = { list, byMint, byPool, calls: 0, fail: null, beforeInclusive, skew };
 
   market.trending = (t) => {
     const epoch = Math.floor(t / 600);
@@ -234,10 +238,12 @@ export function makeMarket({ seed = 1, tokens = 36, startMs, minutes, beforeIncl
       (token == null && pool.side === "base");
     const rows = [];
     let cur = null;
+    const lateBy = market.skew?.shiftSec ?? 0;
+    const factor = market.skew?.flatPool ? 1 : pool.factor;
     for (let k = upto(tok.tSec, t) - 1; k >= 0; k -= 1) {
-      const start = Math.floor(tok.tSec[k] / 60) * 60;
+      const start = Math.floor(tok.tSec[k] / 60) * 60 + lateBy;
       if (before != null && (beforeInclusive ? start > before : start >= before)) continue;
-      const px = priced ? tok.price[k] * pool.factor : OTHER[pool.other].price;
+      const px = priced ? tok.price[k] * factor : OTHER[pool.other].price;
       if (!cur || cur[0] !== start) {
         if (cur) rows.push(cur);
         if (rows.length >= limit) {

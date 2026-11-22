@@ -234,9 +234,9 @@ function nextGap(rand) {
   return Math.floor((17 + rand() * 3) * 3_600_000); // longer than the replay can reach back
 }
 
-async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals = false }) {
+async function replayIsExact({ seed, days, beforeInclusive = false, withRefusals = false, skew = null }) {
   const { strategy } = await loadGrok();
-  const mkt = makeMarket({ seed, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive });
+  const mkt = makeMarket({ seed, startMs: T0 - 2 * 3_600_000, minutes: days * 1440 + 1800, beforeInclusive, skew });
   const fetchImpl = mockFetch(mkt);
   const dir = mkdtempSync(join(tmpdir(), "desk-c-"));
   const transport = { ...QUICK, fetch: fetchImpl };
@@ -332,6 +332,23 @@ await test("C. the replay is exact (a desk that wakes now and then = a desk that
   assert.ok(beyond > 0, "no gap longer than the replay limit was tried");
   assert.ok(maxHeld > HELD_READ_LIMIT, `never held more than ${HELD_READ_LIMIT} coins at once (most: ${maxHeld}); the 12-coin limit was not exercised`);
   return `${runs} cloud runs replaying ${minutes} minutes (longest gap replayed ${longest} min, ${beyond} gaps beyond reach), compared after every run, 0 differences. Fills by read: ${show(kinds)}. By reason: ${show(reasons)}. Most coins held at once: ${maxHeld}. ${parts.join("; ")}`;
+});
+
+await test("C2. the comparison in C would notice a wrong minute or a wrong pool", async () => {
+  // Feed the runner candles that are deliberately wrong and check that test C's comparison fails.
+  // If it still "matched", test C would be proving nothing.
+  const caught = [];
+  for (const skew of [{ shiftSec: 60 }, { flatPool: true }]) {
+    let message = null;
+    try {
+      await replayIsExact({ seed: 21, days: 3, skew });
+    } catch (err) {
+      message = String(err?.message ?? err);
+    }
+    assert.ok(message && message.includes("differ"), `candles skewed by ${JSON.stringify(skew)} were not noticed`);
+    caught.push(`${JSON.stringify(skew)} caught at ${message.slice(0, 90)}`);
+  }
+  return caught.join(" || ");
 });
 
 // --------------------------------------------------------------------------- D
