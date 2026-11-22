@@ -7,7 +7,7 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 21, 21:28:25 PT** |
+| Last read of the market | **Nov 21, 21:42:40 PT** |
 | Balance, by the desk's own count after costs | **$100.00** (started at $100.00) |
 | Cash | $100.00 |
 | Open paper trades | 0 of 4 allowed |
