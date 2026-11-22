@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 10:13:20 PT** |
-| Balance, by the desk's own count after costs | **$106.79** (started at $100.00) |
-| Cash | $57.25 |
+| Last read of the market | **Nov 22, 10:29:17 PT** |
+| Balance, by the desk's own count after costs | **$102.37** (started at $100.00) |
+| Cash | $63.20 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 4 |
-| Rows in the ledger | 6 (1 closed trades) |
+| Coins waiting for a dip | 3 |
+| Rows in the ledger | 8 (2 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 1 over 1. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 2 over 1. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000897 | $18.38 |
-| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00150 | $10.32 |
-| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000343 | $11.18 |
-| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00283 | $9.66 |
+| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00144 | $9.94 |
+| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000320 | $10.44 |
+| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00281 | $9.60 |
+| SIDOOR | Nov 22, 10:18:00 PT | $10.00 | $0.000177 | $0.000168 | $9.18 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 8 | Nov 22, 10:18:00 PT | SIDOOR | dip buy | $0.000177 | -$10.00 |  |
+| 7 | Nov 22, 10:18:00 PT | Singularity | trail | $0.000778 | +$15.95 | +$5.95 |
 | 6 | Nov 22, 00:21:00 PT | DCTY | dip buy | $0.00284 | -$10.00 |  |
 | 5 | Nov 22, 00:21:00 PT | XV | stop | $0.0000582 | +$7.25 | -$2.75 |
 | 4 | Nov 21, 23:12:00 PT | greg | dip buy | $0.000297 | -$10.00 |  |
