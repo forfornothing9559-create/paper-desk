@@ -22,7 +22,7 @@ import { clock, makeMarket, mockFetch, rng, useTestClock } from "./mockgt.mjs";
 import { newGrokDesk, zustandVersion } from "./grokstore.mjs";
 import {
   GT, HELD_READ_LIMIT, Halt, MAX_REPLAY_MINUTES, SOFT_STOP_LIMIT,
-  checkLedger, checkLock, freshBook, freshMarket, heldMints, ingest, installTransport,
+  checkLedger, checkLock, fetchCandles, freshBook, freshMarket, heldMints, ingest, installTransport,
   loadGrok, replayBoundaries, runOnce,
 } from "../desk.mjs";
 
@@ -373,12 +373,32 @@ await test("C2. the comparison in C would notice a wrong minute or a wrong pool"
   const caught = [];
   for (const skew of [{ shiftSec: 60 }, { flatPool: true }]) {
     let message = null;
+    let stats = null;
     try {
-      await replayIsExact({ seed: 21, days: 3, skew });
+      stats = await replayIsExact({ seed: 21, days: 3, skew });
     } catch (err) {
       message = String(err?.message ?? err);
     }
-    assert.ok(message && message.includes("differ"), `candles skewed by ${JSON.stringify(skew)} were not noticed (${message})`);
+    if (!(message && message.includes("differ"))) {
+      // Say exactly what the runner saw, so a miss can be understood from the log.
+      const mkt = makeMarket({ seed: 21, startMs: T0 - 2 * 3_600_000, minutes: 3 * 1440 + 1800, skew });
+      const tr = installTransport({ ...QUICK, fetch: mockFetch(mkt) });
+      let probe = "";
+      try {
+        clock.t = T0 + 3_600_000 + 30_000;
+        const boundary = Math.floor(clock.t / 60_000) * 60_000;
+        for (const tok of mkt.list.slice(0, 4)) {
+          const pool = tok.pools[0];
+          const got = await fetchCandles(pool.address, tok.mint, boundary / 1000, 6);
+          const lastEnd = got.candles?.length ? got.candles[got.candles.length - 1] : null;
+          probe += ` | ${tok.symbol}: newest candle end ${lastEnd ? lastEnd.end - boundary / 1000 : "none"}s from the boundary, close ${lastEnd?.close}, true last trade ${mkt.lastTradeBefore(pool.address, boundary / 1000)}`;
+        }
+      } finally {
+        tr.restore();
+      }
+      const { reads2, reasons, ...plain } = stats ?? {};
+      assert.fail(`candles skewed by ${JSON.stringify(skew)} were not noticed. error: ${message}. run: ${JSON.stringify(plain)} fills ${reasons ? show(reasons) : "-"}. probe:${probe}`);
+    }
     caught.push(`${JSON.stringify(skew)} caught: ${message.slice(0, 110)}`);
   }
   return caught.join(" || ");
