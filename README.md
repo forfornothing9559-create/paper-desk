@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 21, 21:42:40 PT** |
-| Balance, by the desk's own count after costs | **$100.00** (started at $100.00) |
-| Cash | $100.00 |
-| Open paper trades | 0 of 4 allowed |
-| Coins waiting for a dip | 6 |
-| Rows in the ledger | 0 (0 closed trades) |
+| Last read of the market | **Nov 21, 21:56:22 PT** |
+| Balance, by the desk's own count after costs | **$99.68** (started at $100.00) |
+| Cash | $90.00 |
+| Open paper trades | 1 of 4 allowed |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 1 (0 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 0 over 0. The balance above is the desk's own count, not the score.
 
@@ -20,11 +20,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 ### Open paper trades
 
-None.
+| Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
+|---|---|---|---|---|---|
+| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000472 | $9.68 |
 
 ### Last 10 rows of the ledger
 
-No paper buy or sell yet.
+| # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
+|---|---|---|---|---|---|---|
+| 1 | Nov 21, 21:50:00 PT | Singularity | dip buy | $0.000474 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
