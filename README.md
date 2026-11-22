@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 08:54:39 PT** |
-| Balance, by the desk's own count after costs | **$113.72** (started at $100.00) |
+| Last read of the market | **Nov 22, 09:10:27 PT** |
+| Balance, by the desk's own count after costs | **$112.20** (started at $100.00) |
 | Cash | $57.25 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 4 |
+| Coins waiting for a dip | 3 |
 | Rows in the ledger | 6 (1 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 1 over 1. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.00106 | $21.70 |
-| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00174 | $12.01 |
-| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000356 | $11.62 |
-| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00326 | $11.13 |
+| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000971 | $19.89 |
+| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00165 | $11.38 |
+| greg | Nov 21, 23:12:00 PT | $10.00 | $0.000297 | $0.000397 | $12.96 |
+| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00314 | $10.72 |
 
 ### Last 10 rows of the ledger
 
