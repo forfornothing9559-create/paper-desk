@@ -7,19 +7,19 @@
     "confirmedTop": true,
     "symbol": "DCTY",
     "name": "DCTY",
-    "priceUsd": 0.002860450178,
-    "marketCap": 2704891.8800431,
-    "liquidityUsd": 245740.4611,
-    "volumeH1": 28422.356243015,
-    "changeM5": 2.08,
-    "changeH1": -0.92,
-    "buysH1": 191,
-    "sellsH1": 167,
+    "priceUsd": 0.003086924571,
+    "marketCap": 2919049.99131406,
+    "liquidityUsd": 252896.6325,
+    "volumeH1": 28798.1673380192,
+    "changeM5": 6.47,
+    "changeH1": 5.08,
+    "buysH1": 206,
+    "sellsH1": 149,
     "pairCreatedAt": 1792465415000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump"
    },
-   "readAt": 1795338857372
+   "readAt": 1795339578338
   },
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump": {
    "q": {
@@ -28,19 +28,19 @@
     "confirmedTop": true,
     "symbol": "Singularity",
     "name": "Singularity",
-    "priceUsd": 0.0005309168281,
-    "marketCap": 504613.283467677,
-    "liquidityUsd": 61623.8512,
-    "volumeH1": 41300.9308266191,
-    "changeM5": -3.83,
-    "changeH1": -22.32,
-    "buysH1": 389,
-    "sellsH1": 336,
+    "priceUsd": 0.0005807263448,
+    "marketCap": 551955.056113827,
+    "liquidityUsd": 64184.9658,
+    "volumeH1": 31653.3534008204,
+    "changeM5": 2.21,
+    "changeH1": -15.51,
+    "buysH1": 369,
+    "sellsH1": 274,
     "pairCreatedAt": 1795205185000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump"
    },
-   "readAt": 1795338857372
+   "readAt": 1795339578338
   },
   "4Ye6Y6Vaic8cyPdfW2f9PcLhXkysBtSmV84G8X7spump": {
    "q": {
@@ -49,19 +49,19 @@
     "confirmedTop": true,
     "symbol": "greg",
     "name": "greg",
-    "priceUsd": 0.0002994959904,
-    "marketCap": 282961.882689682,
-    "liquidityUsd": 44091.3371,
-    "volumeH1": 10173.8840905449,
-    "changeM5": -1.86,
-    "changeH1": -9.81,
-    "buysH1": 134,
-    "sellsH1": 116,
+    "priceUsd": 0.0003060622308,
+    "marketCap": 289165.624326742,
+    "liquidityUsd": 44353.9042,
+    "volumeH1": 8348.9234366987,
+    "changeM5": 0.1,
+    "changeH1": -0.05,
+    "buysH1": 113,
+    "sellsH1": 89,
     "pairCreatedAt": 1794364063000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/4Ye6Y6Vaic8cyPdfW2f9PcLhXkysBtSmV84G8X7spump"
    },
-   "readAt": 1795338857372
+   "readAt": 1795339578338
   },
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump": {
    "q": {
@@ -70,19 +70,40 @@
     "confirmedTop": true,
     "symbol": "FIONA",
     "name": "FIONA",
-    "priceUsd": 0.001546101156,
-    "marketCap": 1521374.84367457,
-    "liquidityUsd": 123010.9823,
-    "volumeH1": 31680.9908219677,
-    "changeM5": -1.03,
-    "changeH1": 8.48,
-    "buysH1": 187,
-    "sellsH1": 225,
+    "priceUsd": 0.001480305089,
+    "marketCap": 1456631.03259982,
+    "liquidityUsd": 121435.5133,
+    "volumeH1": 39445.0631343974,
+    "changeM5": -1.49,
+    "changeH1": 1.62,
+    "buysH1": 220,
+    "sellsH1": 236,
     "pairCreatedAt": 1795121609000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump"
    },
-   "readAt": 1795338857372
+   "readAt": 1795339578338
+  },
+  "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump": {
+   "q": {
+    "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+    "pool": "5bS5kJJZtThFbMiLDeM8SX2LT6ZkNTcHXDCY6CcGjD9N",
+    "confirmedTop": true,
+    "symbol": "XV",
+    "name": "XV",
+    "priceUsd": 0.00005492230529,
+    "marketCap": 54922.30529,
+    "liquidityUsd": 20650.7828,
+    "volumeH1": 8299.8905924029,
+    "changeM5": -0.67,
+    "changeH1": -12.41,
+    "buysH1": 96,
+    "sellsH1": 79,
+    "pairCreatedAt": 1795254042000,
+    "dex": "pumpswap",
+    "url": "https://dexscreener.com/solana/BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump"
+   },
+   "readAt": 1795339861036
   }
  },
  "trend": [
@@ -94,13 +115,13 @@
   "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
   "6AJcP7wuLwmRYLBNbi825wgguaPsWzPBEHcHndpRpump",
   "4Ye6Y6Vaic8cyPdfW2f9PcLhXkysBtSmV84G8X7spump",
-  "5UUH9RTDiSpq6HKS6bp4NdU9PNJpXRXuiw6ShBTBhgH2",
   "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
+  "5UUH9RTDiSpq6HKS6bp4NdU9PNJpXRXuiw6ShBTBhgH2",
   "pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn",
   "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
   "Dfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump",
-  "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
   "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+  "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
   "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
   "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
   "SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb",
@@ -109,27 +130,27 @@
  ],
  "newest": {
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump": {
-   "at": 1795338840,
-   "end": 1795338840,
-   "close": 0.0005532490607892084,
+   "at": 1795339560,
+   "end": 1795339560,
+   "close": 0.0005812998017662408,
    "pool": "58XqWPXDGp3GfU9DAFxs8C1GJwTLdHdQhJRofAF5yWTV"
   },
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump": {
-   "at": 1795338840,
-   "end": 1795338840,
-   "close": 0.0015461011564224443,
+   "at": 1795339560,
+   "end": 1795339560,
+   "close": 0.0014852689198926448,
    "pool": "DjbLtX1HRGZZrJgJ7CwTX6SN3D7tBLiytkGwomBUwTVB"
   },
   "4Ye6Y6Vaic8cyPdfW2f9PcLhXkysBtSmV84G8X7spump": {
-   "at": 1795338840,
-   "end": 1795338840,
-   "close": 0.00029896753182418167,
+   "at": 1795339560,
+   "end": 1795339560,
+   "close": 0.0003018776950278647,
    "pool": "4s8CAbVgaDHoPkkbitjdQZ4TfqXKuczHWdfy8HLVUbdQ"
   },
   "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump": {
-   "at": 1795338840,
-   "end": 1795338840,
-   "close": 0.0028604501780717154,
+   "at": 1795339560,
+   "end": 1795339560,
+   "close": 0.003085368978612039,
    "pool": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf"
   }
  }
