@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 21, 22:39:15 PT** |
-| Balance, by the desk's own count after costs | **$100.65** (started at $100.00) |
+| Last read of the market | **Nov 21, 22:54:19 PT** |
+| Balance, by the desk's own count after costs | **$101.33** (started at $100.00) |
 | Cash | $80.00 |
 | Open paper trades | 2 of 4 allowed |
 | Coins waiting for a dip | 4 |
@@ -22,8 +22,8 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000524 | $10.73 |
-| XV | Nov 21, 22:37:00 PT | $10.00 | $0.0000778 | $0.0000795 | $9.92 |
+| Singularity | Nov 21, 21:50:00 PT | $10.00 | $0.000474 | $0.000495 | $10.14 |
+| XV | Nov 21, 22:37:00 PT | $10.00 | $0.0000778 | $0.0000898 | $11.20 |
 
 ### Last 10 rows of the ledger
 
