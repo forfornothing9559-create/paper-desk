@@ -570,6 +570,7 @@ export async function runOnce(options = {}) {
       const price = candle ? candle.close : f.q.priceUsd;
       if (price == null) return undefined;
       priceFrom.set(mint, candle ? { candleStart: iso((candle.end - 60) * 1000) } : { firstLookup: iso(f.readAt) });
+      if (options.trace) options.trace.push({ at: boundary, mint, price, candleEnd: candle ? candle.end : null }); // tests only
       return price;
     };
 

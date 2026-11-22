@@ -200,12 +200,15 @@ await test("B. same reads in, same book out (runner's ingest vs the Grok app's o
 function referenceStep(ref, mkt, raw) {
   const heldOf = (s) => [...s.positions.map((p) => p.mint), ...s.watches.map((w) => w.mint)];
   const state = () => ref.desk.state();
+  ref.trace = [];
   const priceAsOf = (mint, boundary) => {
     const f = ref.feed[mint];
     if (!f || f.readAt > boundary) return undefined; // not looked up yet as of this minute
     const traded = mkt.lastTradeBefore(f.q.pool, boundary / 1000);
     const price = traded != null ? traded : f.q.priceUsd;
-    return price == null ? undefined : price;
+    if (price == null) return undefined;
+    ref.trace.push({ at: boundary, mint, price, traded: traded != null });
+    return price;
   };
 
   const last = state().lastScanAt;
@@ -274,14 +277,15 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
     const ref = { desk: await newGrokDesk(freshBook(strategy, clock.t)), feed: {}, trend: [] };
     const rand = rng(seed * 977 + 5);
     const end = T0 + days * 86_400_000;
-    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0, slowest: 0, apiCalls: 0 };
+    const stats = { runs: 0, reads: 0, noReads: 0, minutes: 0, longest: 0, maxHeld: 0, beyondReach: 0, slowest: 0, apiCalls: 0, prices: 0, fromCandles: 0 };
     let inARow = 0;
     while (clock.t < end) {
       let kind = null;
       if (withRefusals && stats.runs > 0 && inARow < 2 && rand() < 0.3) kind = rand() < 0.6 ? "/ohlcv/" : "trending_pools";
       mkt.fail = kind ? (path) => (path.includes(kind) ? 429 : null) : null;
       const began = clock.t;
-      const result = await runOnce({ dataDir: dir, market: await freshMarket(`c${seed}-${stats.runs}`), transport });
+      const trace = [];
+      const result = await runOnce({ dataDir: dir, market: await freshMarket(`c${seed}-${stats.runs}`), transport, trace });
       mkt.fail = null;
       stats.runs += 1;
       stats.slowest = Math.max(stats.slowest, clock.t - began);
@@ -294,6 +298,18 @@ async function replayIsExact({ seed, days, tokens = 36, beforeInclusive = false,
         stats.longest = Math.max(stats.longest, result.line.minutes);
         if (result.line.minutes === MAX_REPLAY_MINUTES) stats.beyondReach += 1;
         referenceStep(ref, mkt, result.raw);
+        // Price by price: what the runner handed the rules against the last true trade.
+        const tag = `seed ${seed}, run ${stats.runs}`;
+        for (let i = 0; i < Math.max(trace.length, ref.trace.length); i += 1) {
+          const mine = trace[i];
+          const truth = ref.trace[i];
+          if (!mine || !truth || mine.at !== truth.at || mine.mint !== truth.mint || mine.price !== truth.price) {
+            assert.fail(`${tag}: the prices handed to the rules differ at entry ${i}: runner ${JSON.stringify(mine)} | true ${JSON.stringify(truth)} (${trace.length} / ${ref.trace.length} prices this run)`);
+          }
+          stats.prices += 1;
+          if (mine.candleEnd != null) stats.fromCandles += 1;
+          if (truth.traded && mine.candleEnd == null) assert.fail(`${tag}: the coin had traded but the runner used no candle: ${JSON.stringify(mine)}`);
+        }
       } else {
         inARow += 1;
         stats.noReads += 1;
@@ -347,8 +363,12 @@ await test("C. the replay is exact (a desk that wakes now and then = a desk that
   let beyond = 0;
   let maxHeld = 0;
   let slowest = 0;
+  let prices = 0;
+  let fromCandles = 0;
   for (const cfg of [{ seed: 21, days: 6 }, { seed: 22, days: 6, beforeInclusive: true }, { seed: 23, days: 6, tokens: 60 }]) {
     const r = await replayIsExact(cfg);
+    prices += r.prices;
+    fromCandles += r.fromCandles;
     runs += r.reads;
     minutes += r.minutes;
     longest = Math.max(longest, r.longest);
@@ -364,7 +384,8 @@ await test("C. the replay is exact (a desk that wakes now and then = a desk that
   assert.ok(beyond > 0, "no gap longer than the replay limit was tried");
   assert.ok(maxHeld > HELD_READ_LIMIT, `never held more than ${HELD_READ_LIMIT} coins at once (most: ${maxHeld}); the 12-coin limit was not exercised`);
   assert.ok(slowest > 120_000, "no run took longer than two minutes of test time; the spread-out live read was not exercised");
-  return `${runs} cloud runs replaying ${minutes} minutes (longest gap replayed ${longest} min, ${beyond} gaps beyond reach), compared after every run, 0 differences. Slowest run ${Math.round(slowest / 1000)}s of test time. Fills by read: ${show(kinds)}. By reason: ${show(reasons)}. Most coins held at once: ${maxHeld}. ${parts.join("; ")}`;
+  assert.ok(fromCandles > 0.9 * prices, `only ${fromCandles} of ${prices} prices came from a candle; the replay is not being exercised`);
+  return `${prices} prices handed to the rules, each equal to the last true trade (${fromCandles} from a one-minute candle, ${prices - fromCandles} from a coin's first lookup). ${runs} cloud runs replaying ${minutes} minutes (longest gap replayed ${longest} min, ${beyond} gaps beyond reach), compared after every run, 0 differences. Slowest run ${Math.round(slowest / 1000)}s of test time. Fills by read: ${show(kinds)}. By reason: ${show(reasons)}. Most coins held at once: ${maxHeld}. ${parts.join("; ")}`;
 });
 
 await test("C2. the comparison in C would notice a wrong minute or a wrong pool", async () => {
