@@ -1,0 +1,419 @@
+{
+ "role": "cloud",
+ "started": 1795317004114,
+ "ended": 1795321588948,
+ "every": 720000,
+ "reads": [
+  {
+   "at": 1795317004115,
+   "ok": true,
+   "error": null,
+   "ms": 82670,
+   "minutes": 0,
+   "minuteReads": 0,
+   "minuteCloses": 0,
+   "seen": 20,
+   "confirmed": 0,
+   "held": 7,
+   "api": {
+    "calls": 8,
+    "refused": 1,
+    "retries": 1,
+    "gaveUp": 0,
+    "perMinute": 4
+   },
+   "fills": 0
+  },
+  {
+   "at": 1795317724117,
+   "ok": true,
+   "error": null,
+   "ms": 204150,
+   "minutes": 13,
+   "minuteReads": 12,
+   "minuteCloses": 98,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "api": {
+    "calls": 15,
+    "refused": 1,
+    "retries": 1,
+    "gaveUp": 0,
+    "perMinute": 4
+   },
+   "fills": 0
+  },
+  {
+   "at": 1795318444205,
+   "ok": true,
+   "error": null,
+   "ms": 204031,
+   "minutes": 12,
+   "minuteReads": 12,
+   "minuteCloses": 92,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "api": {
+    "calls": 15,
+    "refused": 1,
+    "retries": 1,
+    "gaveUp": 0,
+    "perMinute": 4
+   },
+   "fills": 2
+  },
+  {
+   "at": 1795319164209,
+   "ok": true,
+   "error": null,
+   "ms": 203992,
+   "minutes": 12,
+   "minuteReads": 12,
+   "minuteCloses": 91,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "api": {
+    "calls": 15,
+    "refused": 1,
+    "retries": 1,
+    "gaveUp": 0,
+    "perMinute": 4
+   },
+   "fills": 1
+  },
+  {
+   "at": 1795319884212,
+   "ok": true,
+   "error": null,
+   "ms": 264736,
+   "minutes": 12,
+   "minuteReads": 12,
+   "minuteCloses": 93,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 8,
+   "api": {
+    "calls": 17,
+    "refused": 2,
+    "retries": 2,
+    "gaveUp": 0,
+    "perMinute": 3
+   },
+   "fills": 0
+  },
+  {
+   "at": 1795320604125,
+   "ok": true,
+   "error": null,
+   "ms": 265082,
+   "minutes": 13,
+   "minuteReads": 13,
+   "minuteCloses": 116,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 7,
+   "api": {
+    "calls": 17,
+    "refused": 2,
+    "retries": 2,
+    "gaveUp": 0,
+    "perMinute": 3
+   },
+   "fills": 0
+  },
+  {
+   "at": 1795321324214,
+   "ok": true,
+   "error": null,
+   "ms": 264734,
+   "minutes": 11,
+   "minuteReads": 11,
+   "minuteCloses": 84,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 8,
+   "api": {
+    "calls": 17,
+    "refused": 2,
+    "retries": 2,
+    "gaveUp": 0,
+    "perMinute": 3
+   },
+   "fills": 0
+  }
+ ],
+ "watchEvents": [
+  {
+   "at": 1795317004300,
+   "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+   "symbol": "DCTY",
+   "score": 76,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+   "symbol": "Singularity",
+   "score": 93,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+   "symbol": "FIONA",
+   "score": 85,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+   "symbol": "mihao",
+   "score": 79,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 72,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
+   "symbol": "jingyu",
+   "score": 91,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795317004300,
+   "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+   "symbol": "XV",
+   "score": 91,
+   "queuedAt": 1795317004300
+  },
+  {
+   "at": 1795319966632,
+   "mint": "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
+   "symbol": "Rings",
+   "score": 80,
+   "queuedAt": 1795319966632
+  },
+  {
+   "at": 1795321406827,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 71,
+   "queuedAt": 1795321406827
+  }
+ ],
+ "api": {
+  "calls": 104,
+  "refused": 10,
+  "retries": 10,
+  "gaveUp": 0
+ },
+ "ledger": [
+  {
+   "seq": 1,
+   "at": 1795318020000,
+   "utc": "2026-11-22T03:27:00Z",
+   "pacific": "Nov 21, 19:27:00 PT",
+   "side": "buy",
+   "reason": "dip buy",
+   "symbol": "XV",
+   "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+   "pool": "5bS5kJJZtThFbMiLDeM8SX2LT6ZkNTcHXDCY6CcGjD9N",
+   "price": 0.00008197789726978159,
+   "cash": -10,
+   "pnl": null,
+   "read": "minute close",
+   "priceFrom": {
+    "candleStart": "2026-11-22T03:26:00Z"
+   },
+   "context": {
+    "queuedAt": "2026-11-22T03:10:04.300Z",
+    "firstPrice": 0.00009703226693804205,
+    "highPrice": 0.00009716834221857123,
+    "score": 82
+   },
+   "equityAfterRead": 99.7,
+   "cashAfterRead": 90,
+   "run": 3,
+   "id": "1795318020000-fill-BjnxH6-dip",
+   "prev": "27c1d5e6384236488a434c5bd2baa3c6f70d9c1635bbd1bbd40fb3b08ff32d15"
+  },
+  {
+   "seq": 2,
+   "at": 1795318440000,
+   "utc": "2026-11-22T03:34:00Z",
+   "pacific": "Nov 21, 19:34:00 PT",
+   "side": "buy",
+   "reason": "dip buy",
+   "symbol": "Singularity",
+   "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+   "pool": "58XqWPXDGp3GfU9DAFxs8C1GJwTLdHdQhJRofAF5yWTV",
+   "price": 0.00047104380382732337,
+   "cash": -10,
+   "pnl": null,
+   "read": "minute close",
+   "priceFrom": {
+    "candleStart": "2026-11-22T03:33:00Z"
+   },
+   "context": {
+    "queuedAt": "2026-11-22T03:10:04.300Z",
+    "firstPrice": 0.0005004327201716982,
+    "highPrice": 0.0005604660243830624,
+    "score": 93
+   },
+   "equityAfterRead": 98.8,
+   "cashAfterRead": 80,
+   "run": 3,
+   "id": "1795318440000-fill-7R4MP6-dip",
+   "prev": "92839cafa064296b1010b2ffcd298809dbbdc0f9d294ca7890f202658fd0239b"
+  },
+  {
+   "seq": 3,
+   "at": 1795318620000,
+   "utc": "2026-11-22T03:37:00Z",
+   "pacific": "Nov 21, 19:37:00 PT",
+   "side": "buy",
+   "reason": "dip buy",
+   "symbol": "DCTY",
+   "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+   "pool": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
+   "price": 0.0032066210097548586,
+   "cash": -10,
+   "pnl": null,
+   "read": "minute close",
+   "priceFrom": {
+    "candleStart": "2026-11-22T03:36:00Z"
+   },
+   "context": {
+    "queuedAt": "2026-11-22T03:10:04.300Z",
+    "firstPrice": 0.0035996484742558477,
+    "highPrice": 0.0038061963992645797,
+    "score": 67
+   },
+   "equityAfterRead": 98.89,
+   "cashAfterRead": 70,
+   "run": 4,
+   "id": "1795318620000-fill-9hjBLB-dip",
+   "prev": "86051dfb4a5296267ce6b34b2d13d2a5176b1135f9c6805cf62ad7a5ba206ce6"
+  }
+ ],
+ "final": {
+  "cash": 70,
+  "equity": 100.95609397378166,
+  "open": [
+   {
+    "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+    "symbol": "XV",
+    "entryPrice": 0.00008197789726978159,
+    "lastPrice": 0.0000771687295129605,
+    "openedAt": 1795318020000
+   },
+   {
+    "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+    "symbol": "Singularity",
+    "entryPrice": 0.00047104380382732337,
+    "lastPrice": 0.000578584154739318,
+    "openedAt": 1795318440000
+   },
+   {
+    "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+    "symbol": "DCTY",
+    "entryPrice": 0.0032066210097548586,
+    "lastPrice": 0.0032738695411968733,
+    "openedAt": 1795318620000
+   }
+  ],
+  "waiting": [
+   {
+    "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+    "symbol": "FIONA",
+    "anchored": true,
+    "firstPrice": 0.0019019334078140943,
+    "highPrice": 0.0019019334078140943,
+    "lastPrice": 0.001721949090891104
+   },
+   {
+    "mint": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+    "symbol": "mihao",
+    "anchored": true,
+    "firstPrice": 0.0077794399390394,
+    "highPrice": 0.00953689983162369,
+    "lastPrice": 0.00878795016649094
+   },
+   {
+    "mint": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
+    "symbol": "jingyu",
+    "anchored": true,
+    "firstPrice": 0.00011892183926439527,
+    "highPrice": 0.00012057263836704198,
+    "lastPrice": 0.00010955748381518785
+   },
+   {
+    "mint": "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
+    "symbol": "Rings",
+    "anchored": true,
+    "firstPrice": 0.003993184667788766,
+    "highPrice": 0.003993184667788766,
+    "lastPrice": 0.003742920387784047
+   },
+   {
+    "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+    "symbol": "FLOAT",
+    "anchored": false,
+    "firstPrice": 0.003078672274422608,
+    "highPrice": 0.003078672274422608,
+    "lastPrice": 0.003078672274422608
+   }
+  ],
+  "trades": [
+   {
+    "id": "1795318020000-fill-BjnxH6-dip",
+    "at": 1795318020000,
+    "pacific": "Nov 21, 19:27:00 PT",
+    "symbol": "XV",
+    "name": "XV",
+    "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+    "pool": "5bS5kJJZtThFbMiLDeM8SX2LT6ZkNTcHXDCY6CcGjD9N",
+    "price": 0.00008197789726978159,
+    "cash": -10,
+    "pnl": null,
+    "reason": "dip buy"
+   },
+   {
+    "id": "1795318440000-fill-7R4MP6-dip",
+    "at": 1795318440000,
+    "pacific": "Nov 21, 19:34:00 PT",
+    "symbol": "Singularity",
+    "name": "Singularity",
+    "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+    "pool": "58XqWPXDGp3GfU9DAFxs8C1GJwTLdHdQhJRofAF5yWTV",
+    "price": 0.00047104380382732337,
+    "cash": -10,
+    "pnl": null,
+    "reason": "dip buy"
+   },
+   {
+    "id": "1795318620000-fill-9hjBLB-dip",
+    "at": 1795318620000,
+    "pacific": "Nov 21, 19:37:00 PT",
+    "symbol": "DCTY",
+    "name": "DCTY",
+    "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+    "pool": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
+    "price": 0.0032066210097548586,
+    "cash": -10,
+    "pnl": null,
+    "reason": "dip buy"
+   }
+  ],
+  "lastScanAt": 1795321406827
+ }
+}

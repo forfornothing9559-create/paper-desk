@@ -1,0 +1,491 @@
+{
+ "role": "grok-paced",
+ "started": 1795317004531,
+ "ended": 1795321638574,
+ "every": 60000,
+ "skippedTicks": 51,
+ "reads": [
+  {
+   "at": 1795317004846,
+   "ok": true,
+   "error": null,
+   "ms": 184,
+   "seen": 20,
+   "confirmed": 0,
+   "held": 0,
+   "asked": 0,
+   "fills": 0
+  },
+  {
+   "at": 1795317064534,
+   "ok": true,
+   "error": null,
+   "ms": 82715,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795317184532,
+   "ok": true,
+   "error": null,
+   "ms": 124769,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795317364534,
+   "ok": true,
+   "error": null,
+   "ms": 122233,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 0
+  },
+  {
+   "at": 1795317544559,
+   "ok": true,
+   "error": null,
+   "ms": 122075,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 0
+  },
+  {
+   "at": 1795317724565,
+   "ok": true,
+   "error": null,
+   "ms": 122262,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 0
+  },
+  {
+   "at": 1795317904570,
+   "ok": true,
+   "error": null,
+   "ms": 122079,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 1
+  },
+  {
+   "at": 1795318084570,
+   "ok": true,
+   "error": null,
+   "ms": 122750,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795318264564,
+   "ok": true,
+   "error": null,
+   "ms": 125057,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795318444571,
+   "ok": true,
+   "error": null,
+   "ms": 125064,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795318624571,
+   "ok": true,
+   "error": null,
+   "ms": 125045,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795318804571,
+   "ok": true,
+   "error": null,
+   "ms": 125293,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 1
+  },
+  {
+   "at": 1795318984570,
+   "ok": true,
+   "error": null,
+   "ms": 122105,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 0
+  },
+  {
+   "at": 1795319164574,
+   "ok": true,
+   "error": null,
+   "ms": 122094,
+   "seen": 20,
+   "confirmed": 6,
+   "held": 6,
+   "asked": 6,
+   "fills": 0
+  },
+  {
+   "at": 1795319344565,
+   "ok": true,
+   "error": null,
+   "ms": 122763,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795319524573,
+   "ok": true,
+   "error": null,
+   "ms": 125748,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795319704570,
+   "ok": true,
+   "error": null,
+   "ms": 128712,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795319884534,
+   "ok": true,
+   "error": null,
+   "ms": 131750,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795320064564,
+   "ok": true,
+   "error": null,
+   "ms": 134718,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795320244554,
+   "ok": true,
+   "error": null,
+   "ms": 137730,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795320424556,
+   "ok": true,
+   "error": null,
+   "ms": 140727,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795320604547,
+   "ok": true,
+   "error": null,
+   "ms": 143066,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795320784553,
+   "ok": true,
+   "error": null,
+   "ms": 143051,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795320964541,
+   "ok": true,
+   "error": null,
+   "ms": 125078,
+   "seen": 20,
+   "confirmed": 7,
+   "held": 7,
+   "asked": 7,
+   "fills": 0
+  },
+  {
+   "at": 1795321144535,
+   "ok": true,
+   "error": null,
+   "ms": 128037,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795321324568,
+   "ok": true,
+   "error": null,
+   "ms": 131007,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  },
+  {
+   "at": 1795321504556,
+   "ok": true,
+   "error": null,
+   "ms": 134018,
+   "seen": 20,
+   "confirmed": 8,
+   "held": 8,
+   "asked": 8,
+   "fills": 0
+  }
+ ],
+ "watchEvents": [
+  {
+   "at": 1795317005013,
+   "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+   "symbol": "DCTY",
+   "score": 76,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+   "symbol": "Singularity",
+   "score": 93,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+   "symbol": "FIONA",
+   "score": 85,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+   "symbol": "mihao",
+   "score": 79,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 72,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
+   "symbol": "jingyu",
+   "score": 91,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795317005013,
+   "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+   "symbol": "XV",
+   "score": 91,
+   "queuedAt": 1795317005013
+  },
+  {
+   "at": 1795318026645,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 71,
+   "queuedAt": 1795318026645
+  },
+  {
+   "at": 1795319286664,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 71,
+   "queuedAt": 1795319286664
+  },
+  {
+   "at": 1795319467324,
+   "mint": "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
+   "symbol": "Rings",
+   "score": 71,
+   "queuedAt": 1795319467324
+  },
+  {
+   "at": 1795321089615,
+   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+   "symbol": "FLOAT",
+   "score": 71,
+   "queuedAt": 1795321089615
+  }
+ ],
+ "api": {
+  "calls": 212,
+  "refused": 2,
+  "retries": 2,
+  "gaveUp": 0,
+  "perMinute": 3
+ },
+ "final": {
+  "cash": 80,
+  "equity": 98.98399592672006,
+  "open": [
+   {
+    "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+    "symbol": "XV",
+    "entryPrice": 0.00008197789727,
+    "lastPrice": 0.00007731853903,
+    "openedAt": 1795318026645
+   },
+   {
+    "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+    "symbol": "DCTY",
+    "entryPrice": 0.003226405848,
+    "lastPrice": 0.003269949034,
+    "openedAt": 1795318929860
+   }
+  ],
+  "waiting": [
+   {
+    "mint": "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
+    "symbol": "Singularity",
+    "anchored": true,
+    "firstPrice": 0.0005104811466,
+    "highPrice": 0.0006189826143,
+    "lastPrice": 0.0005941933449
+   },
+   {
+    "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
+    "symbol": "FIONA",
+    "anchored": true,
+    "firstPrice": 0.001842313865,
+    "highPrice": 0.001894317887,
+    "lastPrice": 0.001723136604
+   },
+   {
+    "mint": "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+    "symbol": "mihao",
+    "anchored": true,
+    "firstPrice": 0.007804851993,
+    "highPrice": 0.009070017409,
+    "lastPrice": 0.00877047446
+   },
+   {
+    "mint": "DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump",
+    "symbol": "jingyu",
+    "anchored": true,
+    "firstPrice": 0.0001195828155,
+    "highPrice": 0.0001202469449,
+    "lastPrice": 0.0001096421637
+   },
+   {
+    "mint": "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
+    "symbol": "Rings",
+    "anchored": true,
+    "firstPrice": 0.004030354044,
+    "highPrice": 0.004030354044,
+    "lastPrice": 0.003661294022
+   },
+   {
+    "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
+    "symbol": "FLOAT",
+    "anchored": true,
+    "firstPrice": 0.003078672274,
+    "highPrice": 0.003078672274,
+    "lastPrice": 0.003078672274
+   }
+  ],
+  "trades": [
+   {
+    "id": "1795318026645-fill-BjnxH6-dip",
+    "at": 1795318026645,
+    "pacific": "Nov 21, 19:27:06 PT",
+    "symbol": "XV",
+    "name": "XV",
+    "mint": "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump",
+    "pool": "5bS5kJJZtThFbMiLDeM8SX2LT6ZkNTcHXDCY6CcGjD9N",
+    "price": 0.00008197789727,
+    "cash": -10,
+    "pnl": null,
+    "reason": "dip buy"
+   },
+   {
+    "id": "1795318929860-fill-9hjBLB-dip",
+    "at": 1795318929860,
+    "pacific": "Nov 21, 19:42:09 PT",
+    "symbol": "DCTY",
+    "name": "DCTY",
+    "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+    "pool": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
+    "price": 0.003226405848,
+    "cash": -10,
+    "pnl": null,
+    "reason": "dip buy"
+   }
+  ],
+  "lastScanAt": 1795321638570
+ }
+}
