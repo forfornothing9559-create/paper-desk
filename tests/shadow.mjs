@@ -27,7 +27,8 @@ const arg = (name, fallback) => {
 const role = arg("--role");
 const minutes = Number(arg("--minutes", "60"));
 const out = arg("--out", `shadow-${role}.json`);
-const every = Number(arg("--every", role === "cloud" ? "300" : "60")) * 1000;
+// The cloud desk is tried at the pace it will really run at: a run about every 12 minutes.
+const every = Number(arg("--every", role === "cloud" ? "720" : "60")) * 1000;
 if (!["grok-raw", "grok-paced", "cloud"].includes(role)) {
   console.error("unknown --role");
   process.exit(1);
