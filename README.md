@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 21:36:22 PT** |
-| Balance, by the desk's own count after costs | **$89.99** (started at $100.00) |
+| Last read of the market | **Nov 22, 21:53:40 PT** |
+| Balance, by the desk's own count after costs | **$88.31** (started at $100.00) |
 | Cash | $48.21 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000492 | $10.10 |
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000173 | $11.93 |
-| snowball | Nov 22, 19:21:00 PT | $10.00 | $0.0000982 | $0.000101 | $9.99 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000269 | $9.76 |
+| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000440 | $9.03 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000164 | $11.29 |
+| snowball | Nov 22, 19:21:00 PT | $10.00 | $0.0000982 | $0.000101 | $9.94 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000272 | $9.84 |
 
 ### Last 10 rows of the ledger
 
