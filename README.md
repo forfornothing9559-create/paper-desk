@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 03:06:20 PT** |
-| Balance, by the desk's own count after costs | **$98.86** (started at $100.00) |
+| Last read of the market | **Nov 23, 03:23:25 PT** |
+| Balance, by the desk's own count after costs | **$95.53** (started at $100.00) |
 | Cash | $36.73 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 6 |
+| Coins waiting for a dip | 5 |
 | Rows in the ledger | 26 (11 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 11 over 2. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000422 | $29.08 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000359 | $12.99 |
-| Singularity | Nov 23, 02:37:00 PT | $10.00 | $0.000455 | $0.000490 | $10.44 |
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00692 | $9.62 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000376 | $25.91 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000364 | $13.17 |
+| Singularity | Nov 23, 02:37:00 PT | $10.00 | $0.000455 | $0.000453 | $9.65 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00724 | $10.06 |
 
 ### Last 10 rows of the ledger
 
