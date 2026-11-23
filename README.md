@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 06:37:43 PT** |
-| Balance, by the desk's own count after costs | **$88.22** (started at $100.00) |
+| Last read of the market | **Nov 23, 06:54:43 PT** |
+| Balance, by the desk's own count after costs | **$85.97** (started at $100.00) |
 | Cash | $47.90 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00837 | $11.64 |
-| FSDV15 | Nov 23, 06:06:00 PT | $10.00 | $0.000869 | $0.000999 | $11.15 |
-| ZOL | Nov 23, 06:09:00 PT | $10.00 | $0.0000851 | $0.0000793 | $9.05 |
-| MCAT | Nov 23, 06:30:00 PT | $10.00 | $0.000285 | $0.000249 | $8.49 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00835 | $11.61 |
+| FSDV15 | Nov 23, 06:06:00 PT | $10.00 | $0.000869 | $0.000845 | $9.43 |
+| ZOL | Nov 23, 06:09:00 PT | $10.00 | $0.0000851 | $0.0000727 | $8.29 |
+| MCAT | Nov 23, 06:30:00 PT | $10.00 | $0.000285 | $0.000257 | $8.74 |
 
 ### Last 10 rows of the ledger
 
