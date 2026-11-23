@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 18:09:42 PT** |
-| Balance, by the desk's own count after costs | **$90.63** (started at $100.00) |
-| Cash | $56.64 |
+| Last read of the market | **Nov 22, 18:26:41 PT** |
+| Balance, by the desk's own count after costs | **$90.45** (started at $100.00) |
+| Cash | $53.86 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
-| Rows in the ledger | 12 (4 closed trades) |
+| Rows in the ledger | 14 (5 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 4 over 2. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 5 over 2. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00125 | $8.59 |
-| DCTY | Nov 22, 00:21:00 PT | $10.00 | $0.00284 | $0.00219 | $7.46 |
-| Singularity | Nov 22, 11:01:00 PT | $10.00 | $0.000615 | $0.000557 | $8.79 |
-| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000447 | $9.17 |
+| FIONA | Nov 21, 23:06:00 PT | $10.00 | $0.00141 | $0.00119 | $8.19 |
+| Singularity | Nov 22, 11:01:00 PT | $10.00 | $0.000615 | $0.000528 | $8.33 |
+| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000429 | $8.81 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000163 | $11.26 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 14 | Nov 22, 18:20:00 PT | SIDOOR | dip buy | $0.000141 | -$10.00 |  |
+| 13 | Nov 22, 18:20:00 PT | DCTY | stop | $0.00212 | +$7.22 | -$2.78 |
 | 12 | Nov 22, 16:07:00 PT | MCAT | dip buy | $0.000473 | -$10.00 |  |
 | 11 | Nov 22, 16:07:00 PT | greg | stop | $0.000223 | +$7.27 | -$2.73 |
 | 10 | Nov 22, 11:01:00 PT | Singularity | dip buy | $0.000615 | -$10.00 |  |
@@ -39,8 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 7 | Nov 22, 10:18:00 PT | Singularity | trail | $0.000778 | +$15.95 | +$5.95 |
 | 6 | Nov 22, 00:21:00 PT | DCTY | dip buy | $0.00284 | -$10.00 |  |
 | 5 | Nov 22, 00:21:00 PT | XV | stop | $0.0000582 | +$7.25 | -$2.75 |
-| 4 | Nov 21, 23:12:00 PT | greg | dip buy | $0.000297 | -$10.00 |  |
-| 3 | Nov 21, 23:06:00 PT | FIONA | dip buy | $0.00141 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
