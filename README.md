@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 02:13:19 PT** |
-| Balance, by the desk's own count after costs | **$103.37** (started at $100.00) |
+| Last read of the market | **Nov 23, 02:30:40 PT** |
+| Balance, by the desk's own count after costs | **$99.14** (started at $100.00) |
 | Cash | $43.66 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 7 |
+| Coins waiting for a dip | 8 |
 | Rows in the ledger | 22 (9 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 9 over 2. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000358 | $24.68 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000409 | $14.81 |
-| FSDV15 | Nov 22, 23:22:00 PT | $10.00 | $0.00291 | $0.00355 | $11.81 |
-| snowball | Nov 22, 23:56:00 PT | $10.00 | $0.0000762 | $0.0000660 | $8.41 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000371 | $25.61 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000386 | $13.97 |
+| FSDV15 | Nov 22, 23:22:00 PT | $10.00 | $0.00291 | $0.00238 | $7.92 |
+| snowball | Nov 22, 23:56:00 PT | $10.00 | $0.0000762 | $0.0000626 | $7.98 |
 
 ### Last 10 rows of the ledger
 
