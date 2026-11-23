@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 08:02:26 PT** |
-| Balance, by the desk's own count after costs | **$84.53** (started at $100.00) |
+| Last read of the market | **Nov 23, 08:18:20 PT** |
+| Balance, by the desk's own count after costs | **$81.79** (started at $100.00) |
 | Cash | $45.01 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 6 |
+| Coins waiting for a dip | 5 |
 | Rows in the ledger | 34 (15 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 15 over 3. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00743 | $10.32 |
-| FSDV15 | Nov 23, 06:06:00 PT | $10.00 | $0.000869 | $0.000924 | $10.31 |
-| ZOL | Nov 23, 06:09:00 PT | $10.00 | $0.0000851 | $0.0000832 | $9.49 |
-| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00124 | $9.40 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00709 | $9.86 |
+| FSDV15 | Nov 23, 06:06:00 PT | $10.00 | $0.000869 | $0.000823 | $9.18 |
+| ZOL | Nov 23, 06:09:00 PT | $10.00 | $0.0000851 | $0.0000755 | $8.61 |
+| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00121 | $9.12 |
 
 ### Last 10 rows of the ledger
 
