@@ -8,6 +8,7 @@
 | | |
 |---|---|
 | Last read of the market | **Nov 23, 03:40:20 PT** |
+| Last attempt | Nov 23, 03:54:23 PT: no read. The feed would not give minute prices. Nothing was decided. The next run replays these minutes. |
 | Balance, by the desk's own count after costs | **$95.30** (started at $100.00) |
 | Cash | $36.73 |
 | Open paper trades | 4 of 4 allowed |
