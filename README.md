@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 10:36:20 PT** |
-| Balance, by the desk's own count after costs | **$86.87** (started at $100.00) |
-| Cash | $38.76 |
+| Last read of the market | **Nov 23, 10:54:23 PT** |
+| Balance, by the desk's own count after costs | **$87.49** (started at $100.00) |
+| Cash | $39.93 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 8 |
-| Rows in the ledger | 38 (17 closed trades) |
+| Coins waiting for a dip | 7 |
+| Rows in the ledger | 40 (18 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 17 over 3. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 18 over 3. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00825 | $11.47 |
-| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00190 | $14.37 |
-| MCAT | Nov 23, 08:43:00 PT | $10.00 | $0.000185 | $0.000225 | $11.79 |
-| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00857 | $10.48 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00782 | $10.87 |
+| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00234 | $17.70 |
+| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00820 | $10.02 |
+| DCTY | Nov 23, 10:38:00 PT | $10.00 | $0.00196 | $0.00181 | $8.96 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 40 | Nov 23, 10:38:00 PT | DCTY | dip buy | $0.00196 | -$10.00 |  |
+| 39 | Nov 23, 10:38:00 PT | MCAT | trail | $0.000213 | +$11.16 | +$1.16 |
 | 38 | Nov 23, 09:37:00 PT | mihao | dip buy | $0.00793 | -$10.00 |  |
 | 37 | Nov 23, 09:37:00 PT | ZOL | stop | $0.0000633 | +$7.22 | -$2.78 |
 | 36 | Nov 23, 08:43:00 PT | MCAT | dip buy | $0.000185 | -$10.00 |  |
@@ -39,8 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 33 | Nov 23, 07:08:00 PT | MCAT | stop | $0.000209 | +$7.12 | -$2.88 |
 | 32 | Nov 23, 06:30:00 PT | MCAT | dip buy | $0.000285 | -$10.00 |  |
 | 31 | Nov 23, 06:30:00 PT | OpenIndex | trail | $0.000264 | +$9.57 | -$0.43 |
-| 30 | Nov 23, 06:09:00 PT | ZOL | dip buy | $0.0000851 | -$10.00 |  |
-| 29 | Nov 23, 06:09:00 PT | Singularity | stop | $0.000329 | +$7.01 | -$2.99 |
 
 <!-- END OF STATUS -->
 
