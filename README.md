@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 05:45:23 PT** |
-| Balance, by the desk's own count after costs | **$98.50** (started at $100.00) |
+| Last read of the market | **Nov 23, 06:02:41 PT** |
+| Balance, by the desk's own count after costs | **$99.26** (started at $100.00) |
 | Cash | $36.73 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000447 | $30.84 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000298 | $10.81 |
-| Singularity | Nov 23, 02:37:00 PT | $10.00 | $0.000455 | $0.000412 | $8.78 |
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00816 | $11.34 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000436 | $30.07 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000336 | $12.17 |
+| Singularity | Nov 23, 02:37:00 PT | $10.00 | $0.000455 | $0.000366 | $7.80 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00899 | $12.50 |
 
 ### Last 10 rows of the ledger
 
