@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 20:25:18 PT** |
-| Balance, by the desk's own count after costs | **$95.85** (started at $100.00) |
+| Last read of the market | **Nov 22, 20:41:21 PT** |
+| Balance, by the desk's own count after costs | **$91.03** (started at $100.00) |
 | Cash | $58.21 |
 | Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 6 |
+| Coins waiting for a dip | 8 |
 | Rows in the ledger | 17 (7 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 7 over 2. The balance above is the desk's own count, not the score.
@@ -22,9 +22,9 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000438 | $8.99 |
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000223 | $15.41 |
-| snowball | Nov 22, 19:21:00 PT | $10.00 | $0.0000982 | $0.000134 | $13.24 |
+| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000424 | $8.71 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000178 | $12.31 |
+| snowball | Nov 22, 19:21:00 PT | $10.00 | $0.0000982 | $0.000119 | $11.79 |
 
 ### Last 10 rows of the ledger
 
