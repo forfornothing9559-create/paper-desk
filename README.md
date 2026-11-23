@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 02:30:40 PT** |
-| Balance, by the desk's own count after costs | **$99.14** (started at $100.00) |
-| Cash | $43.66 |
+| Last read of the market | **Nov 23, 02:49:22 PT** |
+| Balance, by the desk's own count after costs | **$98.33** (started at $100.00) |
+| Cash | $36.73 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 8 |
-| Rows in the ledger | 22 (9 closed trades) |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 26 (11 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 9 over 2. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 11 over 2. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,25 +22,25 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000371 | $25.61 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000386 | $13.97 |
-| FSDV15 | Nov 22, 23:22:00 PT | $10.00 | $0.00291 | $0.00238 | $7.92 |
-| snowball | Nov 22, 23:56:00 PT | $10.00 | $0.0000762 | $0.0000626 | $7.98 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000423 | $29.20 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000360 | $13.04 |
+| Singularity | Nov 23, 02:37:00 PT | $10.00 | $0.000455 | $0.000450 | $9.59 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00702 | $9.76 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 26 | Nov 23, 02:42:00 PT | SI | dip buy | $0.00698 | -$10.00 |  |
+| 25 | Nov 23, 02:42:00 PT | FSDV15 | stop | $0.00184 | +$6.13 | -$3.87 |
+| 24 | Nov 23, 02:37:00 PT | Singularity | dip buy | $0.000455 | -$10.00 |  |
+| 23 | Nov 23, 02:37:00 PT | snowball | stop | $0.0000545 | +$6.94 | -$3.06 |
 | 22 | Nov 22, 23:56:00 PT | snowball | dip buy | $0.0000762 | -$10.00 |  |
 | 21 | Nov 22, 23:22:00 PT | FSDV15 | dip buy | $0.00291 | -$10.00 |  |
 | 20 | Nov 22, 22:37:00 PT | MCAT | stop | $0.000349 | +$7.17 | -$2.83 |
 | 19 | Nov 22, 22:24:00 PT | snowball | trail | $0.0000838 | +$8.28 | -$1.72 |
 | 18 | Nov 22, 21:10:00 PT | OpenIndex | dip buy | $0.000268 | -$10.00 |  |
 | 17 | Nov 22, 19:49:00 PT | Singularity | stop | $0.000452 | +$7.12 | -$2.88 |
-| 16 | Nov 22, 19:21:00 PT | snowball | dip buy | $0.0000982 | -$10.00 |  |
-| 15 | Nov 22, 19:21:00 PT | FIONA | stop | $0.00105 | +$7.23 | -$2.77 |
-| 14 | Nov 22, 18:20:00 PT | SIDOOR | dip buy | $0.000141 | -$10.00 |  |
-| 13 | Nov 22, 18:20:00 PT | DCTY | stop | $0.00212 | +$7.22 | -$2.78 |
 
 <!-- END OF STATUS -->
 
