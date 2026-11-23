@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 22, 22:28:40 PT** |
-| Balance, by the desk's own count after costs | **$87.59** (started at $100.00) |
-| Cash | $56.49 |
-| Open paper trades | 3 of 4 allowed |
+| Last read of the market | **Nov 22, 22:46:18 PT** |
+| Balance, by the desk's own count after costs | **$87.79** (started at $100.00) |
+| Cash | $63.66 |
+| Open paper trades | 2 of 4 allowed |
 | Coins waiting for a dip | 7 |
-| Rows in the ledger | 19 (8 closed trades) |
+| Rows in the ledger | 20 (9 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 8 over 2. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 9 over 2. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,14 +22,14 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| MCAT | Nov 22, 16:07:00 PT | $10.00 | $0.000473 | $0.000425 | $8.73 |
-| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000187 | $12.91 |
-| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000261 | $9.47 |
+| SIDOOR | Nov 22, 18:20:00 PT | $10.00 | $0.000141 | $0.000210 | $14.48 |
+| OpenIndex | Nov 22, 21:10:00 PT | $10.00 | $0.000268 | $0.000266 | $9.65 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 20 | Nov 22, 22:37:00 PT | MCAT | stop | $0.000349 | +$7.17 | -$2.83 |
 | 19 | Nov 22, 22:24:00 PT | snowball | trail | $0.0000838 | +$8.28 | -$1.72 |
 | 18 | Nov 22, 21:10:00 PT | OpenIndex | dip buy | $0.000268 | -$10.00 |  |
 | 17 | Nov 22, 19:49:00 PT | Singularity | stop | $0.000452 | +$7.12 | -$2.88 |
@@ -39,7 +39,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 13 | Nov 22, 18:20:00 PT | DCTY | stop | $0.00212 | +$7.22 | -$2.78 |
 | 12 | Nov 22, 16:07:00 PT | MCAT | dip buy | $0.000473 | -$10.00 |  |
 | 11 | Nov 22, 16:07:00 PT | greg | stop | $0.000223 | +$7.27 | -$2.73 |
-| 10 | Nov 22, 11:01:00 PT | Singularity | dip buy | $0.000615 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
