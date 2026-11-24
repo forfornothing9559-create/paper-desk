@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 21:54:38 PT** |
-| Balance, by the desk's own count after costs | **$92.57** (started at $100.00) |
+| Last read of the market | **Nov 23, 22:11:32 PT** |
+| Balance, by the desk's own count after costs | **$94.48** (started at $100.00) |
 | Cash | $36.87 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 6 |
@@ -23,9 +23,9 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
 | SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00659 | $9.15 |
-| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00382 | $28.82 |
-| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00668 | $8.17 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000155 | $9.56 |
+| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00415 | $31.32 |
+| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00675 | $8.26 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000144 | $8.88 |
 
 ### Last 10 rows of the ledger
 
