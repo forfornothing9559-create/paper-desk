@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 07:16:29 PT** |
-| Balance, by the desk's own count after costs | **$69.36** (started at $100.00) |
-| Cash | $51.96 |
-| Open paper trades | 2 of 4 allowed |
-| Coins waiting for a dip | 5 |
-| Rows in the ledger | 54 (26 closed trades) |
+| Last read of the market | **Nov 24, 07:30:52 PT** |
+| Balance, by the desk's own count after costs | **$69.59** (started at $100.00) |
+| Cash | $41.96 |
+| Open paper trades | 3 of 4 allowed |
+| Coins waiting for a dip | 4 |
+| Rows in the ledger | 55 (26 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 26 over 4. The balance above is the desk's own count, not the score.
 
@@ -22,13 +22,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00557 | $7.75 |
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00297 | $9.65 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00563 | $7.82 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00309 | $10.05 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00504 | $9.75 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 55 | Nov 24, 07:28:00 PT | mihao | dip buy | $0.00501 | -$10.00 |  |
 | 54 | Nov 24, 06:47:00 PT | DCTY | stop | $0.00114 | +$7.25 | -$2.75 |
 | 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
 | 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
@@ -38,7 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 48 | Nov 24, 03:33:00 PT | JENSEN | dip buy | $0.000462 | -$10.00 |  |
 | 47 | Nov 24, 03:33:00 PT | FIONA | trail | $0.00296 | +$22.38 | +$12.38 |
 | 46 | Nov 24, 02:01:00 PT | DCTY | dip buy | $0.00153 | -$10.00 |  |
-| 45 | Nov 24, 02:01:00 PT | JIMMY | stop | $0.000375 | +$7.09 | -$2.91 |
 
 <!-- END OF STATUS -->
 
