@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 08:51:28 PT** |
-| Balance, by the desk's own count after costs | **$69.31** (started at $100.00) |
-| Cash | $31.96 |
-| Open paper trades | 4 of 4 allowed |
+| Last read of the market | **Nov 24, 09:03:24 PT** |
+| Balance, by the desk's own count after costs | **$68.56** (started at $100.00) |
+| Cash | $39.22 |
+| Open paper trades | 3 of 4 allowed |
 | Coins waiting for a dip | 0 |
-| Rows in the ledger | 56 (26 closed trades) |
+| Rows in the ledger | 57 (27 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 26 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 27 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00528 | $7.33 |
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00293 | $9.53 |
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00565 | $10.93 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00180 | $9.56 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00281 | $9.14 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00564 | $10.91 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00175 | $9.29 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 57 | Nov 24, 08:58:00 PT | SI | stop | $0.00522 | +$7.26 | -$2.74 |
 | 56 | Nov 24, 08:05:00 PT | Rings | dip buy | $0.00182 | -$10.00 |  |
 | 55 | Nov 24, 07:28:00 PT | mihao | dip buy | $0.00501 | -$10.00 |  |
 | 54 | Nov 24, 06:47:00 PT | DCTY | stop | $0.00114 | +$7.25 | -$2.75 |
@@ -40,7 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
 | 49 | Nov 24, 03:51:00 PT | JENSEN | stop | $0.000256 | +$5.38 | -$4.62 |
 | 48 | Nov 24, 03:33:00 PT | JENSEN | dip buy | $0.000462 | -$10.00 |  |
-| 47 | Nov 24, 03:33:00 PT | FIONA | trail | $0.00296 | +$22.38 | +$12.38 |
 
 <!-- END OF STATUS -->
 
