@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 06:44:42 PT** |
-| Balance, by the desk's own count after costs | **$69.19** (started at $100.00) |
-| Cash | $44.71 |
-| Open paper trades | 3 of 4 allowed |
+| Last read of the market | **Nov 24, 07:01:21 PT** |
+| Balance, by the desk's own count after costs | **$69.30** (started at $100.00) |
+| Cash | $51.96 |
+| Open paper trades | 2 of 4 allowed |
 | Coins waiting for a dip | 5 |
-| Rows in the ledger | 53 (25 closed trades) |
+| Rows in the ledger | 54 (26 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 25 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 26 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,14 +22,14 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00568 | $7.90 |
-| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00121 | $7.71 |
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00273 | $8.88 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00574 | $7.98 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00288 | $9.36 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 54 | Nov 24, 06:47:00 PT | DCTY | stop | $0.00114 | +$7.25 | -$2.75 |
 | 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
 | 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
 | 51 | Nov 24, 06:37:00 PT | MCAT | trail | $0.000154 | +$9.54 | -$0.46 |
@@ -39,7 +39,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 47 | Nov 24, 03:33:00 PT | FIONA | trail | $0.00296 | +$22.38 | +$12.38 |
 | 46 | Nov 24, 02:01:00 PT | DCTY | dip buy | $0.00153 | -$10.00 |  |
 | 45 | Nov 24, 02:01:00 PT | JIMMY | stop | $0.000375 | +$7.09 | -$2.91 |
-| 44 | Nov 24, 00:59:00 PT | JIMMY | dip buy | $0.000513 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
