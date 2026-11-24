@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 10:30:42 PT** |
-| Balance, by the desk's own count after costs | **$69.59** (started at $100.00) |
-| Cash | $39.22 |
-| Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 4 |
-| Rows in the ledger | 57 (27 closed trades) |
+| Last read of the market | **Nov 24, 10:45:40 PT** |
+| Balance, by the desk's own count after costs | **$70.81** (started at $100.00) |
+| Cash | $29.22 |
+| Open paper trades | 4 of 4 allowed |
+| Coins waiting for a dip | 9 |
+| Rows in the ledger | 58 (27 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 27 over 4. The balance above is the desk's own count, not the score.
 
@@ -22,14 +22,16 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00324 | $10.54 |
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00533 | $10.32 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00179 | $9.52 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00348 | $11.32 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00534 | $10.33 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00177 | $9.41 |
+| GROKIA | Nov 24, 10:37:00 PT | $10.00 | $0.00178 | $0.00193 | $10.53 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 58 | Nov 24, 10:37:00 PT | GROKIA | dip buy | $0.00178 | -$10.00 |  |
 | 57 | Nov 24, 08:58:00 PT | SI | stop | $0.00522 | +$7.26 | -$2.74 |
 | 56 | Nov 24, 08:05:00 PT | Rings | dip buy | $0.00182 | -$10.00 |  |
 | 55 | Nov 24, 07:28:00 PT | mihao | dip buy | $0.00501 | -$10.00 |  |
@@ -39,7 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 51 | Nov 24, 06:37:00 PT | MCAT | trail | $0.000154 | +$9.54 | -$0.46 |
 | 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
 | 49 | Nov 24, 03:51:00 PT | JENSEN | stop | $0.000256 | +$5.38 | -$4.62 |
-| 48 | Nov 24, 03:33:00 PT | JENSEN | dip buy | $0.000462 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
