@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795430520000,
    "peakPrice": 0.009251608075670586,
-   "lastPrice": 0.005516004754333727,
-   "marketCap": 5467311.78299074,
-   "liquidity": 295660.8347,
+   "lastPrice": 0.005395004199483296,
+   "marketCap": 5364221.33685851,
+   "liquidity": 289643.7427,
    "score": 69,
    "url": "https://dexscreener.com/solana/DEW9dSN6QpWyNthphCpMmAbZP1Q4cEKR9xQXAri98WDP",
    "dex": "raydium",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795531020000,
    "peakPrice": 0.0032743183882608905,
-   "lastPrice": 0.003139693821463077,
-   "marketCap": 3078709.22521701,
-   "liquidity": 187269.7736,
+   "lastPrice": 0.0029712766005144404,
+   "marketCap": 2885892.08450985,
+   "liquidity": 181739.7712,
    "score": 68,
    "url": "https://dexscreener.com/solana/B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.0053062002430839415,
-   "lastPrice": 0.00503435066722658,
-   "marketCap": 4694384.96365509,
-   "liquidity": 271425.2804,
+   "lastPrice": 0.005104252493851561,
+   "marketCap": 4814619.29386702,
+   "liquidity": 272896.8385,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -60,36 +60,34 @@
    "entryPrice": 0.0018239228852915685,
    "sizeUsd": 10,
    "openedAt": 1795536300000,
-   "peakPrice": 0.00183346710733263,
-   "lastPrice": 0.0018206170012534592,
-   "marketCap": 1751704.80353182,
-   "liquidity": 136482.4575,
+   "peakPrice": 0.0018370091833649464,
+   "lastPrice": 0.001715176621113813,
+   "marketCap": 1651488.66792661,
+   "liquidity": 134778.3746,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
    "pairCreatedAt": 1794337750000
   }
  ],
- "watches": [
+ "watches": [],
+ "log": [
   {
+   "at": 1795538366617,
    "mint": "NVDAVuiB7hwd3m5Wa1JuHNovPaPG6BH1QNztbKFxNjv",
+   "pool": "AT2TVoJHLrT2N8c7bvEPp1km8tpjNdtSmeXZPPLBVSGQ",
    "symbol": "NVDA",
    "name": "NVDA",
-   "firstPrice": 157.75670905196384,
-   "highPrice": 159.3258121782783,
-   "lastPrice": 152.30175357488184,
-   "score": 71,
-   "queuedAt": 1795520960191,
-   "marketCap": 2373319.71303039,
-   "liquidity": 670411.9329,
-   "url": "https://dexscreener.com/solana/NVDAVuiB7hwd3m5Wa1JuHNovPaPG6BH1QNztbKFxNjv",
-   "dex": "raydium-clmm",
-   "pairCreatedAt": 1792778969000,
-   "pool": "8HLazC9JupCbmQViNXmZCaQAHZ5opSk2YHH1Yim5SLaQ",
-   "anchored": true
-  }
- ],
- "log": [
+   "marketCap": 2367344.15445733,
+   "liquidity": 398190.7755,
+   "rule": "executor: drop watch",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 150.69763964590402,
+   "why": "Dropped off the watch. Score fell to 52. No order sent.",
+   "id": "1795538366617-NVDAVu-executor: drop watch",
+   "pacific": "Nov 24, 08:39:26 PT"
+  },
   {
    "at": 1795537577613,
    "mint": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
@@ -3273,22 +3271,6 @@
    "why": "Score 61, need 70. Weakest layer: Turnover (quiet tape). No order sent.",
    "id": "1795460063366-Bv1a7c-analyst: score",
    "pacific": "Nov 23, 10:54:23 PT"
-  },
-  {
-   "at": 1795460063366,
-   "mint": "UQLWvkwiSsnViuVBy7oArMtzb5RAZyrdJ79amQFrzoL",
-   "pool": "58nMz19coFNTJWghuemQhTq84PE5xbVDZmBFdArmXrsU",
-   "symbol": "ZOL",
-   "name": "ZOL",
-   "marketCap": 73691.1109172505,
-   "liquidity": 21201.1338,
-   "rule": "executor: drop watch",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.00007604890994447566,
-   "why": "Dropped off the watch. Score fell to 50. No order sent.",
-   "id": "1795460063366-UQLWvk-executor: drop watch",
-   "pacific": "Nov 23, 10:54:23 PT"
   }
  ],
  "trades": [
@@ -4064,7 +4046,7 @@
   "UQLWvkwiSsnViuVBy7oArMtzb5RAZyrdJ79amQFrzoL": "scanner: liquidity",
   "93uamrbDerKbUh8MSjNF1wDtxYvEUD1CS9BcHn1apump": "analyst: score",
   "7cFiqdT46zs7ooHWLFiLSaSQKLMibtokh9dBinsspump": "scanner: liquidity",
-  "NVDAVuiB7hwd3m5Wa1JuHNovPaPG6BH1QNztbKFxNjv": "executor: dip wait",
+  "NVDAVuiB7hwd3m5Wa1JuHNovPaPG6BH1QNztbKFxNjv": "drop:score",
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": "risk:Night loss stop. No new tickets.",
   "CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp": "scanner: market cap",
   "HKiMA2mKQHU2cjfZ4Kbmru5GBGCauSNqPtpu8cfmpump": "analyst: score",
@@ -4092,5 +4074,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795537577613
+ "lastScanAt": 1795538366617
 }
