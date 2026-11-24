@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 12:30:41 PT** |
-| Balance, by the desk's own count after costs | **$72.57** (started at $100.00) |
-| Cash | $29.22 |
-| Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 7 |
-| Rows in the ledger | 58 (27 closed trades) |
+| Last read of the market | **Nov 24, 12:47:42 PT** |
+| Balance, by the desk's own count after costs | **$68.24** (started at $100.00) |
+| Cash | $38.00 |
+| Open paper trades | 3 of 4 allowed |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 59 (28 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 27 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 28 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00319 | $10.37 |
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00549 | $10.62 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00171 | $9.07 |
-| GROKIA | Nov 24, 10:37:00 PT | $10.00 | $0.00178 | $0.00244 | $13.30 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00322 | $10.47 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00545 | $10.55 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00173 | $9.23 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 59 | Nov 24, 12:37:00 PT | GROKIA | trail | $0.00161 | +$8.78 | -$1.22 |
 | 58 | Nov 24, 10:37:00 PT | GROKIA | dip buy | $0.00178 | -$10.00 |  |
 | 57 | Nov 24, 08:58:00 PT | SI | stop | $0.00522 | +$7.26 | -$2.74 |
 | 56 | Nov 24, 08:05:00 PT | Rings | dip buy | $0.00182 | -$10.00 |  |
@@ -40,7 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
 | 51 | Nov 24, 06:37:00 PT | MCAT | trail | $0.000154 | +$9.54 | -$0.46 |
 | 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
-| 49 | Nov 24, 03:51:00 PT | JENSEN | stop | $0.000256 | +$5.38 | -$4.62 |
 
 <!-- END OF STATUS -->
 
