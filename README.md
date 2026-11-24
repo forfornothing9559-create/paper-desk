@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 04:06:21 PT** |
-| Balance, by the desk's own count after costs | **$77.41** (started at $100.00) |
+| Last read of the market | **Nov 24, 04:22:20 PT** |
+| Balance, by the desk's own count after costs | **$77.04** (started at $100.00) |
 | Cash | $38.16 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 6 |
+| Coins waiting for a dip | 8 |
 | Rows in the ledger | 50 (23 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 23 over 4. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00620 | $8.62 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000184 | $11.38 |
-| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00156 | $9.92 |
-| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000223 | $9.32 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00625 | $8.69 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000180 | $11.12 |
+| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00146 | $9.31 |
+| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000233 | $9.76 |
 
 ### Last 10 rows of the ledger
 
