@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 14:15:42 PT** |
-| Balance, by the desk's own count after costs | **$68.50** (started at $100.00) |
-| Cash | $38.00 |
-| Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 3 |
-| Rows in the ledger | 59 (28 closed trades) |
+| Last read of the market | **Nov 24, 14:29:20 PT** |
+| Balance, by the desk's own count after costs | **$70.05** (started at $100.00) |
+| Cash | $28.00 |
+| Open paper trades | 4 of 4 allowed |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 60 (28 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 28 over 4. The balance above is the desk's own count, not the score.
 
@@ -22,14 +22,16 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00318 | $10.32 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00323 | $10.49 |
 | mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00547 | $10.59 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00180 | $9.59 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00212 | $11.26 |
+| DUVAL | Nov 24, 14:29:00 PT | $10.00 | $0.000141 | $0.000141 | $9.70 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 60 | Nov 24, 14:29:00 PT | DUVAL | dip buy | $0.000141 | -$10.00 |  |
 | 59 | Nov 24, 12:37:00 PT | GROKIA | trail | $0.00161 | +$8.78 | -$1.22 |
 | 58 | Nov 24, 10:37:00 PT | GROKIA | dip buy | $0.00178 | -$10.00 |  |
 | 57 | Nov 24, 08:58:00 PT | SI | stop | $0.00522 | +$7.26 | -$2.74 |
@@ -39,7 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
 | 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
 | 51 | Nov 24, 06:37:00 PT | MCAT | trail | $0.000154 | +$9.54 | -$0.46 |
-| 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
