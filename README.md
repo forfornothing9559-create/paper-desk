@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 07:01:21 PT** |
-| Balance, by the desk's own count after costs | **$69.30** (started at $100.00) |
+| Last read of the market | **Nov 24, 07:16:29 PT** |
+| Balance, by the desk's own count after costs | **$69.36** (started at $100.00) |
 | Cash | $51.96 |
 | Open paper trades | 2 of 4 allowed |
 | Coins waiting for a dip | 5 |
@@ -22,8 +22,8 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00574 | $7.98 |
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00288 | $9.36 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00557 | $7.75 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00297 | $9.65 |
 
 ### Last 10 rows of the ledger
 
