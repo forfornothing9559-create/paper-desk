@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 12:47:42 PT** |
-| Balance, by the desk's own count after costs | **$68.24** (started at $100.00) |
+| Last read of the market | **Nov 24, 13:04:20 PT** |
+| Balance, by the desk's own count after costs | **$67.64** (started at $100.00) |
 | Cash | $38.00 |
 | Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 5 |
+| Coins waiting for a dip | 4 |
 | Rows in the ledger | 59 (28 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 28 over 4. The balance above is the desk's own count, not the score.
@@ -22,9 +22,9 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00322 | $10.47 |
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00545 | $10.55 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00173 | $9.23 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00303 | $9.85 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00532 | $10.30 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00179 | $9.50 |
 
 ### Last 10 rows of the ledger
 
