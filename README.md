@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 23, 23:52:42 PT** |
-| Balance, by the desk's own count after costs | **$96.98** (started at $100.00) |
+| Last read of the market | **Nov 24, 00:11:21 PT** |
+| Balance, by the desk's own count after costs | **$97.04** (started at $100.00) |
 | Cash | $36.87 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 8 |
+| Coins waiting for a dip | 7 |
 | Rows in the ledger | 42 (19 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 19 over 3. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00683 | $9.49 |
-| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00431 | $32.55 |
-| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00663 | $8.11 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000161 | $9.97 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00684 | $9.50 |
+| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00440 | $33.27 |
+| mihao | Nov 23, 09:37:00 PT | $10.00 | $0.00793 | $0.00661 | $8.08 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000151 | $9.32 |
 
 ### Last 10 rows of the ledger
 
