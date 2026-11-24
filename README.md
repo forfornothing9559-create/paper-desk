@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 06:27:30 PT** |
-| Balance, by the desk's own count after costs | **$72.12** (started at $100.00) |
-| Cash | $38.16 |
-| Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 7 |
-| Rows in the ledger | 50 (23 closed trades) |
+| Last read of the market | **Nov 24, 06:44:42 PT** |
+| Balance, by the desk's own count after costs | **$69.19** (started at $100.00) |
+| Cash | $44.71 |
+| Open paper trades | 3 of 4 allowed |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 53 (25 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 23 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 25 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00578 | $8.03 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000162 | $9.99 |
-| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00130 | $8.30 |
-| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000183 | $7.64 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00568 | $7.90 |
+| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00121 | $7.71 |
+| FIONA | Nov 24, 06:37:00 PT | $10.00 | $0.00299 | $0.00273 | $8.88 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
+| 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
+| 51 | Nov 24, 06:37:00 PT | MCAT | trail | $0.000154 | +$9.54 | -$0.46 |
 | 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
 | 49 | Nov 24, 03:51:00 PT | JENSEN | stop | $0.000256 | +$5.38 | -$4.62 |
 | 48 | Nov 24, 03:33:00 PT | JENSEN | dip buy | $0.000462 | -$10.00 |  |
@@ -38,9 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 46 | Nov 24, 02:01:00 PT | DCTY | dip buy | $0.00153 | -$10.00 |  |
 | 45 | Nov 24, 02:01:00 PT | JIMMY | stop | $0.000375 | +$7.09 | -$2.91 |
 | 44 | Nov 24, 00:59:00 PT | JIMMY | dip buy | $0.000513 | -$10.00 |  |
-| 43 | Nov 24, 00:59:00 PT | mihao | stop | $0.00526 | +$6.44 | -$3.56 |
-| 42 | Nov 23, 18:58:00 PT | MCAT | dip buy | $0.000157 | -$10.00 |  |
-| 41 | Nov 23, 18:58:00 PT | DCTY | stop | $0.00140 | +$6.94 | -$3.06 |
 
 <!-- END OF STATUS -->
 
