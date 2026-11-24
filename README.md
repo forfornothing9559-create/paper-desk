@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 01:53:22 PT** |
-| Balance, by the desk's own count after costs | **$92.59** (started at $100.00) |
-| Cash | $33.30 |
+| Last read of the market | **Nov 24, 02:10:22 PT** |
+| Balance, by the desk's own count after costs | **$88.64** (started at $100.00) |
+| Cash | $30.40 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 5 |
-| Rows in the ledger | 44 (20 closed trades) |
+| Coins waiting for a dip | 6 |
+| Rows in the ledger | 46 (21 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 20 over 3. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 21 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00575 | $7.99 |
-| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00385 | $29.12 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000234 | $14.48 |
-| JIMMY | Nov 24, 00:59:00 PT | $10.00 | $0.000513 | $0.000407 | $7.70 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00587 | $8.16 |
+| FIONA | Nov 23, 07:08:00 PT | $10.00 | $0.00128 | $0.00357 | $26.94 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000217 | $13.44 |
+| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00152 | $9.69 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 46 | Nov 24, 02:01:00 PT | DCTY | dip buy | $0.00153 | -$10.00 |  |
+| 45 | Nov 24, 02:01:00 PT | JIMMY | stop | $0.000375 | +$7.09 | -$2.91 |
 | 44 | Nov 24, 00:59:00 PT | JIMMY | dip buy | $0.000513 | -$10.00 |  |
 | 43 | Nov 24, 00:59:00 PT | mihao | stop | $0.00526 | +$6.44 | -$3.56 |
 | 42 | Nov 23, 18:58:00 PT | MCAT | dip buy | $0.000157 | -$10.00 |  |
@@ -39,8 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 39 | Nov 23, 10:38:00 PT | MCAT | trail | $0.000213 | +$11.16 | +$1.16 |
 | 38 | Nov 23, 09:37:00 PT | mihao | dip buy | $0.00793 | -$10.00 |  |
 | 37 | Nov 23, 09:37:00 PT | ZOL | stop | $0.0000633 | +$7.22 | -$2.78 |
-| 36 | Nov 23, 08:43:00 PT | MCAT | dip buy | $0.000185 | -$10.00 |  |
-| 35 | Nov 23, 08:43:00 PT | FSDV15 | stop | $0.000586 | +$6.53 | -$3.47 |
 
 <!-- END OF STATUS -->
 
