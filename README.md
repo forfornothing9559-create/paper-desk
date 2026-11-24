@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 03:49:20 PT** |
-| Balance, by the desk's own count after costs | **$81.50** (started at $100.00) |
-| Cash | $42.78 |
+| Last read of the market | **Nov 24, 04:06:21 PT** |
+| Balance, by the desk's own count after costs | **$77.41** (started at $100.00) |
+| Cash | $38.16 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 7 |
-| Rows in the ledger | 48 (22 closed trades) |
+| Coins waiting for a dip | 6 |
+| Rows in the ledger | 50 (23 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 22 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 23 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00592 | $8.23 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000180 | $11.13 |
-| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00156 | $9.94 |
-| JENSEN | Nov 24, 03:33:00 PT | $10.00 | $0.000462 | $0.000448 | $9.41 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00620 | $8.62 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000184 | $11.38 |
+| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00156 | $9.92 |
+| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000223 | $9.32 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 50 | Nov 24, 03:54:00 PT | Singularity | dip buy | $0.000232 | -$10.00 |  |
+| 49 | Nov 24, 03:51:00 PT | JENSEN | stop | $0.000256 | +$5.38 | -$4.62 |
 | 48 | Nov 24, 03:33:00 PT | JENSEN | dip buy | $0.000462 | -$10.00 |  |
 | 47 | Nov 24, 03:33:00 PT | FIONA | trail | $0.00296 | +$22.38 | +$12.38 |
 | 46 | Nov 24, 02:01:00 PT | DCTY | dip buy | $0.00153 | -$10.00 |  |
@@ -39,8 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 43 | Nov 24, 00:59:00 PT | mihao | stop | $0.00526 | +$6.44 | -$3.56 |
 | 42 | Nov 23, 18:58:00 PT | MCAT | dip buy | $0.000157 | -$10.00 |  |
 | 41 | Nov 23, 18:58:00 PT | DCTY | stop | $0.00140 | +$6.94 | -$3.06 |
-| 40 | Nov 23, 10:38:00 PT | DCTY | dip buy | $0.00196 | -$10.00 |  |
-| 39 | Nov 23, 10:38:00 PT | MCAT | trail | $0.000213 | +$11.16 | +$1.16 |
 
 <!-- END OF STATUS -->
 
