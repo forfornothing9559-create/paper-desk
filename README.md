@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 05:19:23 PT** |
-| Balance, by the desk's own count after costs | **$73.62** (started at $100.00) |
+| Last read of the market | **Nov 24, 05:36:40 PT** |
+| Balance, by the desk's own count after costs | **$73.43** (started at $100.00) |
 | Cash | $38.16 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00589 | $8.18 |
-| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000164 | $10.15 |
-| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00134 | $8.50 |
-| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000206 | $8.62 |
+| SI | Nov 23, 02:42:00 PT | $10.00 | $0.00698 | $0.00617 | $8.58 |
+| MCAT | Nov 23, 18:58:00 PT | $10.00 | $0.000157 | $0.000160 | $9.91 |
+| DCTY | Nov 24, 02:01:00 PT | $10.00 | $0.00153 | $0.00133 | $8.46 |
+| Singularity | Nov 24, 03:54:00 PT | $10.00 | $0.000232 | $0.000199 | $8.32 |
 
 ### Last 10 rows of the ledger
 
