@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 25, 00:23:38 PT** |
-| Balance, by the desk's own count after costs | **$62.66** (started at $100.00) |
-| Cash | $43.41 |
-| Open paper trades | 2 of 4 allowed |
+| Last read of the market | **Nov 25, 00:39:47 PT** |
+| Balance, by the desk's own count after costs | **$62.88** (started at $100.00) |
+| Cash | $23.41 |
+| Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
-| Rows in the ledger | 62 (30 closed trades) |
+| Rows in the ledger | 64 (30 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 30 over 4. The balance above is the desk's own count, not the score.
 
@@ -22,13 +22,17 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00483 | $9.35 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00186 | $9.90 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00475 | $9.19 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00184 | $9.79 |
+| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000423 | $10.80 |
+| DUVAL | Nov 25, 00:39:00 PT | $10.00 | $0.000125 | $0.000125 | $9.70 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 64 | Nov 25, 00:39:00 PT | DUVAL | dip buy | $0.000125 | -$10.00 |  |
+| 63 | Nov 25, 00:33:00 PT | GROKIA | dip buy | $0.000380 | -$10.00 |  |
 | 62 | Nov 24, 22:27:00 PT | DUVAL | trail | $0.000119 | +$8.16 | -$1.84 |
 | 61 | Nov 24, 21:44:00 PT | FIONA | stop | $0.00223 | +$7.25 | -$2.75 |
 | 60 | Nov 24, 14:29:00 PT | DUVAL | dip buy | $0.000141 | -$10.00 |  |
@@ -37,8 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 57 | Nov 24, 08:58:00 PT | SI | stop | $0.00522 | +$7.26 | -$2.74 |
 | 56 | Nov 24, 08:05:00 PT | Rings | dip buy | $0.00182 | -$10.00 |  |
 | 55 | Nov 24, 07:28:00 PT | mihao | dip buy | $0.00501 | -$10.00 |  |
-| 54 | Nov 24, 06:47:00 PT | DCTY | stop | $0.00114 | +$7.25 | -$2.75 |
-| 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
 
 <!-- END OF STATUS -->
 
