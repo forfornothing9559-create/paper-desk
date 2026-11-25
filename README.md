@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 25, 01:30:22 PT** |
-| Balance, by the desk's own count after costs | **$63.90** (started at $100.00) |
+| Last read of the market | **Nov 25, 01:47:19 PT** |
+| Balance, by the desk's own count after costs | **$64.62** (started at $100.00) |
 | Cash | $23.41 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 5 |
+| Coins waiting for a dip | 4 |
 | Rows in the ledger | 64 (30 closed trades) |
 
 **Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 30 over 4. The balance above is the desk's own count, not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00481 | $9.31 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00200 | $10.62 |
-| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000440 | $11.23 |
-| DUVAL | Nov 25, 00:39:00 PT | $10.00 | $0.000125 | $0.000120 | $9.32 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00482 | $9.34 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00199 | $10.59 |
+| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000512 | $13.09 |
+| DUVAL | Nov 25, 00:39:00 PT | $10.00 | $0.000125 | $0.000106 | $8.20 |
 
 ### Last 10 rows of the ledger
 
