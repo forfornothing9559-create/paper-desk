@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 22:20:17 PT** |
-| Balance, by the desk's own count after costs | **$66.92** (started at $100.00) |
-| Cash | $35.25 |
-| Open paper trades | 3 of 4 allowed |
+| Last read of the market | **Nov 24, 22:32:19 PT** |
+| Balance, by the desk's own count after costs | **$65.51** (started at $100.00) |
+| Cash | $43.41 |
+| Open paper trades | 2 of 4 allowed |
 | Coins waiting for a dip | 1 |
-| Rows in the ledger | 61 (29 closed trades) |
+| Rows in the ledger | 62 (30 closed trades) |
 
-**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 29 over 4. The balance above is the desk's own count, not the score.
+**Score:** no verdict yet. The frozen rule needs 30 closed trades over 5 separate days. So far: 30 over 4. The balance above is the desk's own count, not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,14 +22,14 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00512 | $9.91 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00234 | $12.46 |
-| DUVAL | Nov 24, 14:29:00 PT | $10.00 | $0.000141 | $0.000135 | $9.30 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00503 | $9.74 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00233 | $12.37 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 62 | Nov 24, 22:27:00 PT | DUVAL | trail | $0.000119 | +$8.16 | -$1.84 |
 | 61 | Nov 24, 21:44:00 PT | FIONA | stop | $0.00223 | +$7.25 | -$2.75 |
 | 60 | Nov 24, 14:29:00 PT | DUVAL | dip buy | $0.000141 | -$10.00 |  |
 | 59 | Nov 24, 12:37:00 PT | GROKIA | trail | $0.00161 | +$8.78 | -$1.22 |
@@ -39,7 +39,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 55 | Nov 24, 07:28:00 PT | mihao | dip buy | $0.00501 | -$10.00 |  |
 | 54 | Nov 24, 06:47:00 PT | DCTY | stop | $0.00114 | +$7.25 | -$2.75 |
 | 53 | Nov 24, 06:43:00 PT | Singularity | stop | $0.000167 | +$7.00 | -$3.00 |
-| 52 | Nov 24, 06:37:00 PT | FIONA | dip buy | $0.00299 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
