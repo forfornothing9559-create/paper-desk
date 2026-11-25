@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 24, 22:08:18 PT** |
-| Balance, by the desk's own count after costs | **$67.04** (started at $100.00) |
+| Last read of the market | **Nov 24, 22:20:17 PT** |
+| Balance, by the desk's own count after costs | **$66.92** (started at $100.00) |
 | Cash | $35.25 |
 | Open paper trades | 3 of 4 allowed |
 | Coins waiting for a dip | 1 |
@@ -22,9 +22,9 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00513 | $9.94 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00234 | $12.45 |
-| DUVAL | Nov 24, 14:29:00 PT | $10.00 | $0.000141 | $0.000137 | $9.40 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00512 | $9.91 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00234 | $12.46 |
+| DUVAL | Nov 24, 14:29:00 PT | $10.00 | $0.000141 | $0.000135 | $9.30 |
 
 ### Last 10 rows of the ledger
 
