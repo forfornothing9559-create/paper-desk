@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005909549164089533,
-   "lastPrice": 0.0049840748369338,
-   "marketCap": 4689047.60637386,
-   "liquidity": 270399.1432,
+   "lastPrice": 0.004921363467539035,
+   "marketCap": 4621529.72963046,
+   "liquidity": 269017.6864,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.0023378848502701834,
-   "marketCap": 2246371.94225652,
-   "liquidity": 145226.9994,
+   "lastPrice": 0.0023293502943509273,
+   "marketCap": 2246579.14795866,
+   "liquidity": 145569.157,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -43,11 +43,11 @@
    "name": "DCTY",
    "firstPrice": 0.0010420534113388773,
    "highPrice": 0.0011203253695887888,
-   "lastPrice": 0.001037003154088705,
-   "score": 79,
+   "lastPrice": 0.0010144449887435482,
+   "score": 59,
    "queuedAt": 1795575917157,
-   "marketCap": 980602.255646665,
-   "liquidity": 152755.6668,
+   "marketCap": 976975.12578926,
+   "liquidity": 152142.401,
    "url": "https://dexscreener.com/solana/9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
    "dex": "pumpswap",
    "pairCreatedAt": 1792465415000,
@@ -56,6 +56,22 @@
   }
  ],
  "log": [
+  {
+   "at": 1795589779302,
+   "mint": "DVdWuNK8ncn79B6z8nCiwcNAiwyFcmBPfChgxJGTpump",
+   "pool": "Ak4wr2ueEAJMqZSEcGPMX9EhCrwWRngP8CskvdEh1e6H",
+   "symbol": "4CHAN",
+   "name": "4CHAN",
+   "marketCap": 374050.4948,
+   "liquidity": 48304.3596,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00037405049475367695,
+   "why": "Score 52, need 70. Weakest layer: Momentum (falling). No order sent.",
+   "id": "1795589779302-DVdWuN-analyst: score",
+   "pacific": "Nov 24, 22:56:19 PT"
+  },
   {
    "at": 1795588339720,
    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
@@ -3239,22 +3255,6 @@
    "why": "Dropped off the watch. Score fell to 53. No order sent.",
    "id": "1795524120000-38M2z4-executor: drop watch",
    "pacific": "Nov 24, 04:42:00 PT"
-  },
-  {
-   "at": 1795524091092,
-   "mint": "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor",
-   "pool": "3peugE6Fm4fpaVvrV2KBFN3nvLbCGEhGoUXDDxAHuscR",
-   "symbol": "SIDOOR",
-   "name": "SIDOOR",
-   "marketCap": 313414.027440225,
-   "liquidity": 44726.8359,
-   "rule": "executor: dip wait",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0003380365781389552,
-   "why": "Cleared scanner, analyst (84), brain, and risk. Executor is waiting for a 15% dip off the deepest-pool high. The queue price is not a fill. No order sent. Ticket stays $10.",
-   "id": "1795524091092-zcRvzm-executor: dip wait",
-   "pacific": "Nov 24, 04:41:31 PT"
   }
  ],
  "trades": [
@@ -4121,7 +4121,7 @@
   "7fmD1p3jzva28EPP9bPqbDoxZGj5j398yJoE3EVypump": "analyst: score",
   "5LDowscYVD3a6ZS4m8gCqG5nU16eLTwRXhciFi1bpump": "drop:liq",
   "55RwtHpoNB81SgfiNvogeZTMfik2SfMGa5FaxKcXpump": "scanner: liquidity",
-  "DVdWuNK8ncn79B6z8nCiwcNAiwyFcmBPfChgxJGTpump": "risk:Night loss stop. No new tickets.",
+  "DVdWuNK8ncn79B6z8nCiwcNAiwyFcmBPfChgxJGTpump": "analyst: score",
   "CUg7AzWL5p8imZVqqdjEPgRhUsXAkBMW5JxkSJ9fpump": "risk:Night loss stop. No new tickets."
  },
  "tradesTonight": 9,
@@ -4142,5 +4142,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795589062912
+ "lastScanAt": 1795589779302
 }
