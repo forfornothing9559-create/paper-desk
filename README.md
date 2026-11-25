@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 25, 00:39:47 PT** |
-| Balance, by the desk's own count after costs | **$62.88** (started at $100.00) |
+| Last read of the market | **Nov 25, 00:56:41 PT** |
+| Balance, by the desk's own count after costs | **$62.52** (started at $100.00) |
 | Cash | $23.41 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 7 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00475 | $9.19 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00184 | $9.79 |
-| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000423 | $10.80 |
-| DUVAL | Nov 25, 00:39:00 PT | $10.00 | $0.000125 | $0.000125 | $9.70 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00476 | $9.21 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00182 | $9.67 |
+| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000428 | $10.94 |
+| DUVAL | Nov 25, 00:39:00 PT | $10.00 | $0.000125 | $0.000120 | $9.30 |
 
 ### Last 10 rows of the ledger
 
