@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 25, 02:03:18 PT** |
-| Balance, by the desk's own count after costs | **$58.06** (started at $100.00) |
+| Last read of the market | **Nov 25, 02:18:42 PT** |
+| Balance, by the desk's own count after costs | **$59.15** (started at $100.00) |
 | Cash | $20.49 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 3 |
+| Coins waiting for a dip | 6 |
 | Rows in the ledger | 66 (31 closed trades) |
 
 **Score:** 31 closed trades over 5 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00478 | $9.26 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00199 | $10.58 |
-| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000350 | $8.94 |
-| JIMMY | Nov 25, 01:48:00 PT | $10.00 | $0.00116 | $0.00105 | $8.79 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00467 | $9.03 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00195 | $10.39 |
+| GROKIA | Nov 25, 00:33:00 PT | $10.00 | $0.000380 | $0.000359 | $9.18 |
+| JIMMY | Nov 25, 01:48:00 PT | $10.00 | $0.00116 | $0.00120 | $10.06 |
 
 ### Last 10 rows of the ledger
 
