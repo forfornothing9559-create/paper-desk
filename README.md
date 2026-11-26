@@ -7,11 +7,11 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 26, 11:08:38 PT** |
-| Balance, by the desk's own count after costs | **$44.83** (started at $100.00) |
+| Last read of the market | **Nov 26, 11:24:18 PT** |
+| Balance, by the desk's own count after costs | **$44.97** (started at $100.00) |
 | Cash | $4.77 |
 | Open paper trades | 4 of 4 allowed |
-| Coins waiting for a dip | 5 |
+| Coins waiting for a dip | 4 |
 | Rows in the ledger | 82 (39 closed trades) |
 
 **Score:** 39 closed trades over 5 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00601 | $11.63 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00192 | $10.23 |
-| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000889 | $9.63 |
-| PAIR | Nov 26, 11:03:00 PT | $10.00 | $0.000189 | $0.000167 | $8.58 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00590 | $11.42 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00207 | $11.00 |
+| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000862 | $9.34 |
+| PAIR | Nov 26, 11:03:00 PT | $10.00 | $0.000189 | $0.000164 | $8.45 |
 
 ### Last 10 rows of the ledger
 
