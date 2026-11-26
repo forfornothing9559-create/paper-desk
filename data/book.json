@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005909549164089533,
-   "lastPrice": 0.004649358397685171,
-   "marketCap": 4374137.46550466,
-   "liquidity": 267301.8613,
+   "lastPrice": 0.004539325746554034,
+   "marketCap": 4270618.24844991,
+   "liquidity": 263099.2966,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.0023044940534921094,
-   "marketCap": 2097703.12289623,
-   "liquidity": 148311.6423,
+   "lastPrice": 0.00230499584083831,
+   "marketCap": 2216185.56841497,
+   "liquidity": 149104.7163,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0009234804449395824,
-   "lastPrice": 0.0008433571023963686,
-   "marketCap": 827390.31077145,
-   "liquidity": 90378.9993,
+   "lastPrice": 0.0008322152504956434,
+   "marketCap": 816459.401101185,
+   "liquidity": 90543.2777,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -61,9 +61,9 @@
    "sizeUsd": 10,
    "openedAt": 1795657440000,
    "peakPrice": 0.0009493492567869548,
-   "lastPrice": 0.0006743810427644486,
-   "marketCap": 626293.212277766,
-   "liquidity": 72036.2861,
+   "lastPrice": 0.0007381719889460131,
+   "marketCap": 681286.68073428,
+   "liquidity": 75662.5691,
    "score": 83,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -72,6 +72,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795676178152,
+   "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+   "pool": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+   "symbol": "CLAUDIA",
+   "name": "CLAUDIA",
+   "marketCap": 8217166.37454006,
+   "liquidity": 429560.3252,
+   "rule": "scanner: market cap",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.008684266424838027,
+   "why": "Market cap $8.2M is over the $8M ceiling. This desk hunts smaller coins. No order sent.",
+   "id": "1795676178152-2j5SaS-scanner: market cap",
+   "pacific": "Nov 25, 22:56:18 PT"
+  },
   {
    "at": 1795675458536,
    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
@@ -3255,22 +3271,6 @@
    "why": "Score 52, need 70. Weakest layer: Momentum (falling). No order sent.",
    "id": "1795602922994-3cL47o-analyst: score",
    "pacific": "Nov 25, 02:35:22 PT"
-  },
-  {
-   "at": 1795602922994,
-   "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
-   "pool": "CixcofsPwHnYWjsoDxXxvLd6uM5fH7w8MFPL9mpQpqtX",
-   "symbol": "BASKET",
-   "name": "BASKET",
-   "marketCap": 1981732.717,
-   "liquidity": 200109.7476,
-   "rule": "executor: dip wait",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.002009496502403349,
-   "why": "Cleared scanner, analyst (84), brain, and risk. Executor is waiting for a 15% dip off the deepest-pool high. The queue price is not a fill. No order sent. Ticket stays $10.",
-   "id": "1795602922994-3Tg6Yn-executor: dip wait",
-   "pacific": "Nov 25, 02:35:22 PT"
   }
  ],
  "trades": [
@@ -4317,7 +4317,7 @@
  ],
  "priorGap": null,
  "lastSig": {
-  "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": "risk:Cash is under the $10 ticket.",
+  "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": "scanner: market cap",
   "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump": "analyst: score",
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump": "drop:score",
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump": "analyst: score",
@@ -4398,5 +4398,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795675458536
+ "lastScanAt": 1795676178152
 }
