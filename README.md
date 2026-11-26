@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 26, 15:19:18 PT** |
-| Balance, by the desk's own count after costs | **$43.69** (started at $100.00) |
+| Last read of the market | **Nov 26, 15:33:17 PT** |
+| Balance, by the desk's own count after costs | **$44.29** (started at $100.00) |
 | Cash | $1.66 |
 | Open paper trades | 4 of 4 allowed |
 | Coins waiting for a dip | 2 |
@@ -22,10 +22,10 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00588 | $11.38 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00188 | $9.98 |
-| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000830 | $9.00 |
-| Zero | Nov 26, 11:33:00 PT | $10.00 | $0.000100 | $0.000121 | $11.67 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00571 | $11.06 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00187 | $9.92 |
+| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000838 | $9.07 |
+| Zero | Nov 26, 11:33:00 PT | $10.00 | $0.000100 | $0.000130 | $12.57 |
 
 ### Last 10 rows of the ledger
 
