@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005910893290462186,
-   "lastPrice": 0.005544910956108557,
-   "marketCap": 5104282.64013076,
-   "liquidity": 289852.8306,
+   "lastPrice": 0.005675116095260274,
+   "marketCap": 5299140.66266037,
+   "liquidity": 294973.6274,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.0017848543238650654,
-   "marketCap": 1705656.58013709,
-   "liquidity": 130986.988,
+   "lastPrice": 0.0017721775899683318,
+   "marketCap": 1695295.19079513,
+   "liquidity": 130458.641,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0009234804449395824,
-   "lastPrice": 0.0007924237717685316,
-   "marketCap": 777420.521053442,
-   "liquidity": 88562.4154,
+   "lastPrice": 0.0007990787212494282,
+   "marketCap": 783949.46984858,
+   "liquidity": 88174.8447,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -61,9 +61,9 @@
    "sizeUsd": 10,
    "openedAt": 1795657440000,
    "peakPrice": 0.0013174077102518318,
-   "lastPrice": 0.0009480234463854065,
-   "marketCap": 874597.127780614,
-   "liquidity": 87666.7621,
+   "lastPrice": 0.0008877277046589826,
+   "marketCap": 821620.983029997,
+   "liquidity": 83371.1212,
    "score": 83,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -72,6 +72,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795716079678,
+   "mint": "32rBxcFjCFnyqZ41CEPM5AL67X1dcw8w83vZt6Kxpump",
+   "pool": "qkiYfkcm2QGfpNbEpuXvA5wiXq4F6ZdUWnZk2Y19cym",
+   "symbol": "PAIR",
+   "name": "PAIR",
+   "marketCap": 370378.8245,
+   "liquidity": 47167.4476,
+   "rule": "risk: block",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00038610296391039875,
+   "why": "Cash is under the $10 ticket. Score was 73. No order sent.",
+   "id": "1795716079678-32rBxc-risk: block",
+   "pacific": "Nov 26, 10:01:19 PT"
+  },
   {
    "at": 1795715362875,
    "mint": "3gmFG4sFDJErDV8pacFrL2uUPXeGJTYLjfRy4hFypump",
@@ -3255,22 +3271,6 @@
    "why": "Dropped off the watch. Score fell to 39. No order sent.",
    "id": "1795629240000-3Tg6Yn-executor: drop watch",
    "pacific": "Nov 25, 09:54:00 PT"
-  },
-  {
-   "at": 1795629220614,
-   "mint": "5tCju6YNxHq5zrA6tGndr6F7TK42mpUFmeE31cSFpump",
-   "pool": "8ewuF2o8ACro7fqWepZ3tKhkbBjndZU4Ldk9scRPw83d",
-   "symbol": "swordcat",
-   "name": "swordcat",
-   "marketCap": 553329.48029232,
-   "liquidity": 90989.8866,
-   "rule": "executor: dip wait",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.000576448521441823,
-   "why": "Cleared scanner, analyst (78), brain, and risk. Executor is waiting for a 15% dip off the deepest-pool high. The queue price is not a fill. No order sent. Ticket stays $10.",
-   "id": "1795629220614-5tCju6-executor: dip wait",
-   "pacific": "Nov 25, 09:53:40 PT"
   }
  ],
  "trades": [
@@ -4385,7 +4385,7 @@
   "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump": "scanner: market cap",
   "2Lw9FQA1iAwg5Wo1NTh8GTs3zmVQc7XHGBbexqZgqtWJ": "risk:Cash is under the $10 ticket.",
   "J9eBkCb4UtquAMQqB6duwBmR99fFSMoTnDcaMB9Wpump": "risk:Cash is under the $10 ticket.",
-  "32rBxcFjCFnyqZ41CEPM5AL67X1dcw8w83vZt6Kxpump": "analyst: score",
+  "32rBxcFjCFnyqZ41CEPM5AL67X1dcw8w83vZt6Kxpump": "risk:Cash is under the $10 ticket.",
   "3gmFG4sFDJErDV8pacFrL2uUPXeGJTYLjfRy4hFypump": "risk:Cash is under the $10 ticket."
  },
  "tradesTonight": 0,
@@ -4406,5 +4406,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795715362875
+ "lastScanAt": 1795716079678
 }
