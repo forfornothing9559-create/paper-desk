@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005909549164089533,
-   "lastPrice": 0.005002471747582091,
-   "marketCap": 4706345.48577937,
-   "liquidity": 277506.1251,
+   "lastPrice": 0.004849010050066003,
+   "marketCap": 4603221.47064025,
+   "liquidity": 272626.6532,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.0020639018015064033,
-   "marketCap": 1984258.44214036,
-   "liquidity": 140868.6582,
+   "lastPrice": 0.002086014098054687,
+   "marketCap": 2005431.06522809,
+   "liquidity": 141698.781,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0009234804449395824,
-   "lastPrice": 0.0008005484283255611,
-   "marketCap": 792711.559890508,
-   "liquidity": 88036.3682,
+   "lastPrice": 0.000795430628195254,
+   "marketCap": 783406.366273222,
+   "liquidity": 87962.477,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -61,9 +61,9 @@
    "sizeUsd": 10,
    "openedAt": 1795657440000,
    "peakPrice": 0.0013174077102518318,
-   "lastPrice": 0.0012413427569926843,
-   "marketCap": 1170172.66519528,
-   "liquidity": 100021.2772,
+   "lastPrice": 0.0011941464912033537,
+   "marketCap": 1115082.09978298,
+   "liquidity": 98024.3415,
    "score": 83,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -72,6 +72,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795707208213,
+   "mint": "6B5X3keXJ4J8LLvswa2mbqMhrRDbt85Jo88sbB6apump",
+   "pool": "3HZez3ezzSDTZaT12pqMZwii8Ury9rknjQumsJQYwYt7",
+   "symbol": "Elonmas",
+   "name": "Elonmas",
+   "marketCap": 69777.4074313229,
+   "liquidity": 20046.6055,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00006962318814046971,
+   "why": "Score 68, need 70. Weakest layer: Momentum (falling). No order sent.",
+   "id": "1795707208213-6B5X3k-analyst: score",
+   "pacific": "Nov 26, 07:33:28 PT"
+  },
   {
    "at": 1795706480197,
    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
@@ -3255,22 +3271,6 @@
    "why": "Cleared scanner, analyst (85), brain, and risk. Executor is waiting for a 15% dip off the deepest-pool high. The queue price is not a fill. No order sent. Ticket stays $10.",
    "id": "1795624190484-3Tg6Yn-executor: dip wait",
    "pacific": "Nov 25, 08:29:50 PT"
-  },
-  {
-   "at": 1795623180000,
-   "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
-   "pool": "71Nbbz1PYGaBKVt3qhjUDQUsH9JqRz52Q92pBhi7CtMw",
-   "symbol": "BASKET",
-   "name": "BASKET",
-   "marketCap": 524510.36729568,
-   "liquidity": 17652182.8841,
-   "rule": "executor: drop watch",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0005245103672956804,
-   "why": "Dropped off the watch. Score fell to 39. No order sent.",
-   "id": "1795623180000-3Tg6Yn-executor: drop watch",
-   "pacific": "Nov 25, 08:13:00 PT"
   }
  ],
  "trades": [
@@ -4381,7 +4381,7 @@
   "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY": "scanner: market cap",
   "Bg74niwsyZFFxPhY8J47crDtDSUctKZEb1AuZL93pump": "scanner: liquidity",
   "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump": "risk:Cash is under the $10 ticket.",
-  "6B5X3keXJ4J8LLvswa2mbqMhrRDbt85Jo88sbB6apump": "scanner: liquidity",
+  "6B5X3keXJ4J8LLvswa2mbqMhrRDbt85Jo88sbB6apump": "analyst: score",
   "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump": "scanner: market cap"
  },
  "tradesTonight": 0,
@@ -4402,5 +4402,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795706480197
+ "lastScanAt": 1795707208213
 }
