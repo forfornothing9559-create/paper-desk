@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005909549164089533,
-   "lastPrice": 0.004539325746554034,
-   "marketCap": 4270618.24844991,
-   "liquidity": 263099.2966,
+   "lastPrice": 0.004536657951990919,
+   "marketCap": 4247025.36384507,
+   "liquidity": 263907.6612,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.00230499584083831,
-   "marketCap": 2216185.56841497,
-   "liquidity": 149104.7163,
+   "lastPrice": 0.002308735385558337,
+   "marketCap": 2219781.03072081,
+   "liquidity": 149409.1943,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0009234804449395824,
-   "lastPrice": 0.0008322152504956434,
-   "marketCap": 816459.401101185,
-   "liquidity": 90543.2777,
+   "lastPrice": 0.0008342107986661061,
+   "marketCap": 825506.92188544,
+   "liquidity": 90061.7493,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -61,9 +61,9 @@
    "sizeUsd": 10,
    "openedAt": 1795657440000,
    "peakPrice": 0.0009493492567869548,
-   "lastPrice": 0.0007381719889460131,
-   "marketCap": 681286.68073428,
-   "liquidity": 75662.5691,
+   "lastPrice": 0.0007108046043219556,
+   "marketCap": 659135.924574774,
+   "liquidity": 74560.1586,
    "score": 83,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -72,6 +72,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795676902250,
+   "mint": "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump",
+   "pool": "DChXQ4qFPpNPEDfZLNiwvPhrVuuFGfqEDLAAZbiZHUWf",
+   "symbol": "DCTY",
+   "name": "DCTY",
+   "marketCap": 1162035.96366501,
+   "liquidity": 170514.257,
+   "rule": "risk: block",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.0012288764200215814,
+   "why": "Cash is under the $10 ticket. Score was 80. No order sent.",
+   "id": "1795676902250-9hjBLB-risk: block",
+   "pacific": "Nov 25, 23:08:22 PT"
+  },
   {
    "at": 1795676178152,
    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
@@ -3255,22 +3271,6 @@
    "why": "Dropped off the watch. Score fell to 39. No order sent.",
    "id": "1795602960000-3Tg6Yn-executor: drop watch",
    "pacific": "Nov 25, 02:36:00 PT"
-  },
-  {
-   "at": 1795602922994,
-   "mint": "3cL47ohWa2HApLYKtqPsqkjaxJ6HLvT5Ri1KvWdXpump",
-   "pool": "CpfB8pTVj8Uzu55nKj6sX4KmV6zVe7J2t3C22mLgCVGg",
-   "symbol": "GROKIA",
-   "name": "GROKIA",
-   "marketCap": 266336.231293391,
-   "liquidity": 38325.556,
-   "rule": "analyst: score",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0002674110195527481,
-   "why": "Score 52, need 70. Weakest layer: Momentum (falling). No order sent.",
-   "id": "1795602922994-3cL47o-analyst: score",
-   "pacific": "Nov 25, 02:35:22 PT"
   }
  ],
  "trades": [
@@ -4318,7 +4318,7 @@
  "priorGap": null,
  "lastSig": {
   "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": "scanner: market cap",
-  "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump": "analyst: score",
+  "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump": "risk:Cash is under the $10 ticket.",
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump": "drop:score",
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump": "analyst: score",
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump": "executor: paper buy",
@@ -4398,5 +4398,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795676178152
+ "lastScanAt": 1795676902250
 }
