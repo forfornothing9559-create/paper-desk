@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 26, 10:52:38 PT** |
-| Balance, by the desk's own count after costs | **$47.02** (started at $100.00) |
-| Cash | $14.77 |
-| Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 6 |
-| Rows in the ledger | 81 (39 closed trades) |
+| Last read of the market | **Nov 26, 11:08:38 PT** |
+| Balance, by the desk's own count after costs | **$44.83** (started at $100.00) |
+| Cash | $4.77 |
+| Open paper trades | 4 of 4 allowed |
+| Coins waiting for a dip | 5 |
+| Rows in the ledger | 82 (39 closed trades) |
 
 **Score:** 39 closed trades over 5 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
 
@@ -22,14 +22,16 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00597 | $11.55 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00196 | $10.42 |
-| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000949 | $10.28 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00601 | $11.63 |
+| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00192 | $10.23 |
+| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000889 | $9.63 |
+| PAIR | Nov 26, 11:03:00 PT | $10.00 | $0.000189 | $0.000167 | $8.58 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 82 | Nov 26, 11:03:00 PT | PAIR | dip buy | $0.000189 | -$10.00 |  |
 | 81 | Nov 26, 10:29:00 PT | JIMMY | trail | $0.000786 | +$10.80 | +$0.80 |
 | 80 | Nov 25, 17:44:00 PT | JIMMY | dip buy | $0.000706 | -$10.00 |  |
 | 79 | Nov 25, 17:42:00 PT | FIONA | stop | $0.00192 | +$7.27 | -$2.73 |
@@ -39,7 +41,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 75 | Nov 25, 14:13:00 PT | 4CHAN | stop | $0.000131 | +$6.66 | -$3.34 |
 | 74 | Nov 25, 13:59:00 PT | 4CHAN | dip buy | $0.000191 | -$10.00 |  |
 | 73 | Nov 25, 13:59:00 PT | JIMMY | stop | $0.000645 | +$6.86 | -$3.14 |
-| 72 | Nov 25, 12:57:00 PT | JIMMY | dip buy | $0.000913 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
