@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.005909549164089533,
-   "lastPrice": 0.004811887088520949,
-   "marketCap": 4524217.82919151,
-   "liquidity": 272711.0208,
+   "lastPrice": 0.005186561222105597,
+   "marketCap": 4871619.50781183,
+   "liquidity": 283106.6793,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795536300000,
    "peakPrice": 0.0027309840597927234,
-   "lastPrice": 0.0021524014866454123,
-   "marketCap": 2069253.89958363,
-   "liquidity": 144631.7624,
+   "lastPrice": 0.0021574006739643035,
+   "marketCap": 2074059.96725129,
+   "liquidity": 144775.8196,
    "score": 68,
    "url": "https://dexscreener.com/solana/65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
    "dex": "meteora-damm-v2",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0009234804449395824,
-   "lastPrice": 0.0007906799800845534,
-   "marketCap": 777494.32757914,
-   "liquidity": 88779.6454,
+   "lastPrice": 0.0007838093509808237,
+   "marketCap": 768969.200251067,
+   "liquidity": 87699.3392,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -61,9 +61,9 @@
    "sizeUsd": 10,
    "openedAt": 1795657440000,
    "peakPrice": 0.0013174077102518318,
-   "lastPrice": 0.0011274351006712547,
-   "marketCap": 1055278.44298091,
-   "liquidity": 95686.2852,
+   "lastPrice": 0.0009992592985609797,
+   "marketCap": 921144.244938061,
+   "liquidity": 90049.2349,
    "score": 83,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -72,6 +72,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795709358216,
+   "mint": "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump",
+   "pool": "9sBikgSUu5U3q1JbFwdkWJ4Kb3q7kjEujoo4gd5vYumg",
+   "symbol": "Zero",
+   "name": "Zero",
+   "marketCap": 182970.143763436,
+   "liquidity": 35485.6542,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00018775600544161482,
+   "why": "Score 61, need 70. Weakest layer: Momentum (falling). No order sent.",
+   "id": "1795709358216-DTSkmo-analyst: score",
+   "pacific": "Nov 26, 08:09:18 PT"
+  },
   {
    "at": 1795708638993,
    "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
@@ -3255,22 +3271,6 @@
    "why": "Dropped off the watch. Price fell 50% from the first confirmed print, so the dip rule will not buy a rug. No order sent.",
    "id": "1795624260000-2Uyrvg-executor: drop watch",
    "pacific": "Nov 25, 08:31:00 PT"
-  },
-  {
-   "at": 1795624200000,
-   "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
-   "pool": "71Nbbz1PYGaBKVt3qhjUDQUsH9JqRz52Q92pBhi7CtMw",
-   "symbol": "BASKET",
-   "name": "BASKET",
-   "marketCap": 524510.36729568,
-   "liquidity": 17652182.8841,
-   "rule": "executor: drop watch",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0005245103672956804,
-   "why": "Dropped off the watch. Score fell to 39. No order sent.",
-   "id": "1795624200000-3Tg6Yn-executor: drop watch",
-   "pacific": "Nov 25, 08:30:00 PT"
   }
  ],
  "trades": [
@@ -4380,7 +4380,7 @@
   "4vMsoUT2BWatFweudnQM1xedRLfJgJ7hswhcpz4xgBTy": "scanner: liquidity",
   "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY": "scanner: market cap",
   "Bg74niwsyZFFxPhY8J47crDtDSUctKZEb1AuZL93pump": "scanner: liquidity",
-  "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump": "risk:Cash is under the $10 ticket.",
+  "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump": "analyst: score",
   "6B5X3keXJ4J8LLvswa2mbqMhrRDbt85Jo88sbB6apump": "scanner: liquidity",
   "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump": "scanner: market cap"
  },
@@ -4402,5 +4402,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795708638993
+ "lastScanAt": 1795709358216
 }
