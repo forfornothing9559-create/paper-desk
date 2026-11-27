@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.0060957984054617964,
-   "marketCap": 5770757.55528049,
-   "liquidity": 314076.1305,
+   "lastPrice": 0.006238391266346498,
+   "marketCap": 5855858.43723991,
+   "liquidity": 316821.305,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0009097637110502334,
-   "marketCap": 883770.281817776,
-   "liquidity": 95839.9493,
+   "lastPrice": 0.0008915221451044743,
+   "marketCap": 881210.423079743,
+   "liquidity": 95506.5564,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.000724256084937679,
-   "lastPrice": 0.0005874778409015813,
-   "marketCap": 555229.128260152,
-   "liquidity": 71498.8335,
+   "lastPrice": 0.000602049354943266,
+   "marketCap": 562187.119088016,
+   "liquidity": 71971.8408,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795775958002,
+   "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
+   "pool": "CixcofsPwHnYWjsoDxXxvLd6uM5fH7w8MFPL9mpQpqtX",
+   "symbol": "BASKET",
+   "name": "BASKET",
+   "marketCap": 439374.603403844,
+   "liquidity": 99405.5599,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00045606674283618317,
+   "why": "Score 60, need 70. Weakest layer: Flow (51 buys / 113 sells). No order sent.",
+   "id": "1795775958002-3Tg6Yn-analyst: score",
+   "pacific": "Nov 27, 02:39:18 PT"
+  },
   {
    "at": 1795775238126,
    "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
@@ -3238,22 +3254,6 @@
    "why": "Score 65, need 70. Weakest layer: Momentum (falling). No order sent.",
    "id": "1795685606695-3Tg6Yn-analyst: score",
    "pacific": "Nov 26, 01:33:26 PT"
-  },
-  {
-   "at": 1795684877772,
-   "mint": "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr",
-   "pool": "FJk9sajdc2Q4heRPPu3yLzkmf2ZByZkpiHQLv9e2bn5A",
-   "symbol": "FLOAT",
-   "name": "FLOAT",
-   "marketCap": 2338206.11279242,
-   "liquidity": 296055.9239,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0028038016772918657,
-   "why": "Cash is under the $10 ticket. Score was 81. No order sent.",
-   "id": "1795684877772-Bv1a7c-risk: block",
-   "pacific": "Nov 26, 01:21:17 PT"
   }
  ],
  "trades": [
@@ -4447,7 +4447,7 @@
   "55RwtHpoNB81SgfiNvogeZTMfik2SfMGa5FaxKcXpump": "scanner: liquidity",
   "DVdWuNK8ncn79B6z8nCiwcNAiwyFcmBPfChgxJGTpump": "risk:Cash is under the $10 ticket.",
   "CUg7AzWL5p8imZVqqdjEPgRhUsXAkBMW5JxkSJ9fpump": "risk:Cash is under the $10 ticket.",
-  "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f": "drop:score",
+  "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f": "analyst: score",
   "4Di56UJzpnb7E4D7aLXFf7aLF5TrpJYv9Q3mR398pump": "scanner: liquidity",
   "2UyrvgCRXiEwiKRVk96gs6B4myrBHZAfcLyMVLE8vSCy": "scanner: liquidity",
   "5EmvWDizkpjAXbcfCcVq69w1id8GaLzi4LLwtuSgpump": "scanner: liquidity",
@@ -4485,5 +4485,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795775238126
+ "lastScanAt": 1795775958002
 }
