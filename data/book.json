@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.005618842450100166,
-   "marketCap": 5308225.49658613,
-   "liquidity": 299628.6132,
+   "lastPrice": 0.005644333088717601,
+   "marketCap": 5244678.67785588,
+   "liquidity": 298942.3808,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0009233721361563345,
-   "marketCap": 905888.959322859,
-   "liquidity": 96241.2292,
+   "lastPrice": 0.0008924776667056127,
+   "marketCap": 870422.028395547,
+   "liquidity": 94681.8514,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.000724256084937679,
-   "lastPrice": 0.0005074331592000732,
-   "marketCap": 473835.547627652,
-   "liquidity": 65303.3606,
+   "lastPrice": 0.0004908839306131996,
+   "marketCap": 458382.058524064,
+   "liquidity": 64278.614,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795794864213,
+   "mint": "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor",
+   "pool": "3peugE6Fm4fpaVvrV2KBFN3nvLbCGEhGoUXDDxAHuscR",
+   "symbol": "SIDOOR",
+   "name": "SIDOOR",
+   "marketCap": 658907.79845954,
+   "liquidity": 65150.0143,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.000724256623303607,
+   "why": "Score 56, need 70. Weakest layer: Flow (36 buys / 61 sells). No order sent.",
+   "id": "1795794864213-zcRvzm-analyst: score",
+   "pacific": "Nov 27, 07:54:24 PT"
+  },
   {
    "at": 1795793964512,
    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
@@ -3238,22 +3254,6 @@
    "why": "Cash is under the $10 ticket. Score was 71. No order sent.",
    "id": "1795705760760-2j5SaS-risk: block",
    "pacific": "Nov 26, 07:09:20 PT"
-  },
-  {
-   "at": 1795705760760,
-   "mint": "6B5X3keXJ4J8LLvswa2mbqMhrRDbt85Jo88sbB6apump",
-   "pool": "3HZez3ezzSDTZaT12pqMZwii8Ury9rknjQumsJQYwYt7",
-   "symbol": "Elonmas",
-   "name": "Elonmas",
-   "marketCap": 80163.1389318963,
-   "liquidity": 21408.5323,
-   "rule": "analyst: score",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.00007774179226686014,
-   "why": "Score 68, need 70. Weakest layer: Momentum (falling). No order sent.",
-   "id": "1795705760760-6B5X3k-analyst: score",
-   "pacific": "Nov 26, 07:09:20 PT"
   }
  ],
  "trades": [
@@ -4417,7 +4417,7 @@
   "3D7YQcnXi6RMjWxheiE8VLuGXJTtgQkmyugGYvzjpump": "scanner: liquidity",
   "GTBxUiw6wJdmmkCGZgRHLyYxqu1vG4KtRpeox6yDpump": "analyst: score",
   "FSkyjfqB26u6c2GSgpACrjbxp9yQAR8rutxprVNppump": "analyst: score",
-  "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor": "risk:Cash is under the $10 ticket.",
+  "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor": "analyst: score",
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": "analyst: score",
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": "executor: paper buy",
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": "scanner: market cap",
@@ -4487,5 +4487,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795793964512
+ "lastScanAt": 1795794864213
 }
