@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.005717506120841558,
-   "marketCap": 5342573.32876547,
-   "liquidity": 300522.4288,
+   "lastPrice": 0.005634759006149032,
+   "marketCap": 5301182.08787379,
+   "liquidity": 298582.6145,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0008471665181780063,
-   "marketCap": 828118.668389028,
-   "liquidity": 91983.609,
+   "lastPrice": 0.0008544300889598647,
+   "marketCap": 838252.182724631,
+   "liquidity": 92502.9407,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0009960483818154551,
-   "lastPrice": 0.0008798510881117047,
-   "marketCap": 841718.319178578,
-   "liquidity": 88562.0961,
+   "lastPrice": 0.0008013599823720024,
+   "marketCap": 747455.986606661,
+   "liquidity": 83504.3396,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795813218725,
+   "mint": "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
+   "pool": "HJ4AFisW1oo8HVmyXL2QjjnAv4Y25NThse2LcpCreqtu",
+   "symbol": "Kibo",
+   "name": "Kibo",
+   "marketCap": 69410.6136999999,
+   "liquidity": 19428.9113,
+   "rule": "scanner: liquidity",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00006939837734566859,
+   "why": "Liquidity $19.4K is under the $20K floor. No order sent.",
+   "id": "1795813218725-7XSYaJ-scanner: liquidity",
+   "pacific": "Nov 27, 13:00:18 PT"
+  },
   {
    "at": 1795811779440,
    "mint": "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg",
@@ -3238,22 +3254,6 @@
    "why": "Score 68, need 70. Weakest layer: Momentum (falling). No order sent.",
    "id": "1795730115204-J9eBkC-analyst: score",
    "pacific": "Nov 26, 13:55:15 PT"
-  },
-  {
-   "at": 1795730115204,
-   "mint": "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-   "pool": "AirCDeU4yL6hjuina65mtWAKzmex7STKZSiNMYZhzKt2",
-   "symbol": "Snowball",
-   "name": "Snowball",
-   "marketCap": 561547.762946746,
-   "liquidity": 59465.0087,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0005835204063659984,
-   "why": "Cash is under the $10 ticket. Score was 80. No order sent.",
-   "id": "1795730115204-9TKbd3-risk: block",
-   "pacific": "Nov 26, 13:55:15 PT"
   }
  ],
  "trades": [
@@ -4467,7 +4467,7 @@
   "G2ZDG8q3QMYk3KR58JFFYsvaTk4Gy94UzMo7Re7spump": "risk:Cash is under the $10 ticket.",
   "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump": "scanner: liquidity",
   "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg": "analyst: score",
-  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump": "risk:Cash is under the $10 ticket.",
+  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump": "scanner: liquidity",
   "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump": "scanner: liquidity",
   "6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump": "scanner: liquidity",
   "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump": "scanner: liquidity",
@@ -4493,5 +4493,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795812497814
+ "lastScanAt": 1795813218725
 }
