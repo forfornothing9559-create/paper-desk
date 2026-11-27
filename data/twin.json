@@ -7,19 +7,19 @@
     "confirmedTop": true,
     "symbol": "mihao",
     "name": "mihao",
-    "priceUsd": 0.005389856753,
-    "marketCap": 5070772.17733378,
-    "liquidityUsd": 291019.9811,
-    "volumeH1": 28684.9397588676,
-    "changeM5": 0.15,
-    "changeH1": -4.54,
-    "buysH1": 262,
-    "sellsH1": 91,
+    "priceUsd": 0.005395042153,
+    "marketCap": 5075650.59678968,
+    "liquidityUsd": 291446.0325,
+    "volumeH1": 24618.0376396271,
+    "changeM5": 0.35,
+    "changeH1": -3.9,
+    "buysH1": 222,
+    "sellsH1": 87,
     "pairCreatedAt": 1792946595000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump"
    },
-   "readAt": 1795818259467
+   "readAt": 1795818975731
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
    "q": {
@@ -28,19 +28,19 @@
     "confirmedTop": true,
     "symbol": "JIMMY",
     "name": "JIMMY",
-    "priceUsd": 0.0007816560113,
-    "marketCap": 729899.903180469,
-    "liquidityUsd": 81821.9472,
-    "volumeH1": 33562.8757538558,
-    "changeM5": -0.74,
-    "changeH1": 5.42,
-    "buysH1": 366,
-    "sellsH1": 419,
+    "priceUsd": 0.0007156046087,
+    "marketCap": 668221.989026783,
+    "liquidityUsd": 78589.4173,
+    "volumeH1": 33260.0706131383,
+    "changeM5": -6.35,
+    "changeH1": -2.08,
+    "buysH1": 375,
+    "sellsH1": 393,
     "pairCreatedAt": 1795468271000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump"
    },
-   "readAt": 1795818259467
+   "readAt": 1795818975731
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
    "q": {
@@ -49,19 +49,19 @@
     "confirmedTop": true,
     "symbol": "WASTED",
     "name": "WASTED",
-    "priceUsd": 0.0008461199061,
-    "marketCap": 830099.346062572,
-    "liquidityUsd": 91795.8666,
-    "volumeH1": 8681.3172540051,
-    "changeM5": -0.72,
-    "changeH1": 1.51,
-    "buysH1": 152,
-    "sellsH1": 151,
+    "priceUsd": 0.0008099534791,
+    "marketCap": 794617.699565802,
+    "liquidityUsd": 89736.109,
+    "volumeH1": 10696.1655505584,
+    "changeM5": -0.49,
+    "changeH1": -2.32,
+    "buysH1": 198,
+    "sellsH1": 163,
     "pairCreatedAt": 1793383775000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump"
    },
-   "readAt": 1795818259467
+   "readAt": 1795818975731
   }
  },
  "trend": [
@@ -74,35 +74,35 @@
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
   "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump",
   "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
-  "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg",
   "HAP9FcXubD88SjRHMY1kr5iukpRZgeMAgCBam3Vtpump",
+  "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg",
   "J9eBkCb4UtquAMQqB6duwBmR99fFSMoTnDcaMB9Wpump",
   "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump",
-  "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump",
   "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
   "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor",
   "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
   "SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb",
+  "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump",
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump"
  ],
  "newest": {
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump": {
-   "at": 1795818240,
-   "end": 1795818240,
-   "close": 0.0053898567526696065,
+   "at": 1795818960,
+   "end": 1795818960,
+   "close": 0.005388955423655927,
    "pool": "Ho1aSG6WGH1FfXdEHrK2f4Ggt1Hoxo9s5jcLMDqeyeBz"
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
-   "at": 1795818240,
-   "end": 1795818240,
-   "close": 0.0008360862161297129,
+   "at": 1795818960,
+   "end": 1795818960,
+   "close": 0.0008182637991410145,
    "pool": "TT7DKs9YjJZj1fwMGoPmKBmDreZzyMAMrHoDCGdfwqN"
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
-   "at": 1795818240,
-   "end": 1795818240,
-   "close": 0.0007721867250746417,
+   "at": 1795818960,
+   "end": 1795818960,
+   "close": 0.0007163238513160252,
    "pool": "FnHWfV49ywCtGCDTyf34AVN8BiXxcgXUKqLctkrkP1gQ"
   }
  }
