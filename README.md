@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 27, 01:50:17 PT** |
-| Balance, by the desk's own count after costs | **$41.91** (started at $100.00) |
-| Cash | $1.27 |
-| Open paper trades | 4 of 4 allowed |
+| Last read of the market | **Nov 27, 02:03:18 PT** |
+| Balance, by the desk's own count after costs | **$41.40** (started at $100.00) |
+| Cash | $9.91 |
+| Open paper trades | 3 of 4 allowed |
 | Coins waiting for a dip | 1 |
-| Rows in the ledger | 86 (41 closed trades) |
+| Rows in the ledger | 87 (42 closed trades) |
 
-**Score:** 41 closed trades over 6 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
+**Score:** 42 closed trades over 6 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,15 +22,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00600 | $11.62 |
-| Rings | Nov 24, 08:05:00 PT | $10.00 | $0.00182 | $0.00173 | $9.20 |
-| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000890 | $9.64 |
-| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000594 | $10.18 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00601 | $11.63 |
+| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000882 | $9.55 |
+| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000601 | $10.31 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 87 | Nov 27, 01:58:00 PT | Rings | trail | $0.00162 | +$8.64 | -$1.36 |
 | 86 | Nov 26, 16:02:00 PT | JIMMY | dip buy | $0.000566 | -$10.00 |  |
 | 85 | Nov 26, 16:02:00 PT | Zero | trail | $0.0000992 | +$9.60 | -$0.40 |
 | 84 | Nov 26, 11:33:00 PT | Zero | dip buy | $0.000100 | -$10.00 |  |
@@ -40,7 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 80 | Nov 25, 17:44:00 PT | JIMMY | dip buy | $0.000706 | -$10.00 |  |
 | 79 | Nov 25, 17:42:00 PT | FIONA | stop | $0.00192 | +$7.27 | -$2.73 |
 | 78 | Nov 25, 15:55:00 PT | WASTED | dip buy | $0.000896 | -$10.00 |  |
-| 77 | Nov 25, 15:55:00 PT | Pompom | stop | $0.000183 | +$7.26 | -$2.74 |
 
 <!-- END OF STATUS -->
 
