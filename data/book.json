@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.006208115996002665,
-   "marketCap": 5840605.98954828,
-   "liquidity": 315792.3841,
+   "lastPrice": 0.006000626788031402,
+   "marketCap": 5629419.7928567,
+   "liquidity": 309614.4629,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0008512133439439362,
-   "marketCap": 834310.464149762,
-   "liquidity": 92416.3247,
+   "lastPrice": 0.000838020012255674,
+   "marketCap": 822152.911747251,
+   "liquidity": 91964.9492,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.000724256084937679,
-   "lastPrice": 0.0005648342904473092,
-   "marketCap": 528070.436687179,
-   "liquidity": 69679.4773,
+   "lastPrice": 0.0005353848343099633,
+   "marketCap": 510527.297637122,
+   "liquidity": 67995.8755,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795780280245,
+   "mint": "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump",
+   "pool": "6h2yPTQ4CaXcUjMYr6B6MkDmLqTzuLkZuh25aT4thrbZ",
+   "symbol": "DEXDATA",
+   "name": "DEXDATA",
+   "marketCap": 267824.0503,
+   "liquidity": 38711.2659,
+   "rule": "risk: block",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.0002644798395265836,
+   "why": "Cash is under the $10 ticket. Score was 74. No order sent.",
+   "id": "1795780280245-63jDWW-risk: block",
+   "pacific": "Nov 27, 03:51:20 PT"
+  },
   {
    "at": 1795779558738,
    "mint": "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump",
@@ -3238,22 +3254,6 @@
    "why": "Cash is under the $10 ticket. Score was 80. No order sent.",
    "id": "1795689199639-5EmvWD-risk: block",
    "pacific": "Nov 26, 02:33:19 PT"
-  },
-  {
-   "at": 1795689199639,
-   "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
-   "pool": "CixcofsPwHnYWjsoDxXxvLd6uM5fH7w8MFPL9mpQpqtX",
-   "symbol": "BASKET",
-   "name": "BASKET",
-   "marketCap": 827764.063267881,
-   "liquidity": 134102.2493,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0008719801785652399,
-   "why": "Cash is under the $10 ticket. Score was 76. No order sent.",
-   "id": "1795689199639-3Tg6Yn-risk: block",
-   "pacific": "Nov 26, 02:33:19 PT"
   }
  ],
  "trades": [
@@ -4462,7 +4462,7 @@
   "32rBxcFjCFnyqZ41CEPM5AL67X1dcw8w83vZt6Kxpump": "scanner: liquidity",
   "3gmFG4sFDJErDV8pacFrL2uUPXeGJTYLjfRy4hFypump": "risk:Cash is under the $10 ticket.",
   "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump": "analyst: score",
-  "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump": "analyst: score",
+  "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump": "risk:Cash is under the $10 ticket.",
   "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump": "analyst: score",
   "G2ZDG8q3QMYk3KR58JFFYsvaTk4Gy94UzMo7Re7spump": "risk:Cash is under the $10 ticket.",
   "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump": "risk:Cash is under the $10 ticket."
@@ -4485,5 +4485,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795779558738
+ "lastScanAt": 1795780280245
 }
