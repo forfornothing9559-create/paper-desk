@@ -7,14 +7,14 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 28, 05:13:16 PT** |
-| Balance, by the desk's own count after costs | **$43.72** (started at $100.00) |
-| Cash | $9.91 |
-| Open paper trades | 3 of 4 allowed |
-| Coins waiting for a dip | 0 |
-| Rows in the ledger | 87 (42 closed trades) |
+| Last read of the market | **Nov 28, 05:25:17 PT** |
+| Balance, by the desk's own count after costs | **$43.67** (started at $100.00) |
+| Cash | $17.17 |
+| Open paper trades | 2 of 4 allowed |
+| Coins waiting for a dip | 7 |
+| Rows in the ledger | 88 (43 closed trades) |
 
-**Score:** 42 closed trades over 6 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
+**Score:** 43 closed trades over 6 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
 
 If *Last read* is more than about an hour old, the desk has stalled.
 
@@ -22,14 +22,14 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00562 | $10.89 |
-| WASTED | Nov 25, 15:55:00 PT | $10.00 | $0.000896 | $0.000683 | $7.39 |
-| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000906 | $15.53 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00560 | $10.83 |
+| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000914 | $15.67 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 88 | Nov 28, 05:14:00 PT | WASTED | stop | $0.000670 | +$7.26 | -$2.74 |
 | 87 | Nov 27, 01:58:00 PT | Rings | trail | $0.00162 | +$8.64 | -$1.36 |
 | 86 | Nov 26, 16:02:00 PT | JIMMY | dip buy | $0.000566 | -$10.00 |  |
 | 85 | Nov 26, 16:02:00 PT | Zero | trail | $0.0000992 | +$9.60 | -$0.40 |
@@ -39,7 +39,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 81 | Nov 26, 10:29:00 PT | JIMMY | trail | $0.000786 | +$10.80 | +$0.80 |
 | 80 | Nov 25, 17:44:00 PT | JIMMY | dip buy | $0.000706 | -$10.00 |  |
 | 79 | Nov 25, 17:42:00 PT | FIONA | stop | $0.00192 | +$7.27 | -$2.73 |
-| 78 | Nov 25, 15:55:00 PT | WASTED | dip buy | $0.000896 | -$10.00 |  |
 
 <!-- END OF STATUS -->
 
