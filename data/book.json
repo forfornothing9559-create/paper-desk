@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.005306421717387426,
-   "marketCap": 4992274.96744775,
-   "liquidity": 289089.7117,
+   "lastPrice": 0.005440082659728102,
+   "marketCap": 5118023.01678327,
+   "liquidity": 293855.9173,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0007771516069412678,
-   "marketCap": 762436.675470034,
-   "liquidity": 87256.5335,
+   "lastPrice": 0.0007806624496608331,
+   "marketCap": 766422.745546853,
+   "liquidity": 88088.2378,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0010193756342661766,
-   "lastPrice": 0.0008307592712497688,
-   "marketCap": 775528.295342024,
-   "liquidity": 85072.7202,
+   "lastPrice": 0.0008107007518463115,
+   "marketCap": 757021.403528987,
+   "liquidity": 84637.0575,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795846996590,
+   "mint": "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
+   "pool": "HJ4AFisW1oo8HVmyXL2QjjnAv4Y25NThse2LcpCreqtu",
+   "symbol": "Kibo",
+   "name": "Kibo",
+   "marketCap": 79688.7054699998,
+   "liquidity": 21053.5442,
+   "rule": "risk: block",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00007968870546794011,
+   "why": "Cash is under the $10 ticket. Score was 90. No order sent.",
+   "id": "1795846996590-7XSYaJ-risk: block",
+   "pacific": "Nov 27, 22:23:16 PT"
+  },
   {
    "at": 1795846277167,
    "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
@@ -3238,22 +3254,6 @@
    "why": "Score 67, need 70. Weakest layer: Turnover (quiet tape). No order sent.",
    "id": "1795769120001-2Lw9FQ-analyst: score",
    "pacific": "Nov 27, 00:45:20 PT"
-  },
-  {
-   "at": 1795769120001,
-   "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
-   "pool": "DjbLtX1HRGZZrJgJ7CwTX6SN3D7tBLiytkGwomBUwTVB",
-   "symbol": "FIONA",
-   "name": "FIONA",
-   "marketCap": 1100746.61814131,
-   "liquidity": 118219.3286,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.001111833893753678,
-   "why": "Cash is under the $10 ticket. Score was 76. No order sent.",
-   "id": "1795769120001-B34nXK-risk: block",
-   "pacific": "Nov 27, 00:45:20 PT"
   }
  ],
  "trades": [
@@ -4467,7 +4467,7 @@
   "G2ZDG8q3QMYk3KR58JFFYsvaTk4Gy94UzMo7Re7spump": "risk:Cash is under the $10 ticket.",
   "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump": "scanner: liquidity",
   "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg": "analyst: score",
-  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump": "scanner: liquidity",
+  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump": "risk:Cash is under the $10 ticket.",
   "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump": "scanner: liquidity",
   "6is11V1KgpybgPdMkYGBacbiT62kqunsvnLDNzDfpump": "scanner: liquidity",
   "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump": "scanner: liquidity",
@@ -4495,5 +4495,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795846277167
+ "lastScanAt": 1795846996590
 }
