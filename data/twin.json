@@ -7,19 +7,19 @@
     "confirmedTop": true,
     "symbol": "mihao",
     "name": "mihao",
-    "priceUsd": 0.005599906694,
-    "marketCap": 5268385.26572029,
-    "liquidityUsd": 297637.7091,
-    "volumeH1": 21864.3239825563,
-    "changeM5": 0.22,
-    "changeH1": 1.5,
-    "buysH1": 183,
-    "sellsH1": 128,
+    "priceUsd": 0.005509820528,
+    "marketCap": 5183632.31258481,
+    "liquidityUsd": 295518.42,
+    "volumeH1": 22203.2603542732,
+    "changeM5": -0.33,
+    "changeH1": 0.29,
+    "buysH1": 171,
+    "sellsH1": 116,
     "pairCreatedAt": 1792946595000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump"
    },
-   "readAt": 1795841956526
+   "readAt": 1795842677552
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
    "q": {
@@ -28,19 +28,19 @@
     "confirmedTop": true,
     "symbol": "JIMMY",
     "name": "JIMMY",
-    "priceUsd": 0.0007546530708,
-    "marketCap": 704684.836625652,
-    "liquidityUsd": 81109.6791,
-    "volumeH1": 11160.4623002525,
-    "changeM5": 0.74,
-    "changeH1": 5.59,
-    "buysH1": 155,
-    "sellsH1": 132,
+    "priceUsd": 0.0008133311275,
+    "marketCap": 759477.612802016,
+    "liquidityUsd": 83856.7305,
+    "volumeH1": 13875.3451934076,
+    "changeM5": 0.82,
+    "changeH1": 10.68,
+    "buysH1": 156,
+    "sellsH1": 168,
     "pairCreatedAt": 1795468271000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump"
    },
-   "readAt": 1795841956526
+   "readAt": 1795842677552
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
    "q": {
@@ -49,60 +49,60 @@
     "confirmedTop": true,
     "symbol": "WASTED",
     "name": "WASTED",
-    "priceUsd": 0.0008008278617,
-    "marketCap": 785664.633614907,
-    "liquidityUsd": 89383.3836,
-    "volumeH1": 3730.7555418965,
-    "changeM5": -0.32,
-    "changeH1": 2.25,
-    "buysH1": 58,
-    "sellsH1": 80,
+    "priceUsd": 0.0007901878191,
+    "marketCap": 775226.054276233,
+    "liquidityUsd": 88537.4527,
+    "volumeH1": 2735.469034859,
+    "changeM5": 0.89,
+    "changeH1": -1.07,
+    "buysH1": 51,
+    "sellsH1": 70,
     "pairCreatedAt": 1793383775000,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump"
    },
-   "readAt": 1795841956526
+   "readAt": 1795842677552
   }
  },
  "trend": [
   "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
-  "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
   "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump",
+  "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
   "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump",
   "HAP9FcXubD88SjRHMY1kr5iukpRZgeMAgCBam3Vtpump",
   "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-  "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
   "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump",
-  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
   "GXjSWDoMQkDEbhon9ALxz8chUUsVKg3x8V3NajjDpump",
-  "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
+  "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+  "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
   "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump",
   "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump",
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump",
   "85cQsFgbi8mBZxiPppbpPXuV7j1hA8tBwhjF4gKW6mHg",
   "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+  "2YAfPhCrGSW82Ra33sWgurXt4dQ29SwXusvUXdJGpump",
   "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump",
-  "SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb",
   "zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor"
  ],
  "newest": {
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump": {
-   "at": 1795841940,
-   "end": 1795841940,
-   "close": 0.005599906693566897,
+   "at": 1795842660,
+   "end": 1795842660,
+   "close": 0.00550109101966597,
    "pool": "Ho1aSG6WGH1FfXdEHrK2f4Ggt1Hoxo9s5jcLMDqeyeBz"
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
-   "at": 1795841940,
-   "end": 1795841940,
-   "close": 0.0007979352469833714,
+   "at": 1795842660,
+   "end": 1795842600,
+   "close": 0.0007901878191432329,
    "pool": "TT7DKs9YjJZj1fwMGoPmKBmDreZzyMAMrHoDCGdfwqN"
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
-   "at": 1795841940,
-   "end": 1795841940,
-   "close": 0.0007449811718968481,
+   "at": 1795842660,
+   "end": 1795842660,
+   "close": 0.0008017894619298675,
    "pool": "FnHWfV49ywCtGCDTyf34AVN8BiXxcgXUKqLctkrkP1gQ"
   }
  }
