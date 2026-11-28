@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.006001181976277913,
-   "marketCap": 5669274.2654612,
-   "liquidity": 307580.7688,
+   "lastPrice": 0.005939582555476794,
+   "marketCap": 5577130.14616752,
+   "liquidity": 304427.2468,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0007314143372430749,
-   "marketCap": 726189.474948794,
-   "liquidity": 85432.8307,
+   "lastPrice": 0.0007269587890667466,
+   "marketCap": 721890.972925802,
+   "liquidity": 85160.0904,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0010193756342661766,
-   "lastPrice": 0.0008582727597815701,
-   "marketCap": 832766.326749386,
-   "liquidity": 88695.5978,
+   "lastPrice": 0.000839938989224311,
+   "marketCap": 776516.543591224,
+   "liquidity": 85158.8119,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795858532462,
+   "mint": "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM",
+   "pool": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
+   "symbol": "CLAUDIA",
+   "name": "CLAUDIA",
+   "marketCap": 6906992.5557097,
+   "liquidity": 396721.6856,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.007299617935238794,
+   "why": "Score 53, need 70. Weakest layer: Flow (90 buys / 124 sells). No order sent.",
+   "id": "1795858532462-2j5SaS-analyst: score",
+   "pacific": "Nov 28, 01:35:32 PT"
+  },
   {
    "at": 1795857801841,
    "mint": "3Tg6YnNrfPdFfsY14MaNsDMWLseAyrUDS3myJtbaJN6f",
@@ -3238,22 +3254,6 @@
    "why": "Score 62, need 70. Weakest layer: Turnover (quiet tape). No order sent.",
    "id": "1795778836309-Hg5Ja5-analyst: score",
    "pacific": "Nov 27, 03:27:16 PT"
-  },
-  {
-   "at": 1795778836309,
-   "mint": "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
-   "pool": "DjbLtX1HRGZZrJgJ7CwTX6SN3D7tBLiytkGwomBUwTVB",
-   "symbol": "FIONA",
-   "name": "FIONA",
-   "marketCap": 1182560.49263063,
-   "liquidity": 123262.2541,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0012017986377903024,
-   "why": "Cash is under the $10 ticket. Score was 70. No order sent.",
-   "id": "1795778836309-B34nXK-risk: block",
-   "pacific": "Nov 27, 03:27:16 PT"
   }
  ],
  "trades": [
@@ -4391,7 +4391,7 @@
  ],
  "priorGap": null,
  "lastSig": {
-  "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": "risk:Cash is under the $10 ticket.",
+  "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": "analyst: score",
   "9hjBLBrc7WZW2H8UQvBAvG5WiTZotXUv2Bdcn4f4pump": "analyst: score",
   "7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump": "analyst: score",
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump": "risk:Cash is under the $10 ticket.",
@@ -4496,5 +4496,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795857801841
+ "lastScanAt": 1795858532462
 }
