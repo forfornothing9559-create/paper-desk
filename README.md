@@ -7,12 +7,12 @@
 
 | | |
 |---|---|
-| Last read of the market | **Nov 28, 05:42:17 PT** |
-| Balance, by the desk's own count after costs | **$42.92** (started at $100.00) |
-| Cash | $17.17 |
-| Open paper trades | 2 of 4 allowed |
-| Coins waiting for a dip | 7 |
-| Rows in the ledger | 88 (43 closed trades) |
+| Last read of the market | **Nov 28, 05:58:21 PT** |
+| Balance, by the desk's own count after costs | **$41.38** (started at $100.00) |
+| Cash | $7.17 |
+| Open paper trades | 3 of 4 allowed |
+| Coins waiting for a dip | 6 |
+| Rows in the ledger | 89 (43 closed trades) |
 
 **Score:** 43 closed trades over 6 days. Enough to score. See FROZEN.md for the rule; the balance above is not the score.
 
@@ -22,13 +22,15 @@ If *Last read* is more than about an hour old, the desk has stalled.
 
 | Coin | Bought (Pacific) | Paid | In at | Last price | Worth now, after costs |
 |---|---|---|---|---|---|
-| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00554 | $10.72 |
-| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000877 | $15.03 |
+| mihao | Nov 24, 07:28:00 PT | $10.00 | $0.00501 | $0.00554 | $10.71 |
+| JIMMY | Nov 26, 16:02:00 PT | $10.00 | $0.000566 | $0.000847 | $14.52 |
+| Snowball | Nov 28, 05:46:00 PT | $10.00 | $0.000297 | $0.000274 | $8.98 |
 
 ### Last 10 rows of the ledger
 
 | # | Time (Pacific) | Coin | What | Price | Cash | After-cost result |
 |---|---|---|---|---|---|---|
+| 89 | Nov 28, 05:46:00 PT | Snowball | dip buy | $0.000297 | -$10.00 |  |
 | 88 | Nov 28, 05:14:00 PT | WASTED | stop | $0.000670 | +$7.26 | -$2.74 |
 | 87 | Nov 27, 01:58:00 PT | Rings | trail | $0.00162 | +$8.64 | -$1.36 |
 | 86 | Nov 26, 16:02:00 PT | JIMMY | dip buy | $0.000566 | -$10.00 |  |
@@ -38,7 +40,6 @@ If *Last read* is more than about an hour old, the desk has stalled.
 | 82 | Nov 26, 11:03:00 PT | PAIR | dip buy | $0.000189 | -$10.00 |  |
 | 81 | Nov 26, 10:29:00 PT | JIMMY | trail | $0.000786 | +$10.80 | +$0.80 |
 | 80 | Nov 25, 17:44:00 PT | JIMMY | dip buy | $0.000706 | -$10.00 |  |
-| 79 | Nov 25, 17:42:00 PT | FIONA | stop | $0.00192 | +$7.27 | -$2.73 |
 
 <!-- END OF STATUS -->
 
