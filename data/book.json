@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.006017881523252066,
-   "marketCap": 5661842.31600615,
-   "liquidity": 307525.0305,
+   "lastPrice": 0.006057480778671526,
+   "marketCap": 5668223.31814954,
+   "liquidity": 309061.7978,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0007544419473353916,
-   "marketCap": 740156.971479672,
-   "liquidity": 86907.0415,
+   "lastPrice": 0.0007639252395182168,
+   "marketCap": 749460.702349262,
+   "liquidity": 86787.2933,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0010193756342661766,
-   "lastPrice": 0.0008051516280126723,
-   "marketCap": 751839.698597671,
-   "liquidity": 83260.6184,
+   "lastPrice": 0.0007920419040668083,
+   "marketCap": 739598.015738137,
+   "liquidity": 82992.5514,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795851321551,
+   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
+   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
+   "symbol": "baton",
+   "name": "baton",
+   "marketCap": 4899104.09022633,
+   "liquidity": 339588.7781,
+   "rule": "risk: block",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.004905542419792009,
+   "why": "Cash is under the $10 ticket. Score was 71. No order sent.",
+   "id": "1795851321551-Hg5Ja5-risk: block",
+   "pacific": "Nov 27, 23:35:21 PT"
+  },
   {
    "at": 1795850598292,
    "mint": "HAP9FcXubD88SjRHMY1kr5iukpRZgeMAgCBam3Vtpump",
@@ -3238,22 +3254,6 @@
    "why": "PAPER ONLY. Trail was crossed. The fill is the price just read, $0.00162, which is -11.0% from the entry. It is not filled at the -25% line. Pool 8fSUYVnTy4r5fZUksjzKexLq2Tx96K3UPdYRvW5XWJ9t. 1.5% was taken on the buy and 1.5% on this sell. After-cost PnL -$1.36. No order sent.",
    "id": "1795773480000-65iH8k-risk: trail 40%",
    "pacific": "Nov 27, 01:58:00 PT"
-  },
-  {
-   "at": 1795772239617,
-   "mint": "DG2EJSEtPBge5F7zBCTZG78p27LTCiq8tUkJ39qupump",
-   "pool": "4XVReVDHQDFUM6FfvTmo7FdmEq7ZGWxZ1Jhj7qVA68wx",
-   "symbol": "duk",
-   "name": "duk",
-   "marketCap": 93208.21334,
-   "liquidity": 30048.0956,
-   "rule": "analyst: score",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.00009320821333982308,
-   "why": "Score 62, need 70. Weakest layer: Momentum (flat). No order sent.",
-   "id": "1795772239617-DG2EJS-analyst: score",
-   "pacific": "Nov 27, 01:37:19 PT"
   }
  ],
  "trades": [
@@ -4407,7 +4407,7 @@
   "Dfh5DzRgSvvCFDoYc2ciTkMrbDfRKybA4SoFbPmApump": "scanner: market cap",
   "SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb": "scanner: market cap",
   "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump": "analyst: score",
-  "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump": "analyst: score",
+  "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump": "risk:Cash is under the $10 ticket.",
   "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy": "scanner: market cap",
   "BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump": "scanner: liquidity",
   "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg": "analyst: score",
@@ -4495,5 +4495,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795850598292
+ "lastScanAt": 1795851321551
 }
