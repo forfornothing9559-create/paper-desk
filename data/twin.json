@@ -7,19 +7,19 @@
     "confirmedTop": true,
     "symbol": "mihao",
     "name": "mihao",
-    "priceUsd": 0.005786192493,
-    "marketCap": 5443642.22690167,
-    "liquidityUsd": 301579.9403,
-    "volumeH1": 12003.0087848947,
-    "changeM5": -0.35,
-    "changeH1": 0.33,
-    "buysH1": 128,
-    "sellsH1": 63,
+    "priceUsd": 0.005703995275,
+    "marketCap": 5366311.19317267,
+    "liquidityUsd": 300438.2591,
+    "volumeH1": 11546.0356040212,
+    "changeM5": -1.84,
+    "changeH1": -2.76,
+    "buysH1": 117,
+    "sellsH1": 61,
     "pairCreatedAt": 0,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump"
    },
-   "readAt": 1795867889612
+   "readAt": 1795868599860
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
    "q": {
@@ -28,19 +28,19 @@
     "confirmedTop": true,
     "symbol": "JIMMY",
     "name": "JIMMY",
-    "priceUsd": 0.0009534268621,
-    "marketCap": 890297.106390925,
-    "liquidityUsd": 91309.5394,
-    "volumeH1": 29179.3699012906,
-    "changeM5": 0.92,
-    "changeH1": 3.47,
-    "buysH1": 278,
-    "sellsH1": 304,
+    "priceUsd": 0.0009854995351,
+    "marketCap": 920246.134576716,
+    "liquidityUsd": 93446.104,
+    "volumeH1": 19162.29906671,
+    "changeM5": -1.03,
+    "changeH1": 1.8,
+    "buysH1": 237,
+    "sellsH1": 219,
     "pairCreatedAt": 0,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump"
    },
-   "readAt": 1795867889612
+   "readAt": 1795868599860
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
    "q": {
@@ -49,19 +49,19 @@
     "confirmedTop": true,
     "symbol": "WASTED",
     "name": "WASTED",
-    "priceUsd": 0.0007231509745,
-    "marketCap": 709458.477387202,
-    "liquidityUsd": 84940.5067,
-    "volumeH1": 1070.3320272398,
-    "changeM5": -0.99,
-    "changeH1": -0.43,
+    "priceUsd": 0.0007320364757,
+    "marketCap": 718175.736126337,
+    "liquidityUsd": 84892.1111,
+    "volumeH1": 918.7983829943,
+    "changeM5": 1.37,
+    "changeH1": 0.25,
     "buysH1": 25,
-    "sellsH1": 21,
+    "sellsH1": 17,
     "pairCreatedAt": 0,
     "dex": "pumpswap",
     "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump"
    },
-   "readAt": 1795867889612
+   "readAt": 1795868599860
   }
  },
  "trend": [
@@ -71,10 +71,10 @@
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
   "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump",
   "B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump",
-  "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump",
   "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
+  "4tqzkSWA9tiWYhzYpSt81We3cVNkrEbkD1tzjFDZpump",
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
+  "7XSYaJygcuNe6Q3kPvwsJpg4ZrFL1AEUFb8kCuzppump",
   "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump",
   "2YAfPhCrGSW82Ra33sWgurXt4dQ29SwXusvUXdJGpump",
   "3rVr2RBzEXXKf1cVvZ6HBvFg2XmBK4iMgZv9q9q4pump",
@@ -88,21 +88,21 @@
  ],
  "newest": {
   "4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump": {
-   "at": 1795867860,
-   "end": 1795867860,
-   "close": 0.005759056795841516,
+   "at": 1795868580,
+   "end": 1795868580,
+   "close": 0.005727580072342512,
    "pool": "Ho1aSG6WGH1FfXdEHrK2f4Ggt1Hoxo9s5jcLMDqeyeBz"
   },
   "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump": {
-   "at": 1795867860,
-   "end": 1795867740,
-   "close": 0.0007231509745483052,
+   "at": 1795868580,
+   "end": 1795868580,
+   "close": 0.0007326551380384873,
    "pool": "TT7DKs9YjJZj1fwMGoPmKBmDreZzyMAMrHoDCGdfwqN"
   },
   "38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump": {
-   "at": 1795867860,
-   "end": 1795867860,
-   "close": 0.0009796092830687696,
+   "at": 1795868580,
+   "end": 1795868580,
+   "close": 0.0010005872761778816,
    "pool": "FnHWfV49ywCtGCDTyf34AVN8BiXxcgXUKqLctkrkP1gQ"
   }
  }
