@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.006057480778671526,
-   "marketCap": 5668223.31814954,
-   "liquidity": 309061.7978,
+   "lastPrice": 0.005988912851515331,
+   "marketCap": 5567307.61557702,
+   "liquidity": 306309.1492,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0007639252395182168,
-   "marketCap": 749460.702349262,
-   "liquidity": 86787.2933,
+   "lastPrice": 0.0007677018446642661,
+   "marketCap": 755252.83451885,
+   "liquidity": 86846.2925,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0010193756342661766,
-   "lastPrice": 0.0007920419040668083,
-   "marketCap": 739598.015738137,
-   "liquidity": 82992.5514,
+   "lastPrice": 0.0007483509026244322,
+   "marketCap": 686851.909144879,
+   "liquidity": 79959.5445,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795852049660,
+   "mint": "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
+   "pool": "AirCDeU4yL6hjuina65mtWAKzmex7STKZSiNMYZhzKt2",
+   "symbol": "Snowball",
+   "name": "Snowball",
+   "marketCap": 323570.983019704,
+   "liquidity": 47236.8979,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.0003337823433393955,
+   "why": "Score 53, need 70. Weakest layer: Momentum (falling). No order sent.",
+   "id": "1795852049660-9TKbd3-analyst: score",
+   "pacific": "Nov 27, 23:47:29 PT"
+  },
   {
    "at": 1795851321551,
    "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
@@ -3238,22 +3254,6 @@
    "why": "Score 65, need 70. Weakest layer: Momentum (flat). No order sent.",
    "id": "1795773798294-zcRvzm-analyst: score",
    "pacific": "Nov 27, 02:03:18 PT"
-  },
-  {
-   "at": 1795773480000,
-   "mint": "65iH8k736QNhuUHm1tt8X7yJXpJ517HPPq8BrVdwring",
-   "pool": "8fSUYVnTy4r5fZUksjzKexLq2Tx96K3UPdYRvW5XWJ9t",
-   "symbol": "Rings",
-   "name": "Rings",
-   "marketCap": 1648564.22024768,
-   "liquidity": 132490.1636,
-   "rule": "risk: trail 40%",
-   "side": "sell",
-   "paperSize": 8.64,
-   "paperPrice": 0.0016237107714068217,
-   "why": "PAPER ONLY. Trail was crossed. The fill is the price just read, $0.00162, which is -11.0% from the entry. It is not filled at the -25% line. Pool 8fSUYVnTy4r5fZUksjzKexLq2Tx96K3UPdYRvW5XWJ9t. 1.5% was taken on the buy and 1.5% on this sell. After-cost PnL -$1.36. No order sent.",
-   "id": "1795773480000-65iH8k-risk: trail 40%",
-   "pacific": "Nov 27, 01:58:00 PT"
   }
  ],
  "trades": [
@@ -4461,7 +4461,7 @@
   "J9eBkCb4UtquAMQqB6duwBmR99fFSMoTnDcaMB9Wpump": "scanner: liquidity",
   "32rBxcFjCFnyqZ41CEPM5AL67X1dcw8w83vZt6Kxpump": "scanner: liquidity",
   "3gmFG4sFDJErDV8pacFrL2uUPXeGJTYLjfRy4hFypump": "risk:Cash is under the $10 ticket.",
-  "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump": "risk:Cash is under the $10 ticket.",
+  "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump": "analyst: score",
   "63jDWWFwp25ChLvsofbVRMprRbhiXuWoWVxrwFfypump": "risk:Cash is under the $10 ticket.",
   "9AvytnUKsLxPxFHFqS6VLxaxt5p6BhYNr53SD2Chpump": "analyst: score",
   "G2ZDG8q3QMYk3KR58JFFYsvaTk4Gy94UzMo7Re7spump": "risk:Cash is under the $10 ticket.",
@@ -4495,5 +4495,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795851321551
+ "lastScanAt": 1795852049660
 }
