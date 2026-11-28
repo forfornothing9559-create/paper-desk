@@ -10,9 +10,9 @@
    "sizeUsd": 10,
    "openedAt": 1795534080000,
    "peakPrice": 0.006635614477896265,
-   "lastPrice": 0.0062136124496212225,
-   "marketCap": 5839850.69387605,
-   "liquidity": 312526.1851,
+   "lastPrice": 0.006144706109393066,
+   "marketCap": 5784039.06864289,
+   "liquidity": 310718.8746,
    "score": 87,
    "url": "https://dexscreener.com/solana/4CxjZyMNoF1p6eXHXHv1TWpS2X47CuUmLwtGe18spump",
    "dex": "pumpswap",
@@ -27,9 +27,9 @@
    "sizeUsd": 10,
    "openedAt": 1795650900000,
    "peakPrice": 0.0010040621084847889,
-   "lastPrice": 0.0007550561162965262,
-   "marketCap": 740759.511500999,
-   "liquidity": 86299.8228,
+   "lastPrice": 0.000744037509970558,
+   "marketCap": 729949.536925591,
+   "liquidity": 86041.441,
    "score": 67,
    "url": "https://dexscreener.com/solana/GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
    "dex": "pumpswap",
@@ -44,9 +44,9 @@
    "sizeUsd": 10,
    "openedAt": 1795737720000,
    "peakPrice": 0.0010193756342661766,
-   "lastPrice": 0.0008691192247755371,
-   "marketCap": 813961.735512284,
-   "liquidity": 87890.123,
+   "lastPrice": 0.0007824902036547243,
+   "marketCap": 730624.722915406,
+   "liquidity": 82433.69,
    "score": 85,
    "url": "https://dexscreener.com/solana/38M2z4UCfZEkUHFzD48vhKQhFhNyRGto8pZbLjNipump",
    "dex": "pumpswap",
@@ -55,6 +55,22 @@
  ],
  "watches": [],
  "log": [
+  {
+   "at": 1795855637753,
+   "mint": "GXjSWDoMQkDEbhon9ALxz8chUUsVKg3x8V3NajjDpump",
+   "pool": "DkNJBoh2KngPNumX5BdEakmpX2fYPNu57xZFn6C2dRE1",
+   "symbol": "MoonBoy",
+   "name": "MoonBoy",
+   "marketCap": 402919.010174055,
+   "liquidity": 62756.3336,
+   "rule": "analyst: score",
+   "side": "buy",
+   "paperSize": 0,
+   "paperPrice": 0.00041245741125786037,
+   "why": "Score 63, need 70. Weakest layer: Momentum (falling). No order sent.",
+   "id": "1795855637753-GXjSWD-analyst: score",
+   "pacific": "Nov 28, 00:47:17 PT"
+  },
   {
    "at": 1795853485896,
    "mint": "9TKbd3VFaMSXsEAicD9JVQWpWwAoLi4fSgWmZL2cpump",
@@ -3238,22 +3254,6 @@
    "why": "Cash is under the $10 ticket. Score was 70. No order sent.",
    "id": "1795774520035-63jDWW-risk: block",
    "pacific": "Nov 27, 02:15:20 PT"
-  },
-  {
-   "at": 1795773798294,
-   "mint": "Hg5Ja55T5wESq4vyFoiVCMeHXtGyVA69X2UHq8hgpump",
-   "pool": "Cb7ZRgPLhji3Th7htXyKEqbXvNjPpeTvckXuWakBUhXu",
-   "symbol": "baton",
-   "name": "baton",
-   "marketCap": 4941664.29339153,
-   "liquidity": 341531.3827,
-   "rule": "risk: block",
-   "side": "buy",
-   "paperSize": 0,
-   "paperPrice": 0.0049481569822573965,
-   "why": "Cash is under the $10 ticket. Score was 90. No order sent.",
-   "id": "1795773798294-Hg5Ja5-risk: block",
-   "pacific": "Nov 27, 02:03:18 PT"
   }
  ],
  "trades": [
@@ -4474,7 +4474,7 @@
   "6StXSU7RvsbuwNG2gPw7nmu2UTVM3ZD2aewHA7fMpump": "scanner: liquidity",
   "9QT8K685Hrae4k11dhGXirdtpfAaimExtyfwt8cPpump": "analyst: score",
   "HAP9FcXubD88SjRHMY1kr5iukpRZgeMAgCBam3Vtpump": "risk:Cash is under the $10 ticket.",
-  "GXjSWDoMQkDEbhon9ALxz8chUUsVKg3x8V3NajjDpump": "risk:Cash is under the $10 ticket.",
+  "GXjSWDoMQkDEbhon9ALxz8chUUsVKg3x8V3NajjDpump": "analyst: score",
   "2YAfPhCrGSW82Ra33sWgurXt4dQ29SwXusvUXdJGpump": "risk:Cash is under the $10 ticket."
  },
  "tradesTonight": 0,
@@ -4495,5 +4495,5 @@
   "ticketUsd": 10
  },
  "locked": true,
- "lastScanAt": 1795854915516
+ "lastScanAt": 1795855637753
 }
